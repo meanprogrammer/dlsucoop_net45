@@ -1,0 +1,118 @@
+﻿<%@ Master Language="C#" AutoEventWireup="True" CodeBehind="Account.master.cs" Inherits="WebsiteTrial.Account" %>
+
+<%@ Register assembly="MangoChat" namespace="ASPNETChatControl" tagprefix="cc1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style3
+        {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 46pt;
+        }
+        .style5
+        {
+            font-size: 15px;
+            color: White;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+     <!-- start header -->
+        <div id="header">
+            <div id="acct_header">
+                 <table style="margin-left:10px;">
+                    <tr>
+                        <td>
+                            <asp:Image ID="Image1" runat="server" Height="83px" 
+                            ImageUrl="~/images/dlsu_d_logo copy.png" Width="86px" />
+                        </td>
+                        <td>
+                             <span class="style3" style="text-shadow: 0px 1px 5px #000; color: #FFFFFF;">
+                                    DLSU-D
+                             </span>
+                             <span class="style5" style="text-shadow: 0px 1px 5px #000;"><br />
+                                    De La Salle University-Dasmariñas
+                             </span>
+                        </td>
+                    </tr>
+                 </table> 
+            </div>       
+    <!-- end header -->
+     <!-- start page -->
+
+	        <div id="page">
+                <div id="page-bgtop">
+                    <div id="page-bgbtm">
+				<!-- start content -->
+				        <div id="content">
+                            <div class="post">
+                                <div class="entry">
+                                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+                                    </asp:ContentPlaceHolder>
+                                   
+                                </div>
+                            </div>
+                        </div>
+				<!-- end content -->
+				<!-- start sidebar -->
+				        <div id="sidebar">
+                        <br />
+<%--                            <ul>
+                                <li>
+                                    <h2 class="text_effect">
+                                        Navigation</h2>
+                                    <ul>
+                                        <li class="style4"><a href="Home_Logged.aspx">Home</a></li>
+                                        <li class="style4">
+                                            <asp:LinkButton ID="LinkButton2" runat="server" onclick="LinkButton2_Click">Loan Application</asp:LinkButton>
+                                        </li>
+                                        <li class="style4"><a href="Account_Settings.aspx">Settings</a></li>
+                                        <li class="style4">
+                                            <asp:LinkButton ID="LinkButton1" runat="server" onclick="LinkButton1_Click">Logout</asp:LinkButton>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>--%>
+                            <a href="Home_Logged.aspx" class="btn btn-success btn-block">Home</a>
+                            <asp:LinkButton ID="LinkButton2" runat="server" onclick="LinkButton2_Click" class="btn btn-success btn-block">Loan Application</asp:LinkButton>
+                            <a href="Account_Settings.aspx" class="btn btn-success btn-block">Settings</a>
+                            <asp:LinkButton ID="LinkButton1" runat="server" onclick="LinkButton1_Click"  class="btn btn-success btn-block">Logout</asp:LinkButton>
+                            <br />
+                            <br />
+                             <!---chat-->
+                             <ul>
+                                <li class="style4">
+                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+         
+                                    </asp:ContentPlaceHolder>
+                                </li>
+                            </ul>
+                        </div>
+				<!-- end sidebar -->
+				    <div style="clear:both">
+                            &nbsp;</div>
+                    </div>
+                </div>
+            </div>
+            <div id="footer">
+                <p style="font-size:11px;font-weight:bold;">© 2012 All Rights Reserved</p>
+            </div>
+       
+    </div>
+    </div>
+    <cc1:ChatControl ID="ChatControl1" runat="server">
+    </cc1:ChatControl>
+    </form>
+</body>
+</html>
