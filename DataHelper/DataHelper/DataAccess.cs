@@ -11,8 +11,8 @@ namespace DataHelper
 	public class DataAccess : IDisposable
 	{
         //protected string conn = "Data Source=.\\SQLEXPRESS;Initial Catalog=Messages;Integrated Security=True;";
-        protected string conn = @"Data Source=.\SQL2008R2;Initial Catalog=Messages;Integrated Security=true;";
-        //protected string conn = @"workstation id=Messages.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=Messages.mssql.somee.com;persist security info=False;initial catalog=Messages";
+        //protected string conn = @"Data Source=.\SQL2008R2;Initial Catalog=Messages;Integrated Security=true;";
+        protected string conn = @"workstation id=Messages.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=Messages.mssql.somee.com;persist security info=False;initial catalog=Messages";
 		protected SqlConnection MyConn;
 		protected SqlDataReader dr;
 		protected SqlCommand sqlCmd;

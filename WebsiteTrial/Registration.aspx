@@ -2,6 +2,112 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="row">
+        <div class="col-lg-12">
+            <label for="registrationtype">Registration Type</label>
+            <select class="form-control input-md" id="registrationtype">
+                <option value="">--SELECT--</option>
+                <option value="Employee">Employee</option>
+                <option value="External">External</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="empid">Employee ID</label>
+            <input id="empid" class="form-control input-md" type="text" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="firstname">First Name</label>
+            <input type="text" class="form-control input-md" id="firstname" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="lastname">Last Name</label>
+            <input id="lastname" class="form-control input-md" type="text" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="middlename">Middle Name</label>
+            <input id="middlename" class="form-control input-md" type="text" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="registrantemail">Email Address</label>
+            <input id="registrantemail" class="form-control input-md" type="text" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="registrantaddress">Address</label>
+            <textarea id="registrantaddress" class="form-control input-md" rows="3" cols="30" ></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label></label>
+            <input />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="registrantpassword">Password</label>
+            <input type="password" class="form-control input-md" id="registrantpassword" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="retyperegistrantpassword">Re-type Password</label>
+            <input type="password" class="form-control input-md" id="retyperegistrantpassword" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="college">College</label>
+            <select id="college" class="form-control input-md" >
+                <option value="">--SELECT--</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="department">Department</label>
+            <select id="department" class="form-control input-md" >
+                <option value="">--SELECT--</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="memberstatus">Member Status</label>
+            <select id="memberstatus" class="form-control input-md" >
+                <option value="">--SELECT--</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="datehired">Date Hired</label>
+            <input id="datehired" class="form-control input-md" type="text" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+              <label for="mobilenumber">Mobile Number</label>
+            <input id="mobilenumber" class="form-control input-md" type="text" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+              <label for="birthdate">Mobile Number</label>
+            <input id="birthdate" class="form-control input-md" type="text" />
+        </div>
+    </div>
      <table class="table table-override">
          <tr>
              <td colspan="3">
