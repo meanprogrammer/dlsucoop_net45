@@ -393,3 +393,7 @@ img.right {
     padding:5px !important;
     background-color:#FFF;
 }
+
+.validation-message {
+    color:#FF0000;
+}
