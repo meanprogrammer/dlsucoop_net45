@@ -7,6 +7,7 @@ using System.Text;
 using System.Web;
 using System.Web.Security;
 using System.Net;
+using System.Configuration;
 namespace Mail
 {
 	public class MailHelper : IDisposable
@@ -81,7 +82,10 @@ namespace Mail
                 this.mail.To.Add(to);
                 this.mail.Subject = subject;
                 this.mail.Body = body;
-                server.Send(this.mail);
+                if (ConfigurationManager.AppSettings.Get("allowemail") == "true")
+                {
+                    server.Send(this.mail);
+                }
             }
 		}
 		public void RefreshSMTP()

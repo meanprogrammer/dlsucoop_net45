@@ -62,8 +62,9 @@
       <HintPath>..\Assemblies\MangoChat.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Assemblies\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SampleCSharpApp">
       <HintPath>..\Assemblies\SampleCSharpApp.dll</HintPath>
@@ -290,6 +291,7 @@
     <Content Include="ContactUs.aspx" />
     <Content Include="Downloads.aspx" />
     <Content Include="SMSHowto.aspx" />
+    <Content Include="Registration2.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -479,6 +481,13 @@
     <Compile Include="SMSHowto.aspx.designer.cs">
       <DependentUpon>SMSHowto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Registration2.aspx.cs">
+      <DependentUpon>Registration2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registration2.aspx.designer.cs">
+      <DependentUpon>Registration2.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account.Master" />
@@ -514,6 +523,7 @@
     <None Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

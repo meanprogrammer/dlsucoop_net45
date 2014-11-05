@@ -47,7 +47,7 @@ namespace WebsiteTrial
         {
             using (DataAccess da = new DataAccess())
             {
-                if (this.tbPassword.Text == this.tbConfirm.Text && this.tbEmpNum.Text != "" && this.tbName.Text != "" && this.tbPassword.Text.Length >= 6)
+                if (this.tbPassword.Text == this.tbConfirm.Text && this.tbEmpNum.Text != "" && this.tbLastName.Text != "" && this.tbFirstName.Text != "" && this.tbPassword.Text.Length >= 6)
                 {
                     long phone;
                     bool x = long.TryParse(this.tbPhone.Text, out phone);
@@ -58,7 +58,7 @@ namespace WebsiteTrial
                             if (x && this.tbPhone.Text.Length <= 13)
                             {
                                 System.Collections.Generic.List<string> employee = new System.Collections.Generic.List<string>();
-                                employee.Add(this.tbName.Text);
+                                //employee.Add(this.tbName.Text);
                                 employee.Add(this.tbEmpNum.Text);
                                 employee.Add(this.tbEmail.Text);
                                 employee.Add(this.tbPassword.Text);

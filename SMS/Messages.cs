@@ -4,6 +4,7 @@ using System.Xml;
 using System.Net;
 using System.Collections.Generic;
 using System.Text;
+using System.Configuration;
 namespace SMS
 {
 	public class Messages : IDisposable
@@ -123,9 +124,12 @@ namespace SMS
                 throw new ArgumentNullException("message");
             }
 
-            WebClient wc = new WebClient();
-            string url = string.Format("http://smsreg.net63.net/send.php?subscriber_number={0}&message={1}", pNumber, pMessage);
-            string result = wc.DownloadString(url);
+            if (ConfigurationManager.AppSettings.Get("allowsms") == "true")
+            {
+                WebClient wc = new WebClient();
+                string url = string.Format("http://smsreg.net63.net/send.php?subscriber_number={0}&message={1}", pNumber, pMessage);
+                string result = wc.DownloadString(url);
+            }
 		}
 		public void Dispose()
 		{
