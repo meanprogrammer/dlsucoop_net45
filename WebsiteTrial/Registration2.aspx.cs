@@ -123,7 +123,7 @@ namespace WebsiteTrial
                                     msgObj.Dispose();
                                 }
                                 base.Response.Redirect("~/Message.aspx?msg=You have registered to DLSU-D Coop. Please check you email for the confirmation link.");
-                           
+                            
                         /*}
                         else
                         {
