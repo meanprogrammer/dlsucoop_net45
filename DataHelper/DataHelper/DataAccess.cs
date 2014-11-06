@@ -71,14 +71,14 @@ namespace DataHelper
 			}
 			else
 			{
-				this.cmd = "Insert into Users (EmpNo, Name, Email, Password, College, Dept, PhoneNumber, MemberStatus, DateHired, Birthday, Address) values (@EmpNo, @Name, @Email, @Pass, @College, @Dept, @PhoneNumber, @MemberStatus, @DateHired, @Birthday, @Address)";
+                this.cmd = "Insert into Users (EmpNo, Email, Password, College, Dept, PhoneNumber, MemberStatus, DateHired, Birthday, Address, UserType, FirstName, LastName, MiddleName) values (@EmpNo, @Email, @Pass, @College, @Dept, @PhoneNumber, @MemberStatus, @DateHired, @Birthday, @Address, @UserType, @FirstName, @LastName, @MiddleName)";
 			}
 			this.sqlCmd.CommandText = this.cmd;
-			this.sqlCmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = regDetails[0];
+			//this.sqlCmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = regDetails[0];
 			this.sqlCmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = regDetails[2];
 			this.sqlCmd.Parameters.Add("@Pass", SqlDbType.NVarChar).Value = regDetails[3];
-			if (regDetails.Count == 10)
-			{
+			//if (regDetails.Count == 10)
+			//{
 				this.sqlCmd.Parameters.Add("@College", SqlDbType.NVarChar).Value = regDetails[4];
 				this.sqlCmd.Parameters.Add("@Dept", SqlDbType.NVarChar).Value = regDetails[5];
 				this.sqlCmd.Parameters.Add("@PhoneNumber", SqlDbType.NVarChar).Value = number;
@@ -86,7 +86,11 @@ namespace DataHelper
 				this.sqlCmd.Parameters.Add("@DateHired", SqlDbType.NVarChar).Value = regDetails[7];
 				this.sqlCmd.Parameters.Add("@Address", SqlDbType.NVarChar).Value = regDetails[8];
 				this.sqlCmd.Parameters.Add("@Birthday", SqlDbType.Date).Value = Convert.ToDateTime(regDetails[9]);
-			}
+            this.sqlCmd.Parameters.Add("@UserType", SqlDbType.NVarChar).Value = regDetails[13];
+            this.sqlCmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = regDetails[10];
+            this.sqlCmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = regDetails[11];
+            this.sqlCmd.Parameters.Add("@MiddleName", SqlDbType.NVarChar).Value = regDetails[12];
+			//}
 			this.MyConn.Open();
 			this.sqlCmd.ExecuteNonQuery();
 			this.EndProcess();

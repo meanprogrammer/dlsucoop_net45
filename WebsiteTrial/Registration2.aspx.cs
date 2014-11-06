@@ -98,6 +98,8 @@ namespace WebsiteTrial
                         
                                 System.Collections.Generic.List<string> employee = new System.Collections.Generic.List<string>();
                                 //employee.Add(this.tbName.Text);
+
+                                employee.Add("oldname");
                                 employee.Add(this.tbEmpNum.Text);
                                 employee.Add(this.tbEmail.Text);
                                 employee.Add(this.tbPassword.Text);
@@ -107,6 +109,10 @@ namespace WebsiteTrial
                                 employee.Add(this.Calendar3.SelectedDate.ToShortDateString());
                                 employee.Add(this.tbAddress.Text);
                                 employee.Add(this.Calendar1.SelectedDate.ToShortDateString());
+                                employee.Add(this.tbFirstName.Text);
+                                employee.Add(this.tbLastName.Text);
+                                employee.Add(this.tbMiddleName.Text);
+                                employee.Add(this.RegistrationTypeDropDownList.SelectedValue);
                                 string number = this.tbPhone.Text;
                                 using (MailHelper mail = new MailHelper())
                                 {
@@ -137,13 +143,12 @@ namespace WebsiteTrial
             }
         }
 
-        protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
+        protected void ValidateRegistration(object source, ServerValidateEventArgs args)
         {
             using (DataAccess da = new DataAccess())
             {
                 args.IsValid = (!da.EmployeeNumberExist(this.tbEmpNum.Text) && !da.NewRegistrationExist(this.tbEmpNum.Text, this.tbEmail.Text, this.tbPhone.Text.Trim()));
             }
-            
         }
     }
 }

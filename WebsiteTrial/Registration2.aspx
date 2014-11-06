@@ -31,10 +31,14 @@
                         <asp:View runat="server" ClientIDMode="Static" ID="EmployeeView">
                             <div class="row">
                                 <div class="col-md-12">
+                                    <asp:CustomValidator ID="CustomValidator2" runat="server" ControlToValidate="tbEmpNum" Display="Dynamic" OnServerValidate="ValidateRegistration" ValidateEmptyText="True" CssClass="validation-message" ErrorMessage="Either Employee ID or Email address is already registered."></asp:CustomValidator>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
                                     <label for="tbEmpNum">Employee ID <span style="color: red; margin-top: 22px;">*</span></label>
                                     <asp:TextBox ID="tbEmpNum" runat="server" CssClass="form-control input-md"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" CssClass="validation-message" runat="server" ErrorMessage="Employee ID is required." ControlToValidate="tbEmpNum"></asp:RequiredFieldValidator>
-                                    <asp:CustomValidator ID="CustomValidator2" runat="server" ControlToValidate="tbEmpNum" Display="Dynamic" ErrorMessage="CustomValidator" OnServerValidate="CustomValidator2_ServerValidate" ValidateEmptyText="True"></asp:CustomValidator>
                                 </div>
                                 
                             </div>
@@ -63,6 +67,7 @@
                                     <label for="tbEmail">La Salle Portal Email Address  <span style="color: red; margin-top: 22px;">*</span></label>
                                     <asp:TextBox ID="tbEmail" runat="server" CssClass="form-control input-md"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" CssClass="validation-message"  runat="server" ErrorMessage="Email is Required." ControlToValidate="tbEmail"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="tbEmail" CssClass="validation-message" Display="Dynamic" ErrorMessage="Email address is invalid." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                                 </div>
                             </div>
                             <div class="row">
