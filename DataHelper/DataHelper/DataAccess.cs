@@ -95,6 +95,68 @@ namespace DataHelper
 			this.sqlCmd.ExecuteNonQuery();
 			this.EndProcess();
 		}
+
+        public string GetLastNonEmployeeID()
+        {
+            string prefix = "NE-";
+            int startingId = 10000;
+
+            this.sqlCmd.CommandText = "SELECT EmpNo FROM Users WHERE EmpNo LIKE NE-%";
+            this.MyConn.Open();
+            IDataReader reader = this.sqlCmd.ExecuteReader();
+            List<string> ids = new List<string>();
+            while (reader.Read())
+            {
+                ids.Add(reader.GetString(0));               
+            }
+
+            if (ids.Count > 0)
+            {
+                List<int> numericIds = new List<int>();
+                foreach (string anId in ids)
+                {
+                    string[] splitted = anId.Split(new char[]{ '-' });
+
+                    if (splitted.Length != 2)
+                        throw new ArgumentException("Invalid format of ID");
+                    
+                    numericIds.Add(int.Parse(splitted[1]));
+                }
+            }
+
+            this.MyConn.Close();
+            return string.Empty;
+        }
+
+        public void SMSRegistrationInsertNonEmployee(List<string> regDetails, string number)
+        {
+            this.sqlCmd.CommandText = "Insert into UnconfirmedUsers (EmpNo,DateRegistered) values (@EmpNo, @Date)";
+            this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = regDetails[1];
+            this.sqlCmd.Parameters.Add("@Date", SqlDbType.Date).Value = DateTime.Now.ToShortDateString();
+            this.MyConn.Open();
+            this.sqlCmd.ExecuteNonQuery();
+            this.MyConn.Close();
+
+            this.cmd = "Insert into Users (EmpNo, Email, Password, PhoneNumber, Birthday, Address, UserType, FirstName, LastName, MiddleName) "+
+                                  "values (@EmpNo, @Email, @Pass, @PhoneNumber, @Birthday, @Address, @UserType, @FirstName, @LastName, @MiddleName)";
+            
+            this.sqlCmd.CommandText = this.cmd;
+            this.sqlCmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = regDetails[2];
+            this.sqlCmd.Parameters.Add("@Pass", SqlDbType.NVarChar).Value = regDetails[3];
+            this.sqlCmd.Parameters.Add("@PhoneNumber", SqlDbType.NVarChar).Value = number;
+            
+            this.sqlCmd.Parameters.Add("@Address", SqlDbType.NVarChar).Value = regDetails[8];
+            this.sqlCmd.Parameters.Add("@Birthday", SqlDbType.Date).Value = Convert.ToDateTime(regDetails[9]);
+            this.sqlCmd.Parameters.Add("@UserType", SqlDbType.NVarChar).Value = regDetails[13];
+            this.sqlCmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = regDetails[10];
+            this.sqlCmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = regDetails[11];
+            this.sqlCmd.Parameters.Add("@MiddleName", SqlDbType.NVarChar).Value = regDetails[12];
+            //}
+            this.MyConn.Open();
+            this.sqlCmd.ExecuteNonQuery();
+            this.EndProcess();
+        }
+
 		public void SMSRegistrationUpdateMailPass(string empNo, string confirmCode)
 		{
 			this.sqlCmd.CommandText = "Update UnconfirmedUsers set ConfirmationCode = @ConfirmCode where EmpNo = @EmpNo";

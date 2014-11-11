@@ -194,6 +194,73 @@
                         </asp:View>
                         <asp:View runat="server" ClientIDMode="Static" ID="NonEmployeeView">
                             <h1>Non-Employee</h1>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="tbFirstName2">First Name <span style="color: red; margin-top: 22px;">*</span></label>
+                                    <asp:TextBox ID="tbFirstName2" runat="server" CssClass="form-control input-md"></asp:TextBox>
+                                    <asp:RequiredFieldValidator CssClass="validation-message"  ID="RequiredFieldValidator14" runat="server" ErrorMessage="First name is required." ControlToValidate="tbFirstName"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="tbLastName2">Last Name <span style="color: red; margin-top: 22px;">*</span></label>
+                                    <asp:TextBox ID="tbLastName2" runat="server" CssClass="form-control input-md"></asp:TextBox>
+                                    <asp:RequiredFieldValidator CssClass="validation-message"  ID="RequiredFieldValidator15" runat="server" ErrorMessage="Last name is required." ControlToValidate="tbLastName"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="tbMiddleName2">Middle Name</label>
+                                    <asp:TextBox ID="tbMiddleName2" runat="server" CssClass="form-control input-md"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="tbEmail">La Salle Portal Email Address  <span style="color: red; margin-top: 22px;">*</span></label>
+                                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control input-md"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator16" CssClass="validation-message"  runat="server" ErrorMessage="Email is Required." ControlToValidate="tbEmail"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="tbEmail" CssClass="validation-message" Display="Dynamic" ErrorMessage="Email address is invalid." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="tbAddress">Address <span style="color: red; margin-top: 22px;">*</span></label>
+                                    <asp:TextBox ID="TextBox2" runat="server" class="form-control input-md" Height="70px" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator17" CssClass="validation-message"  runat="server" ErrorMessage="Address is Required." ControlToValidate="tbAddress"></asp:RequiredFieldValidator>
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="tbPassword2">Password <span style="color: red; margin-top: 22px;">*</span></label>
+                                    <asp:TextBox ID="tbPassword2" runat="server" CssClass="form-control input-md"
+                                        TextMode="Password"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator18" CssClass="validation-message"  runat="server" ErrorMessage="Password is Required." ControlToValidate="tbPassword2" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:CustomValidator ID="CustomValidator3" runat="server" ControlToValidate="tbPassword2" CssClass="validation-message" ErrorMessage="Password minimum length is 6." ValidateEmptyText="True" ValidationGroup="a" ClientValidationFunction="PasswordLengthValidate" Display="Dynamic"></asp:CustomValidator>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="tbConfirm2">Re-type Password <span style="color: red; margin-top: 22px;">*</span></label>
+                                    <asp:TextBox ID="tbConfirm2" runat="server" CssClass="form-control input-md"
+                                        TextMode="Password"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator19" CssClass="validation-message"  Display="Dynamic" runat="server" ErrorMessage="Password is Required." ControlToValidate="tbConfirm2"></asp:RequiredFieldValidator>   
+                                    <asp:CompareValidator ID="CompareValidator3" CssClass="validation-message" runat="server" Display="Dynamic" ErrorMessage="Password does not match." ControlToCompare="tbPassword2" ControlToValidate="tbConfirm2"></asp:CompareValidator>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <label for="tbPhone2">Mobile Number <span style="color: red; margin-top: 22px;">*</span></label>
+                                    <asp:TextBox ID="tbPhone2" runat="server" CssClass="form-control input-md" MaxLength="10"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator20" CssClass="validation-message"  runat="server" ErrorMessage="Mobile Number is Required." ControlToValidate="tbPhone2" Display="Dynamic"></asp:RequiredFieldValidator>   
+                                    <asp:CompareValidator ID="CompareValidator4" runat="server" ControlToValidate="tbPhone2" CssClass="validation-message" Display="Dynamic" ErrorMessage="Numeric only." Operator="DataTypeCheck" Type="Integer"></asp:CompareValidator>
+                                </div>
+                                <div class="col-md-3">
+                                    <span>Format: 915XXXXXXX</span>
+                                </div>
+                            </div>
+                             <asp:Button ID="btnRegister2" runat="server"
+                                CssClass="btn btn-success" Text="Register" OnClick="btnRegister2_Click" 
+                               />
                         </asp:View>
                     </asp:MultiView>
                 </div>
