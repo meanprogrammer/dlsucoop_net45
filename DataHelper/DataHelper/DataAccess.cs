@@ -6,15 +6,17 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Collections.Specialized;
+using System.Linq;
+
 namespace DataHelper
 {
 	public class DataAccess : IDisposable
 	{
         //OFFICE
-        //protected string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=DLSUDCOOP;Integrated Security=True;";
+        protected string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
 
         //HOUSE
-        protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
+        //protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
 
         //PROD
         //protected string conn = @"workstation id=Messages.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=Messages.mssql.somee.com;persist security info=False;initial catalog=Messages";
@@ -101,7 +103,7 @@ namespace DataHelper
             string prefix = "NE-";
             int startingId = 10000;
 
-            this.sqlCmd.CommandText = "SELECT EmpNo FROM Users WHERE EmpNo LIKE NE-%";
+            this.sqlCmd.CommandText = "SELECT EmpNo FROM Users WHERE UserType='Non-Employee'";
             this.MyConn.Open();
             IDataReader reader = this.sqlCmd.ExecuteReader();
             List<string> ids = new List<string>();
@@ -109,6 +111,9 @@ namespace DataHelper
             {
                 ids.Add(reader.GetString(0));               
             }
+
+            reader.Close();
+            reader.Dispose();
 
             if (ids.Count > 0)
             {
@@ -122,18 +127,25 @@ namespace DataHelper
                     
                     numericIds.Add(int.Parse(splitted[1]));
                 }
+                return string.Format("{0}{1}", prefix, numericIds.Max()+1);
             }
 
             this.MyConn.Close();
-            return string.Empty;
+            this.EndProcess();
+            return string.Format("{0}{1}", prefix, startingId);
         }
 
         public void SMSRegistrationInsertNonEmployee(List<string> regDetails, string number)
         {
             this.sqlCmd.CommandText = "Insert into UnconfirmedUsers (EmpNo,DateRegistered) values (@EmpNo, @Date)";
-            this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = regDetails[1];
+            this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = regDetails[0];
             this.sqlCmd.Parameters.Add("@Date", SqlDbType.Date).Value = DateTime.Now.ToShortDateString();
-            this.MyConn.Open();
+
+            if (this.MyConn.State == ConnectionState.Closed)
+            {
+                this.MyConn.Open();
+            }
+
             this.sqlCmd.ExecuteNonQuery();
             this.MyConn.Close();
 
@@ -141,19 +153,20 @@ namespace DataHelper
                                   "values (@EmpNo, @Email, @Pass, @PhoneNumber, @Birthday, @Address, @UserType, @FirstName, @LastName, @MiddleName)";
             
             this.sqlCmd.CommandText = this.cmd;
-            this.sqlCmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = regDetails[2];
-            this.sqlCmd.Parameters.Add("@Pass", SqlDbType.NVarChar).Value = regDetails[3];
+            this.sqlCmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = regDetails[1];
+            this.sqlCmd.Parameters.Add("@Pass", SqlDbType.NVarChar).Value = regDetails[2];
             this.sqlCmd.Parameters.Add("@PhoneNumber", SqlDbType.NVarChar).Value = number;
             
-            this.sqlCmd.Parameters.Add("@Address", SqlDbType.NVarChar).Value = regDetails[8];
-            this.sqlCmd.Parameters.Add("@Birthday", SqlDbType.Date).Value = Convert.ToDateTime(regDetails[9]);
-            this.sqlCmd.Parameters.Add("@UserType", SqlDbType.NVarChar).Value = regDetails[13];
-            this.sqlCmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = regDetails[10];
-            this.sqlCmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = regDetails[11];
-            this.sqlCmd.Parameters.Add("@MiddleName", SqlDbType.NVarChar).Value = regDetails[12];
+            this.sqlCmd.Parameters.Add("@Address", SqlDbType.NVarChar).Value = regDetails[3];
+            this.sqlCmd.Parameters.Add("@Birthday", SqlDbType.Date).Value = Convert.ToDateTime(regDetails[4]);
+            this.sqlCmd.Parameters.Add("@UserType", SqlDbType.NVarChar).Value = regDetails[8];
+            this.sqlCmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = regDetails[5];
+            this.sqlCmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = regDetails[6];
+            this.sqlCmd.Parameters.Add("@MiddleName", SqlDbType.NVarChar).Value = regDetails[7];
             //}
             this.MyConn.Open();
             this.sqlCmd.ExecuteNonQuery();
+            this.MyConn.Close();
             this.EndProcess();
         }
 

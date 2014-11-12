@@ -278,7 +278,7 @@
     <Content Include="Pictures\666663902088_460s.jpg" />
     <Content Include="Pictures\f-2711Desert.jpg" />
     <Content Include="ReceiveXMLSMS.aspx" />
-    <Content Include="Registration.aspx" />
+    <Content Include="Registration_old.aspx" />
     <Content Include="Report.aspx" />
     <Content Include="RetrievePassword.aspx" />
     <Content Include="SendDeficitEmail.aspx" />
@@ -291,7 +291,7 @@
     <Content Include="ContactUs.aspx" />
     <Content Include="Downloads.aspx" />
     <Content Include="SMSHowto.aspx" />
-    <Content Include="Registration2.aspx" />
+    <Content Include="Registration.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -398,12 +398,12 @@
     <Compile Include="ReceiveXMLSMS.aspx.designer.cs">
       <DependentUpon>ReceiveXMLSMS.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Registration.aspx.cs">
-      <DependentUpon>Registration.aspx</DependentUpon>
+    <Compile Include="Registration_old.aspx.cs">
+      <DependentUpon>Registration_old.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Registration.aspx.designer.cs">
-      <DependentUpon>Registration.aspx</DependentUpon>
+    <Compile Include="Registration_old.aspx.designer.cs">
+      <DependentUpon>Registration_old.aspx</DependentUpon>
     </Compile>
     <Compile Include="Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>
@@ -481,12 +481,12 @@
     <Compile Include="SMSHowto.aspx.designer.cs">
       <DependentUpon>SMSHowto.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Registration2.aspx.cs">
-      <DependentUpon>Registration2.aspx</DependentUpon>
+    <Compile Include="Registration.aspx.cs">
+      <DependentUpon>Registration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Registration2.aspx.designer.cs">
-      <DependentUpon>Registration2.aspx</DependentUpon>
+    <Compile Include="Registration.aspx.designer.cs">
+      <DependentUpon>Registration.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

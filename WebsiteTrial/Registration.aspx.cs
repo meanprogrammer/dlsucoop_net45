@@ -1,17 +1,18 @@
-﻿using System;
+﻿using DataHelper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using DataHelper;
+using System.Web.UI.WebControls;
 using Mail;
 using SMS;
 
 namespace WebsiteTrial
 {
-    public partial class Registration : Page
+    public partial class Registration : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, System.EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             if (!base.IsPostBack)
             {
@@ -19,10 +20,22 @@ namespace WebsiteTrial
                 this.department();
             }
         }
-        protected void DDCollege_SelectedIndexChanged(object sender, System.EventArgs e)
+
+        protected void RegistrationTypeDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.department();
+            if (this.RegistrationTypeDropDownList.SelectedIndex == 1) {
+                this.RegistrationMultiView.ActiveViewIndex = 0;
+            }
+            else if (this.RegistrationTypeDropDownList.SelectedIndex == 2)
+            {
+                this.RegistrationMultiView.ActiveViewIndex = 1;
+            }
+            else
+            {
+                this.RegistrationMultiView.ActiveViewIndex = -1;
+            }
         }
+
         public void department()
         {
             using (DataAccess da = new DataAccess())
@@ -43,31 +56,66 @@ namespace WebsiteTrial
                 this.DDCollege.DataBind();
             }
         }
-        protected void btnRegister_Click(object sender, System.EventArgs e)
+
+        protected void DDCollege_SelectedIndexChanged(object sender, System.EventArgs e)
         {
+            this.department();
+        }
+
+        /*
+        protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
+        {
+            if (!this.Calendar2.Visible)
+            {
+                this.Calendar2.Visible = true;
+                return;
+            }
+            this.Calendar2.Visible = false;
+        }
+        protected void Calendar2_SelectionChanged(object sender, System.EventArgs e)
+        {
+            this.txtbirthday.Text = this.Calendar2.SelectedDate.ToShortDateString();
+            this.Calendar2.Visible = false;
+        }*/
+
+        protected void Calendar3_SelectionChanged(object sender, EventArgs e)
+        {
+            this.txtdatehired.Text = this.Calendar3.SelectedDate.ToShortDateString();
+        }
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            this.txtbirthday.Text = this.Calendar1.SelectedDate.ToShortDateString();
+        }
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            if (!Page.IsValid)
+                return;
+
             using (DataAccess da = new DataAccess())
             {
-                if (this.tbPassword.Text == this.tbConfirm.Text && this.tbEmpNum.Text != "" && this.tbLastName.Text != "" && this.tbFirstName.Text != "" && this.tbPassword.Text.Length >= 6)
-                {
-                    long phone;
-                    bool x = long.TryParse(this.tbPhone.Text, out phone);
-                    if (!da.EmployeeNumberExist(this.tbEmpNum.Text) && !da.NewRegistrationExist(this.tbEmpNum.Text, this.tbEmail.Text, phone.ToString()))
-                    {
-                        if (MessageParse.IsValidEmail(this.tbEmail.Text)) //&& MessageParse.IsLaSalleEmail(this.tbEmail.Text))
-                        {
-                            if (x && this.tbPhone.Text.Length <= 13)
-                            {
+                    //if ())
+                    
+                        //if (MessageParse.IsValidEmail(this.tbEmail.Text)) //&& MessageParse.IsLaSalleEmail(this.tbEmail.Text))
+                        
                                 System.Collections.Generic.List<string> employee = new System.Collections.Generic.List<string>();
                                 //employee.Add(this.tbName.Text);
+
+                                employee.Add("oldname");
                                 employee.Add(this.tbEmpNum.Text);
                                 employee.Add(this.tbEmail.Text);
                                 employee.Add(this.tbPassword.Text);
                                 employee.Add(this.DDCollege.Text);
                                 employee.Add(this.DDDepartment.Text);
                                 employee.Add(this.DDStatus.Text);
-                                employee.Add(this.Calendar1.SelectedDate.ToShortDateString());
+                                employee.Add(this.Calendar3.SelectedDate.ToShortDateString());
                                 employee.Add(this.tbAddress.Text);
-                                employee.Add(this.Calendar2.SelectedDate.ToShortDateString());
+                                employee.Add(this.Calendar1.SelectedDate.ToShortDateString());
+                                employee.Add(this.tbFirstName.Text);
+                                employee.Add(this.tbLastName.Text);
+                                employee.Add(this.tbMiddleName.Text);
+                                employee.Add(this.RegistrationTypeDropDownList.SelectedValue);
                                 string number = this.tbPhone.Text;
                                 using (MailHelper mail = new MailHelper())
                                 {
@@ -84,12 +132,8 @@ namespace WebsiteTrial
                                     msgObj.Dispose();
                                 }
                                 base.Response.Redirect("~/Message.aspx?msg=You have registered to DLSU-D Coop. Please check you email for the confirmation link.");
-                            }
-                            else
-                            {
-                                this.lblConfirmNote.Text = "Invalid Characters in mobile number";
-                            }
-                        }
+                            
+                        /*}
                         else
                         {
                             this.lblEmailNote.Text = "Email must be a valid La Salle Dasmariñas Email Address.";
@@ -98,69 +142,78 @@ namespace WebsiteTrial
                     else
                     {
                         this.lblConfirmNote.Text = "Employee Exist";
-                    }
+                    }*/
+            }
+        }
+
+        protected void ValidateRegistration(object source, ServerValidateEventArgs args)
+        {
+            using (DataAccess da = new DataAccess())
+            {
+                args.IsValid = (!da.EmployeeNumberExist(this.tbEmpNum.Text) && !da.NewRegistrationExist(this.tbEmpNum.Text, this.tbEmail.Text, this.tbPhone.Text.Trim()));
+            }
+        }
+
+        protected void btnRegister2_Click(object sender, EventArgs e)
+        {
+            if (!Page.IsValid)
+                return;
+
+            using (DataAccess da = new DataAccess())
+            {
+                //if ())
+
+                //if (MessageParse.IsValidEmail(this.tbEmail.Text)) //&& MessageParse.IsLaSalleEmail(this.tbEmail.Text))
+
+                System.Collections.Generic.List<string> employee = new System.Collections.Generic.List<string>();
+                //employee.Add(this.tbName.Text);
+
+                employee.Add(da.GetLastNonEmployeeID());
+                employee.Add(this.tbEmail2.Text);
+                employee.Add(this.tbPassword2.Text);
+                //employee.Add(this.DDCollege.Text);
+                //employee.Add(this.DDDepartment.Text);
+                //employee.Add(this.DDStatus.Text);
+                //employee.Add(this.Calendar3.SelectedDate.ToShortDateString());
+                employee.Add(this.tbAddress2.Text);
+                employee.Add(this.Calendar2.SelectedDate.ToShortDateString());
+                employee.Add(this.tbFirstName2.Text);
+                employee.Add(this.tbLastName2.Text);
+                employee.Add(this.tbMiddleName2.Text);
+                employee.Add(this.RegistrationTypeDropDownList.SelectedValue);
+                string number = this.tbPhone2.Text;
+                using (MailHelper mail = new MailHelper())
+                {
+                    da.SMSRegistrationInsertNonEmployee(employee, number);
+                    //Commented
+                    mail.SendMailMessage("dlsudmailer@gmail.com", this.tbEmail2.Text, "Confirmation Link", mail.MakeEmailBody(employee[0]));
+                    //mail.SendMailMessage(mail.MakeEmailBody(this.tbEmpNum.Text));
+                    da.SMSRegistrationUpdateMailPass(employee[0], mail.Pass);
+                    //Commented
+                    Messages msgObj = new Messages();
+                    //Commented
+                    msgObj.SendSMS(number, msgObj.SuccessfulRegistrationMessage(employee[0]));
+                    //Commented
+                    msgObj.Dispose();
                 }
+                base.Response.Redirect("~/Message.aspx?msg=You have registered to DLSU-D Coop. Please check you email for the confirmation link.");
+
+                /*}
                 else
                 {
-                    this.lblPassNote.Text = "*";
-                    this.lblPassNote2.Text = "*";
-                    this.lblConfirmNote.Text = "Password Does not match";
+                    this.lblEmailNote.Text = "Email must be a valid La Salle Dasmariñas Email Address.";
                 }
             }
-        }
-        protected void Calendar1_SelectionChanged(object sender, System.EventArgs e)
-        {
-            this.txtdatehired.Text = this.Calendar1.SelectedDate.ToShortDateString();
-            this.Calendar1.Visible = false;
-        }
-        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
-        {
-            if (!this.Calendar1.Visible)
+            else
             {
-                this.Calendar1.Visible = true;
-                return;
+                this.lblConfirmNote.Text = "Employee Exist";
+            }*/
             }
-            this.Calendar1.Visible = false;
         }
-        protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
+
+        protected void Calendar2_SelectionChanged(object sender, EventArgs e)
         {
-            if (!this.Calendar2.Visible)
-            {
-                this.Calendar2.Visible = true;
-                return;
-            }
-            this.Calendar2.Visible = false;
-        }
-        protected void Calendar2_SelectionChanged(object sender, System.EventArgs e)
-        {
-            this.txtbirthday.Text = this.Calendar2.SelectedDate.ToShortDateString();
-            this.Calendar2.Visible = false;
-        }
-        protected void tbConfirm_TextChanged(object sender, System.EventArgs e)
-        {
-            if (this.tbConfirm.Text != this.tbPassword.Text)
-            {
-                this.lblPassNote2.Text = "Password Does not match";
-                return;
-            }
-            this.lblPassNote2.Text = "";
-        }
-        protected void tbPassword_TextChanged(object sender, System.EventArgs e)
-        {
-            if (this.tbPassword.Text.Length < 6)
-            {
-                this.lblPassNote.Text = "Passwords must be at least 6 characters";
-                return;
-            }
-            this.lblPassNote.Text = "";
-        }
-        protected void tbEmail_TextChanged(object sender, System.EventArgs e)
-        {
-            this.lblEmailNote.Text = "";
-            if (!MessageParse.IsValidEmail(this.tbEmail.Text) || !MessageParse.IsLaSalleEmail(this.tbEmail.Text))
-            {
-                this.lblEmailNote.Text = "Email must be a valid La Salle Dasmariñas Email Address.";
-            }
+            this.txtbirthday2.Text = this.Calendar2.SelectedDate.ToShortDateString();
         }
     }
 }
