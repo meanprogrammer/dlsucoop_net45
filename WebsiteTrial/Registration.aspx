@@ -159,7 +159,7 @@
                                     <label for="tbPhone">Mobile Number <span style="color: red; margin-top: 22px;">*</span></label>
                                     <asp:TextBox ID="tbPhone" runat="server" CssClass="form-control input-md" MaxLength="10"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator12" CssClass="validation-message"  runat="server" ErrorMessage="Mobile Number is Required." ControlToValidate="tbPhone" Display="Dynamic"></asp:RequiredFieldValidator>   
-                                    <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="tbPhone" CssClass="validation-message" Display="Dynamic" ErrorMessage="Numeric only." Operator="DataTypeCheck" Type="Integer"></asp:CompareValidator>
+                                    <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToValidate="tbPhone" CssClass="validation-message" Display="Dynamic" ErrorMessage="Numeric only." Operator="DataTypeCheck" Type="Double"></asp:CompareValidator>
                                 </div>
                                 <div class="col-md-3">
                                     <span>Format: 915XXXXXXX</span>
@@ -194,6 +194,14 @@
                         </asp:View>
                         <asp:View runat="server" ClientIDMode="Static" ID="NonEmployeeView">
                             <h1>Non-Employee</h1>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="RelativeEmpDropDownList">Relative Employee</label>
+                                    <asp:DropDownList ID="RelativeEmpDropDownList" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:DropDownList>
+                                    <asp:CompareValidator ID="CompareValidator4" runat="server" ValueToCompare="0" ControlToValidate="RelativeEmpDropDownList" ErrorMessage="Select your relative." Operator="NotEqual" CssClass="validation-message"></asp:CompareValidator>
+                                </div>
+                                
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="tbFirstName2">First Name <span style="color: red; margin-top: 22px;">*</span></label>

@@ -51,7 +51,7 @@ namespace DataHelper
 		}
 
         public DataTable GetAllUsers() {
-            this.cmd = "Select EmpNo, (EmpNo + ' - ' + Name) as Name FROM Users";
+            this.cmd = "Select EmpNo, (EmpNo + ' - ' + LastName+', '+FirstName+' '+MiddleName) as Name FROM Users";
             DataTable dt = this.GetTable(this.cmd);
             DataRow dr = dt.NewRow();
             dr.ItemArray = new object[] { "0", "-- SELECT --" };

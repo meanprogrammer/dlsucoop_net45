@@ -391,6 +391,24 @@ namespace WebsiteTrial {
         protected global::System.Web.UI.WebControls.View NonEmployeeView;
         
         /// <summary>
+        /// RelativeEmpDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList RelativeEmpDropDownList;
+        
+        /// <summary>
+        /// CompareValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValidator4;
+        
+        /// <summary>
         /// tbFirstName2 control.
         /// </summary>
         /// <remarks>

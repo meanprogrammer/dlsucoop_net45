@@ -14,16 +14,57 @@ namespace WebsiteTrial
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!base.IsPostBack)
+            if (!Page.IsPostBack)
             {
                 this.college();
                 this.department();
+                this.relatedEmployee();
+            }
+            else
+            {
+                if (this.RegistrationTypeDropDownList.SelectedIndex == 1)
+                {
+                    if (!(String.IsNullOrEmpty(this.tbPassword.Text.Trim())))
+                    {
+                        this.tbPassword.Attributes["value"] = this.tbPassword.Text;
+                    }
+
+                    if (!(String.IsNullOrEmpty(this.tbConfirm.Text.Trim())))
+                    {
+                        this.tbConfirm.Attributes["value"] = this.tbConfirm.Text;
+                    }
+                }
+
+                if (this.RegistrationTypeDropDownList.SelectedIndex == 2)
+                {
+                    if (!(String.IsNullOrEmpty(this.tbPassword2.Text.Trim())))
+                    {
+                        this.tbPassword2.Attributes["value"] = this.tbPassword2.Text;
+                    }
+
+                    if (!(String.IsNullOrEmpty(this.tbConfirm2.Text.Trim())))
+                    {
+                        this.tbConfirm2.Attributes["value"] = this.tbConfirm2.Text;
+                    }
+                }
+            }
+        }
+
+        private void relatedEmployee()
+        {
+            using (DataAccess da = new DataAccess())
+            {
+                this.RelativeEmpDropDownList.DataSource = da.GetAllUsers();
+                this.RelativeEmpDropDownList.DataTextField = "Name";
+                this.RelativeEmpDropDownList.DataValueField = "EmpNo";
+                this.RelativeEmpDropDownList.DataBind();
             }
         }
 
         protected void RegistrationTypeDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.RegistrationTypeDropDownList.SelectedIndex == 1) {
+            if (this.RegistrationTypeDropDownList.SelectedIndex == 1)
+            {
                 this.RegistrationMultiView.ActiveViewIndex = 0;
             }
             else if (this.RegistrationTypeDropDownList.SelectedIndex == 2)
@@ -95,54 +136,54 @@ namespace WebsiteTrial
 
             using (DataAccess da = new DataAccess())
             {
-                    //if ())
-                    
-                        //if (MessageParse.IsValidEmail(this.tbEmail.Text)) //&& MessageParse.IsLaSalleEmail(this.tbEmail.Text))
-                        
-                                System.Collections.Generic.List<string> employee = new System.Collections.Generic.List<string>();
-                                //employee.Add(this.tbName.Text);
+                //if ())
 
-                                employee.Add("oldname");
-                                employee.Add(this.tbEmpNum.Text);
-                                employee.Add(this.tbEmail.Text);
-                                employee.Add(this.tbPassword.Text);
-                                employee.Add(this.DDCollege.Text);
-                                employee.Add(this.DDDepartment.Text);
-                                employee.Add(this.DDStatus.Text);
-                                employee.Add(this.Calendar3.SelectedDate.ToShortDateString());
-                                employee.Add(this.tbAddress.Text);
-                                employee.Add(this.Calendar1.SelectedDate.ToShortDateString());
-                                employee.Add(this.tbFirstName.Text);
-                                employee.Add(this.tbLastName.Text);
-                                employee.Add(this.tbMiddleName.Text);
-                                employee.Add(this.RegistrationTypeDropDownList.SelectedValue);
-                                string number = this.tbPhone.Text;
-                                using (MailHelper mail = new MailHelper())
-                                {
-                                    da.SMSRegistrationInsert(employee, number);
-                                    //Commented
-                                    mail.SendMailMessage("dlsudmailer@gmail.com", this.tbEmail.Text, "Confirmation Link", mail.MakeEmailBody(this.tbEmpNum.Text));
-                                    //mail.SendMailMessage(mail.MakeEmailBody(this.tbEmpNum.Text));
-                                    da.SMSRegistrationUpdateMailPass(this.tbEmpNum.Text, mail.Pass);
-                                    //Commented
-                                    Messages msgObj = new Messages();
-                                    //Commented
-                                    msgObj.SendSMS(number, msgObj.SuccessfulRegistrationMessage(employee[0]));
-                                    //Commented
-                                    msgObj.Dispose();
-                                }
-                                base.Response.Redirect("~/Message.aspx?msg=You have registered to DLSU-D Coop. Please check you email for the confirmation link.");
-                            
-                        /*}
-                        else
-                        {
-                            this.lblEmailNote.Text = "Email must be a valid La Salle Dasmariñas Email Address.";
-                        }
-                    }
-                    else
-                    {
-                        this.lblConfirmNote.Text = "Employee Exist";
-                    }*/
+                //if (MessageParse.IsValidEmail(this.tbEmail.Text)) //&& MessageParse.IsLaSalleEmail(this.tbEmail.Text))
+
+                System.Collections.Generic.List<string> employee = new System.Collections.Generic.List<string>();
+                //employee.Add(this.tbName.Text);
+
+                employee.Add("oldname");
+                employee.Add(this.tbEmpNum.Text);
+                employee.Add(this.tbEmail.Text);
+                employee.Add(this.tbPassword.Text);
+                employee.Add(this.DDCollege.Text);
+                employee.Add(this.DDDepartment.Text);
+                employee.Add(this.DDStatus.Text);
+                employee.Add(this.Calendar3.SelectedDate.ToShortDateString());
+                employee.Add(this.tbAddress.Text);
+                employee.Add(this.Calendar1.SelectedDate.ToShortDateString());
+                employee.Add(this.tbFirstName.Text);
+                employee.Add(this.tbLastName.Text);
+                employee.Add(this.tbMiddleName.Text);
+                employee.Add(this.RegistrationTypeDropDownList.SelectedValue);
+                string number = this.tbPhone.Text;
+                using (MailHelper mail = new MailHelper())
+                {
+                    da.SMSRegistrationInsert(employee, number);
+                    //Commented
+                    mail.SendMailMessage("dlsudmailer@gmail.com", this.tbEmail.Text, "Confirmation Link", mail.MakeEmailBody(this.tbEmpNum.Text));
+                    //mail.SendMailMessage(mail.MakeEmailBody(this.tbEmpNum.Text));
+                    da.SMSRegistrationUpdateMailPass(this.tbEmpNum.Text, mail.Pass);
+                    //Commented
+                    Messages msgObj = new Messages();
+                    //Commented
+                    msgObj.SendSMS(number, msgObj.SuccessfulRegistrationMessage(employee[0]));
+                    //Commented
+                    msgObj.Dispose();
+                }
+                base.Response.Redirect("~/Message.aspx?msg=You have registered to DLSU-D Coop. Please check you email for the confirmation link.");
+
+                /*}
+                else
+                {
+                    this.lblEmailNote.Text = "Email must be a valid La Salle Dasmariñas Email Address.";
+                }
+            }
+            else
+            {
+                this.lblConfirmNote.Text = "Employee Exist";
+            }*/
             }
         }
 
