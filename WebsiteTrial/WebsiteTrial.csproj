@@ -262,9 +262,12 @@
     <Content Include="images\table\table_icon_5.gif" />
     <Content Include="images\table\table_sort_arrow.gif" />
     <Content Include="images\user_icon.png" />
+    <Content Include="js\bootstrap-latest\bootstrap.js" />
+    <Content Include="js\bootstrap-latest\bootstrap.min.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\easySlider1.7.js" />
+    <Content Include="js\jquery-latest\jquery-1.11.1.min.js" />
     <Content Include="js\jquery.js" />
     <Content Include="js\jquery\Copy of custom_jquery.js" />
     <Content Include="js\jquery\custom_jquery.js" />
