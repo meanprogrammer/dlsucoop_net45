@@ -135,6 +135,15 @@ namespace DataHelper
             return string.Format("{0}{1}", prefix, startingId);
         }
 
+        public void SaveRegistrationLinq(Dictionary<string, string> values)
+        {
+            MessagesDataContext context = new MessagesDataContext();
+            User u = new User();
+            u.Address = values["address"];
+            
+            context.Users.InsertOnSubmit(u);
+        }
+
         public void SMSRegistrationInsertNonEmployee(List<string> regDetails, string number)
         {
             this.sqlCmd.CommandText = "Insert into UnconfirmedUsers (EmpNo,DateRegistered) values (@EmpNo, @Date)";

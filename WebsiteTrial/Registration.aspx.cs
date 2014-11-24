@@ -158,6 +158,23 @@ namespace WebsiteTrial
                 employee.Add(this.tbMiddleName.Text);
                 employee.Add(this.RegistrationTypeDropDownList.SelectedValue);
                 string number = this.tbPhone.Text;
+
+                Dictionary<string, string> values = new Dictionary<string, string>();
+                values.Add(ColumnKeys.EMP_NO, this.tbEmpNum.Text);
+                values.Add(ColumnKeys.EMAIL, this.tbEmpNum.Text);
+                values.Add(ColumnKeys.PASSWORD, this.tbPassword.Text);
+                values.Add(ColumnKeys.COLLEGE, this.DDCollege.Text);
+                values.Add(ColumnKeys.DEPARTMENT, this.DDDepartment.Text);
+                values.Add(ColumnKeys.EMP_STATUS, this.DDStatus.Text);
+                values.Add(ColumnKeys.DATE_HIRED, this.Calendar3.SelectedDate.ToShortDateString());
+                values.Add(ColumnKeys.ADDRESS, this.tbAddress.Text);
+                values.Add(ColumnKeys.BIRTHDATE, this.Calendar1.SelectedDate.ToShortDateString());
+                values.Add(ColumnKeys.FIRSTNAME, this.tbFirstName.Text);
+                values.Add(ColumnKeys.LASTNAME, this.tbLastName.Text);
+                values.Add(ColumnKeys.MIDDLENAME, this.tbMiddleName.Text);
+                values.Add(ColumnKeys.REG_TYPE, this.RegistrationTypeDropDownList.SelectedValue);
+                values.Add(ColumnKeys.MOBILE, number);
+
                 using (MailHelper mail = new MailHelper())
                 {
                     da.SMSRegistrationInsert(employee, number);

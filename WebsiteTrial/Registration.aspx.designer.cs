@@ -94,6 +94,15 @@ namespace WebsiteTrial {
         protected global::System.Web.UI.WebControls.TextBox ATMTextbox;
         
         /// <summary>
+        /// RequiredFieldValidator22 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator22;
+        
+        /// <summary>
         /// tbFirstName control.
         /// </summary>
         /// <remarks>
@@ -220,6 +229,15 @@ namespace WebsiteTrial {
         protected global::System.Web.UI.WebControls.TextBox TINNoTextbox;
         
         /// <summary>
+        /// RequiredFieldValidator23 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator23;
+        
+        /// <summary>
         /// SSSNoTextBox control.
         /// </summary>
         /// <remarks>
@@ -229,6 +247,15 @@ namespace WebsiteTrial {
         protected global::System.Web.UI.WebControls.TextBox SSSNoTextBox;
         
         /// <summary>
+        /// RequiredFieldValidator24 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator24;
+        
+        /// <summary>
         /// GenderDropDownList control.
         /// </summary>
         /// <remarks>
@@ -236,6 +263,15 @@ namespace WebsiteTrial {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList GenderDropDownList;
+        
+        /// <summary>
+        /// RequiredFieldValidator25 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator25;
         
         /// <summary>
         /// CivilStatusDropDownList control.

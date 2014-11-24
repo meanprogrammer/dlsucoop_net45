@@ -43,6 +43,7 @@
                                 <div class="col-md-6">
                                     <label for="ATMTextbox">ATM Account No</label>
                                     <asp:TextBox ID="ATMTextbox" CssClass="form-control input-md" runat="server"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator22" CssClass="validation-message" runat="server" ErrorMessage="ATM # is required." ControlToValidate="ATMTextbox"></asp:RequiredFieldValidator>
                                 </div>
                                 
                             </div>
@@ -87,10 +88,12 @@
                                 <div class="col-md-4">
                                     <label for="TINNoTextbox">TIN No.</label>
                                     <asp:TextBox ID="TINNoTextbox" CssClass="form-control input-md" runat="server"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator23" CssClass="validation-message"  runat="server" ErrorMessage="TIN No. is Required." ControlToValidate="TINNoTextbox"></asp:RequiredFieldValidator>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="SSSNoTextBox">SSS No.</label>
                                     <asp:TextBox ID="SSSNoTextBox" CssClass="form-control input-md" runat="server"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator24" CssClass="validation-message"  runat="server" ErrorMessage="SSS No. is Required." ControlToValidate="SSSNoTextBox"></asp:RequiredFieldValidator>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="GenderDropDownList">Gender</label>
@@ -99,11 +102,12 @@
                                         <asp:ListItem Value="Male" Text="Male" />
                                         <asp:ListItem Value="Female" Text="Female" />
                                     </asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator25" CssClass="validation-message"  runat="server" ErrorMessage="Gender is Required." ControlToValidate="GenderDropDownList"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="CivilStatusDropDownList">Gender</label>
+                                    <label for="CivilStatusDropDownList">Civil Status</label>
                                     <asp:DropDownList ID="CivilStatusDropDownList" CssClass="form-control input-md" runat="server">
                                         <asp:ListItem Value="">--SELECT--</asp:ListItem>
                                         <asp:ListItem Value="Single" Text="Single" />
