@@ -13,10 +13,10 @@ namespace DataHelper
 	public class DataAccess : IDisposable
 	{
         //OFFICE
-        // string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
+        string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
 
         //HOUSE
-        protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
+        //protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
 
         //PROD
         //protected string conn = @"workstation id=Messages.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=Messages.mssql.somee.com;persist security info=False;initial catalog=Messages";
@@ -52,6 +52,16 @@ namespace DataHelper
 
         public DataTable GetAllUsers() {
             this.cmd = "Select EmpNo, (EmpNo + ' - ' + LastName+', '+FirstName+' '+MiddleName) as Name FROM Users";
+            DataTable dt = this.GetTable(this.cmd);
+            DataRow dr = dt.NewRow();
+            dr.ItemArray = new object[] { "0", "-- SELECT --" };
+            dt.Rows.InsertAt(dr, 0);
+            return dt;
+        }
+
+        public DataTable GetEligibleRelativeUsers()
+        {
+            this.cmd = "Select EmpNo, (EmpNo + ' - ' + LastName+', '+FirstName+' '+MiddleName) as Name FROM Users WHERE [UserType] = 'Employee'";
             DataTable dt = this.GetTable(this.cmd);
             DataRow dr = dt.NewRow();
             dr.ItemArray = new object[] { "0", "-- SELECT --" };
@@ -135,13 +145,52 @@ namespace DataHelper
             return string.Format("{0}{1}", prefix, startingId);
         }
 
-        public void SaveRegistrationLinq(Dictionary<string, string> values)
+        public void SaveEmployeeRegistrationLinq(Dictionary<string, string> values)
         {
             MessagesDataContext context = new MessagesDataContext();
+
+            UnconfirmedUser unconfirmedUser = new UnconfirmedUser();
+            unconfirmedUser.EmpNo = values[ColumnKeys.EMP_NO];
+            unconfirmedUser.DateRegistered = DateTime.Now;
+            context.UnconfirmedUsers.InsertOnSubmit(unconfirmedUser);
+            context.SubmitChanges();
+
             User u = new User();
-            u.Address = values["address"];
-            
+            u.EmpNo = values[ColumnKeys.EMP_NO];
+            u.Email = values[ColumnKeys.EMAIL];
+            u.Password = values[ColumnKeys.PASSWORD];
+            u.College = values[ColumnKeys.COLLEGE];
+            u.Dept = values[ColumnKeys.DEPARTMENT];
+            u.MemberStatus = values[ColumnKeys.EMP_STATUS];
+            u.DateHired = values[ColumnKeys.DATE_HIRED];
+            u.Address = values[ColumnKeys.ADDRESS];
+            u.Birthday = Convert.ToDateTime(values[ColumnKeys.BIRTHDATE]);
+            u.FirstName = values[ColumnKeys.FIRSTNAME];
+            u.LastName = values[ColumnKeys.LASTNAME];
+            u.MiddleName = values[ColumnKeys.MIDDLENAME];
+            u.UserType = values[ColumnKeys.REG_TYPE];
+            u.PhoneNumber = values[ColumnKeys.MOBILE];
+            u.ATMAccountNo = values[ColumnKeys.ATMNO];
+            u.TINNo = values[ColumnKeys.TINNO];
+            u.SSSNo = values[ColumnKeys.SSSNO];
+            u.Gender = values[ColumnKeys.GENDER];
+            u.CivilStatus = values[ColumnKeys.CIVILSTATUS];
+            u.FatherName = values[ColumnKeys.FATHERNAME];
+            u.FatherOccupation = values[ColumnKeys.FATHER_OCC];
+            u.MotherName = values[ColumnKeys.MOTHERNAME];
+            u.MotherOccupation = values[ColumnKeys.MOTHER_OCC];
+            u.LegalSpouse = values[ColumnKeys.SPOUSE];
+            u.SpouseEmployer = values[ColumnKeys.SPOUSE_EMP];
+            u.BusinessName = values[ColumnKeys.BUSINESSNAME];
+            u.BusinessAddress = values[ColumnKeys.BUSINESSADD];
+            u.OtherSourceOfIncome = values[ColumnKeys.OTHERSOURCE];
+            u.EmergencyName = values[ColumnKeys.EMERGENCYNAME];
+            u.EmergencyAddress = values[ColumnKeys.EMERGENCYADD];
+            u.EmergencyNumber = values[ColumnKeys.EMERGENCYNO];
             context.Users.InsertOnSubmit(u);
+            context.SubmitChanges();
+
+            context.Dispose();
         }
 
         public void SMSRegistrationInsertNonEmployee(List<string> regDetails, string number)
@@ -172,11 +221,90 @@ namespace DataHelper
             this.sqlCmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = regDetails[5];
             this.sqlCmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = regDetails[6];
             this.sqlCmd.Parameters.Add("@MiddleName", SqlDbType.NVarChar).Value = regDetails[7];
+
+            MessagesDataContext context = new MessagesDataContext();
+            RelativeEmployee re = new RelativeEmployee();
+            re.EmpNo = regDetails[0];
+            re.RelativeEmpNo = regDetails[9];
+            context.RelativeEmployees.InsertOnSubmit(re);
+            context.SubmitChanges();
+
             //}
             this.MyConn.Open();
             this.sqlCmd.ExecuteNonQuery();
             this.MyConn.Close();
             this.EndProcess();
+        }
+
+
+        public void SMSRegistrationInsertNonEmployeeLinq(Dictionary<string, string> values)
+        {
+            MessagesDataContext context = new MessagesDataContext();
+
+            UnconfirmedUser unconfirmed = new UnconfirmedUser();
+            unconfirmed.EmpNo = values[ColumnKeys.EMP_NO];
+            unconfirmed.DateRegistered = DateTime.Now;
+            context.UnconfirmedUsers.InsertOnSubmit(unconfirmed);
+            context.SubmitChanges();
+            
+            //this.sqlCmd.CommandText = "Insert into UnconfirmedUsers (EmpNo,DateRegistered) values (@EmpNo, @Date)";
+            //this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = regDetails[0];
+            //this.sqlCmd.Parameters.Add("@Date", SqlDbType.Date).Value = DateTime.Now.ToShortDateString();
+            /*
+                    if (this.MyConn.State == ConnectionState.Closed)
+                    {
+                        this.MyConn.Open();
+                    }
+            
+
+                    this.sqlCmd.ExecuteNonQuery();
+                    this.MyConn.Close();
+
+                    this.cmd = "Insert into Users (EmpNo, Email, Password, PhoneNumber, Birthday, Address, UserType, FirstName, LastName, MiddleName) " +
+                                          "values (@EmpNo, @Email, @Pass, @PhoneNumber,
+             * @Birthday, @Address, @UserType, @FirstName, @LastName, @MiddleName)";
+
+                    this.sqlCmd.CommandText = this.cmd;
+                    this.sqlCmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = regDetails[1];
+                    this.sqlCmd.Parameters.Add("@Pass", SqlDbType.NVarChar).Value = regDetails[2];
+                    this.sqlCmd.Parameters.Add("@PhoneNumber", SqlDbType.NVarChar).Value = number;
+
+                    this.sqlCmd.Parameters.Add("@Address", SqlDbType.NVarChar).Value = regDetails[3];
+                    this.sqlCmd.Parameters.Add("@Birthday", SqlDbType.Date).Value = Convert.ToDateTime(regDetails[4]);
+                    this.sqlCmd.Parameters.Add("@UserType", SqlDbType.NVarChar).Value = regDetails[8];
+                    this.sqlCmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = regDetails[5];
+                    this.sqlCmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = regDetails[6];
+                    this.sqlCmd.Parameters.Add("@MiddleName", SqlDbType.NVarChar).Value = regDetails[7];
+                    */
+
+            User u = new User();
+            u.EmpNo = values[ColumnKeys.EMP_NO];
+            u.Email = values[ColumnKeys.EMAIL];
+            u.Password = values[ColumnKeys.PASSWORD];
+            u.PhoneNumber = values[ColumnKeys.MOBILE];
+            u.Birthday = Convert.ToDateTime(values[ColumnKeys.BIRTHDATE]);
+            u.Address = values[ColumnKeys.ADDRESS];
+            u.UserType = values[ColumnKeys.REG_TYPE];
+            u.FirstName = values[ColumnKeys.FIRSTNAME];
+            u.LastName = values[ColumnKeys.LASTNAME];
+            u.MiddleName = values[ColumnKeys.MIDDLENAME];
+            context.Users.InsertOnSubmit(u);
+            context.SubmitChanges();
+
+
+            RelativeEmployee re = new RelativeEmployee();
+            re.EmpNo = values[ColumnKeys.EMP_NO];
+            re.RelativeEmpNo = values[ColumnKeys.RELATIVE_ID];
+            context.RelativeEmployees.InsertOnSubmit(re);
+            context.SubmitChanges();
+
+            context.Dispose();
+
+            //}
+            //this.MyConn.Open();
+            //this.sqlCmd.ExecuteNonQuery();
+            //this.MyConn.Close();
+            //this.EndProcess();
         }
 
 		public void SMSRegistrationUpdateMailPass(string empNo, string confirmCode)

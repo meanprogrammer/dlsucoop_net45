@@ -54,7 +54,7 @@ namespace WebsiteTrial
         {
             using (DataAccess da = new DataAccess())
             {
-                this.RelativeEmpDropDownList.DataSource = da.GetAllUsers();
+                this.RelativeEmpDropDownList.DataSource = da.GetEligibleRelativeUsers();
                 this.RelativeEmpDropDownList.DataTextField = "Name";
                 this.RelativeEmpDropDownList.DataValueField = "EmpNo";
                 this.RelativeEmpDropDownList.DataBind();
@@ -143,6 +143,7 @@ namespace WebsiteTrial
                 System.Collections.Generic.List<string> employee = new System.Collections.Generic.List<string>();
                 //employee.Add(this.tbName.Text);
 
+                /*
                 employee.Add("oldname");
                 employee.Add(this.tbEmpNum.Text);
                 employee.Add(this.tbEmail.Text);
@@ -157,11 +158,12 @@ namespace WebsiteTrial
                 employee.Add(this.tbLastName.Text);
                 employee.Add(this.tbMiddleName.Text);
                 employee.Add(this.RegistrationTypeDropDownList.SelectedValue);
+                 * */
                 string number = this.tbPhone.Text;
 
                 Dictionary<string, string> values = new Dictionary<string, string>();
                 values.Add(ColumnKeys.EMP_NO, this.tbEmpNum.Text);
-                values.Add(ColumnKeys.EMAIL, this.tbEmpNum.Text);
+                values.Add(ColumnKeys.EMAIL, this.tbEmail.Text);
                 values.Add(ColumnKeys.PASSWORD, this.tbPassword.Text);
                 values.Add(ColumnKeys.COLLEGE, this.DDCollege.Text);
                 values.Add(ColumnKeys.DEPARTMENT, this.DDDepartment.Text);
@@ -174,10 +176,49 @@ namespace WebsiteTrial
                 values.Add(ColumnKeys.MIDDLENAME, this.tbMiddleName.Text);
                 values.Add(ColumnKeys.REG_TYPE, this.RegistrationTypeDropDownList.SelectedValue);
                 values.Add(ColumnKeys.MOBILE, number);
+                values.Add(ColumnKeys.ATMNO, this.ATMTextbox.Text);
+                values.Add(ColumnKeys.TINNO, this.TINNoTextbox.Text);
+                values.Add(ColumnKeys.SSSNO, this.SSSNoTextBox.Text);
+                values.Add(ColumnKeys.GENDER, this.GenderDropDownList.SelectedValue);
+                values.Add(ColumnKeys.CIVILSTATUS, this.CivilStatusDropDownList.SelectedValue);
+                values.Add(ColumnKeys.FATHERNAME, this.FatherNameTextBox.Text);
+                values.Add(ColumnKeys.FATHER_OCC, this.FatherOccupationTextBox.Text);
+                values.Add(ColumnKeys.MOTHERNAME, this.MotherNameTextBox.Text);
+                values.Add(ColumnKeys.MOTHER_OCC, this.MotherOccupationTextBox.Text);
+                values.Add(ColumnKeys.SPOUSE, this.LegalSpouseTextBox.Text);
+                values.Add(ColumnKeys.SPOUSE_EMP, this.SpouseOccupationTextBox.Text);
+                values.Add(ColumnKeys.BUSINESSNAME, this.BusinessNameTextBox.Text);
+                values.Add(ColumnKeys.BUSINESSADD, this.BusinessAddressTextBox.Text);
+                values.Add(ColumnKeys.OTHERSOURCE, this.OtherSourceOfIncomeTextBox.Text);
+                values.Add(ColumnKeys.EMERGENCYNAME, this.ICENameTextBox.Text);
+                values.Add(ColumnKeys.EMERGENCYADD, this.ICEAddressTextBox.Text);
+                values.Add(ColumnKeys.EMERGENCYNO, this.ICEContactNumberTextBox.Text);
+
+                /*
+[ATMAccountNo] [nvarchar](50) NULL,
+[TINNo] [nvarchar](50) NULL,
+[SSSNo] [nvarchar](50) NULL,
+[Gender] [nvarchar](10) NULL,
+[CivilStatus] [nvarchar](20) NULL,
+[FatherName] [nvarchar](50) NULL,
+[FatherOccupation] [nvarchar](50) NULL,
+[MotherName] [nvarchar](50) NULL,
+[MotherOccupation] [nvarchar](50) NULL,
+[LegalSpouse] [nvarchar](50) NULL,
+[SpouseEmployer] [nvarchar](50) NULL,
+[BusinessName] [nvarchar](50) NULL,
+[BusinessAddress] [nvarchar](150) NULL,
+[OtherSourceOfIncome] [nvarchar](250) NULL,
+[EmergencyName] [nvarchar](50) NULL,
+[EmergencyAddress] [nvarchar](50) NULL,
+[EmergencyNumber] [nvarchar](50) NULL
+*/
+
 
                 using (MailHelper mail = new MailHelper())
                 {
-                    da.SMSRegistrationInsert(employee, number);
+                    da.SaveEmployeeRegistrationLinq(values);
+                    //da.SMSRegistrationInsert(employee, number);
                     //Commented
                     mail.SendMailMessage("dlsudmailer@gmail.com", this.tbEmail.Text, "Confirmation Link", mail.MakeEmailBody(this.tbEmpNum.Text));
                     //mail.SendMailMessage(mail.MakeEmailBody(this.tbEmpNum.Text));
@@ -219,38 +260,34 @@ namespace WebsiteTrial
 
             using (DataAccess da = new DataAccess())
             {
-                //if ())
-
                 //if (MessageParse.IsValidEmail(this.tbEmail.Text)) //&& MessageParse.IsLaSalleEmail(this.tbEmail.Text))
 
-                System.Collections.Generic.List<string> employee = new System.Collections.Generic.List<string>();
-                //employee.Add(this.tbName.Text);
-
-                employee.Add(da.GetLastNonEmployeeID());
-                employee.Add(this.tbEmail2.Text);
-                employee.Add(this.tbPassword2.Text);
-                //employee.Add(this.DDCollege.Text);
-                //employee.Add(this.DDDepartment.Text);
-                //employee.Add(this.DDStatus.Text);
-                //employee.Add(this.Calendar3.SelectedDate.ToShortDateString());
-                employee.Add(this.tbAddress2.Text);
-                employee.Add(this.Calendar2.SelectedDate.ToShortDateString());
-                employee.Add(this.tbFirstName2.Text);
-                employee.Add(this.tbLastName2.Text);
-                employee.Add(this.tbMiddleName2.Text);
-                employee.Add(this.RegistrationTypeDropDownList.SelectedValue);
                 string number = this.tbPhone2.Text;
+
+                Dictionary<string, string> values = new Dictionary<string, string>();
+                values.Add(ColumnKeys.EMP_NO, da.GetLastNonEmployeeID());
+                values.Add(ColumnKeys.EMAIL, this.tbEmail2.Text);
+                values.Add(ColumnKeys.PASSWORD, this.tbPassword2.Text);
+                values.Add(ColumnKeys.ADDRESS, this.tbAddress2.Text);
+                values.Add(ColumnKeys.BIRTHDATE, this.Calendar2.SelectedDate.ToShortDateString());
+                values.Add(ColumnKeys.FIRSTNAME, this.tbFirstName2.Text);
+                values.Add(ColumnKeys.LASTNAME, this.tbLastName2.Text);
+                values.Add(ColumnKeys.MIDDLENAME, this.tbMiddleName2.Text);
+                values.Add(ColumnKeys.REG_TYPE, this.RegistrationTypeDropDownList.SelectedValue);
+                values.Add(ColumnKeys.MOBILE, number);
+                values.Add(ColumnKeys.RELATIVE_ID, this.RelativeEmpDropDownList.SelectedValue);
+
                 using (MailHelper mail = new MailHelper())
                 {
-                    da.SMSRegistrationInsertNonEmployee(employee, number);
+                    da.SMSRegistrationInsertNonEmployeeLinq(values);
                     //Commented
-                    mail.SendMailMessage("dlsudmailer@gmail.com", this.tbEmail2.Text, "Confirmation Link", mail.MakeEmailBody(employee[0]));
+                    mail.SendMailMessage("dlsudmailer@gmail.com", this.tbEmail2.Text, "Confirmation Link", mail.MakeEmailBody(values[ColumnKeys.EMP_NO]));
                     //mail.SendMailMessage(mail.MakeEmailBody(this.tbEmpNum.Text));
-                    da.SMSRegistrationUpdateMailPass(employee[0], mail.Pass);
+                    da.SMSRegistrationUpdateMailPass(values[ColumnKeys.EMP_NO], mail.Pass);
                     //Commented
                     Messages msgObj = new Messages();
                     //Commented
-                    msgObj.SendSMS(number, msgObj.SuccessfulRegistrationMessage(employee[0]));
+                    msgObj.SendSMS(number, msgObj.SuccessfulRegistrationMessage(values[ColumnKeys.EMP_NO]));
                     //Commented
                     msgObj.Dispose();
                 }
