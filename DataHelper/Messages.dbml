@@ -1,5 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Messages" Class="MessagesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True" SettingsObjectName="DataHelper.Properties.Settings" SettingsPropertyName="MessagesConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=True" SettingsObjectName="DataHelper.Properties.Settings" SettingsPropertyName="MessagesConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.RelativeEmployee" Member="RelativeEmployees">
+    <Type Name="RelativeEmployee">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RelativeEmpNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UnconfirmedUsers" Member="UnconfirmedUsers">
+    <Type Name="UnconfirmedUser">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DateRegistered" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="ConfirmationCode" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ShareCapital" Member="ShareCapitals">
+    <Type Name="ShareCapital">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ShareCapital" Member="ShareCapital1" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Table Name="dbo.Users" Member="Users">
     <Type Name="User">
       <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -17,7 +39,7 @@
       <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(13) NOT NULL" CanBeNull="false" />
       <Column Name="DateConfirmed" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="MemberStatus" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="DateHired" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="DateHired" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Picture" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="ATMAccountNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="TINNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
@@ -36,21 +58,6 @@
       <Column Name="EmergencyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="EmergencyAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="EmergencyNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.RelativeEmployee" Member="RelativeEmployees">
-    <Type Name="RelativeEmployee">
-      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="RelativeEmpNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.UnconfirmedUsers" Member="UnconfirmedUsers">
-    <Type Name="UnconfirmedUser">
-      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="DateRegistered" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="ConfirmationCode" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

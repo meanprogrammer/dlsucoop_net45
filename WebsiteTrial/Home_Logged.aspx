@@ -65,8 +65,12 @@
         </tr>
         <tr>
             <td class="style7">
-                Name:
-                <asp:Label ID="lblName" runat="server"></asp:Label>
+                Lastname:
+                <asp:Label ID="LastNameLabel" runat="server"></asp:Label>
+&nbsp;Firstname:
+                <asp:Label ID="FirstNameLabel" runat="server"></asp:Label>
+&nbsp;MI:
+                <asp:Label ID="MILabel" runat="server"></asp:Label>
             </td>
             <td class="style7">
                 </td>

@@ -13,10 +13,10 @@ namespace DataHelper
 	public class DataAccess : IDisposable
 	{
         //OFFICE
-        string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
+        //string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
 
         //HOUSE
-        //protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
+        protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
 
         //PROD
         //protected string conn = @"workstation id=Messages.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=Messages.mssql.somee.com;persist security info=False;initial catalog=Messages";
@@ -55,6 +55,16 @@ namespace DataHelper
             DataTable dt = this.GetTable(this.cmd);
             DataRow dr = dt.NewRow();
             dr.ItemArray = new object[] { "0", "-- SELECT --" };
+            dt.Rows.InsertAt(dr, 0);
+            return dt;
+        }
+
+        public DataTable GetAllUsersWithEmpty()
+        {
+            this.cmd = "Select EmpNo, (EmpNo + ' - ' + LastName+', '+FirstName+' '+MiddleName) as Name FROM Users";
+            DataTable dt = this.GetTable(this.cmd);
+            DataRow dr = dt.NewRow();
+            dr.ItemArray = new object[] { "", "-- SELECT --" };
             dt.Rows.InsertAt(dr, 0);
             return dt;
         }
@@ -162,7 +172,7 @@ namespace DataHelper
             u.College = values[ColumnKeys.COLLEGE];
             u.Dept = values[ColumnKeys.DEPARTMENT];
             u.MemberStatus = values[ColumnKeys.EMP_STATUS];
-            u.DateHired = values[ColumnKeys.DATE_HIRED];
+            u.DateHired = Convert.ToDateTime(values[ColumnKeys.DATE_HIRED]);
             u.Address = values[ColumnKeys.ADDRESS];
             u.Birthday = Convert.ToDateTime(values[ColumnKeys.BIRTHDATE]);
             u.FirstName = values[ColumnKeys.FIRSTNAME];
@@ -318,7 +328,7 @@ namespace DataHelper
 		}
 		public bool CompleteDetail(string empNo)
 		{
-			this.cmd = "Select EmpNo, Name, Email, Password, Address, Birthday, College, Dept, PhoneNumber, DateConfirmed, MemberStatus from Users where EmpNo = '" + empNo + "'";
+			this.cmd = "Select EmpNo, LastName, FirstName, MiddleName, Email, Password, Address, Birthday, College, Dept, PhoneNumber, DateConfirmed, MemberStatus from Users where EmpNo = '" + empNo + "'";
 			this.sqlCmd.CommandText = this.cmd;
 			bool result = true;
 			this.MyConn.Open();
@@ -336,6 +346,19 @@ namespace DataHelper
 			this.EndProcess();
 			return result;
 		}
+
+        public bool SaveShareCapital(string empNo, double share)
+        {
+            MessagesDataContext context = new MessagesDataContext();
+            ShareCapital sc = new ShareCapital();
+            sc.EmpNo = empNo;
+            sc.ShareCapital1 = share;
+            context.ShareCapitals.InsertOnSubmit(sc);
+            int result = context.GetChangeSet().Inserts.Count;
+            context.SubmitChanges();
+            return result > 0;
+        }
+
 		public string GetPassword(string empNo)
 		{
 			this.cmd = "Select Password from Users where EmpNo = '" + empNo + "'";
@@ -483,7 +506,7 @@ namespace DataHelper
 		public string GetEmployeeName(string empNo)
 		{
 			string result = "";
-			this.sqlCmd.CommandText = "Select Name from Users where EmpNo = @EmpNo";
+            this.sqlCmd.CommandText = "Select (LastName+', '+FirstName+' '+MiddleName) as Name from Users where EmpNo = @EmpNo";
 			this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = empNo;
 			this.MyConn.Open();
 			this.dr = this.sqlCmd.ExecuteReader();
@@ -728,10 +751,18 @@ namespace DataHelper
 			this.EndProcess();
 			return result;
 		}
+
+        public User GetEmployeeDetailsLinq(string empNo) {
+            MessagesDataContext context = new MessagesDataContext();
+            User u = context.Users.FirstOrDefault(c => c.EmpNo == empNo);
+            context.Dispose();
+            return u;
+        }
+
 		public List<string> GetEmployeeDetails(string empNo)
 		{
 			List<string> list = new List<string>();
-            this.cmd = "Select u.EmpNo, u.Name, u.Email, u.College, u.Dept, u.MemberStatus, u.DateHired, " +
+            this.cmd = "Select u.EmpNo, u.Lastname, u.Email, u.College, u.Dept, u.MemberStatus, u.DateHired, " +
                 "u.PhoneNumber, u.Picture, c.CollegeName, d.DepartmentName from Users u " +
                 "INNER JOIN College c ON "+
                 "c.CollegeID = u.College " +
@@ -1005,7 +1036,7 @@ namespace DataHelper
 			{
 				if (this.dr.Read())
 				{
-					a = this.dr.GetString(3);
+					a = this.dr.GetString(this.dr.GetOrdinal("Password"));
 				}
 				if (a == pass)
 				{

@@ -36,17 +36,19 @@ namespace WebsiteTrial
                 this.Label1.Visible = false;
                 using (DataAccess da2 = new DataAccess())
                 {
-                    System.Collections.Generic.List<string> details = da2.GetEmployeeDetails(this.Session["EmpNo"].ToString());
-                    this.lblEmpNo.Text = details[0];
-                    this.lblName.Text = details[1];
-                    this.lblEmail.Text = details[2];
-                    this.lblCollege.Text = da2.GetCollegeName(details[3]);
-                    this.lblDepartment.Text = da2.GetDepartmentName(details[3], details[4]);
-                    this.lblMemberStatus.Text = details[5];
-                    this.lblDateHired.Text = details[6];
-                    this.lblPhoneNumber.Text = details[7];
+                    User details = da2.GetEmployeeDetailsLinq(this.Session["EmpNo"].ToString());
+                    this.lblEmpNo.Text = details.EmpNo;
+                    this.LastNameLabel.Text = details.LastName;
+                    this.FirstNameLabel.Text = details.FirstName;
+                    this.MILabel.Text = details.MiddleName;
+                    this.lblEmail.Text = details.Email;
+                    this.lblCollege.Text = da2.GetCollegeName(details.College);
+                    this.lblDepartment.Text = da2.GetDepartmentName(details.College, details.Dept);
+                    this.lblMemberStatus.Text = details.MemberStatus;
+                    this.lblDateHired.Text = Convert.ToDateTime(details.DateHired).ToLongDateString();
+                    this.lblPhoneNumber.Text = details.PhoneNumber;
                     this.Image2.ImageUrl = "~/Pictures/" + da2.GetImage(this.Session["EmpNo"].ToString());
-                    this.DropDownList1.DataSource = da2.GetAllTransaction(details[0]);
+                    this.DropDownList1.DataSource = da2.GetAllTransaction(details.EmpNo);
                     this.DropDownList1.DataTextField = "TransactionID";
                     this.DropDownList1.DataValueField = "TransactionID";
                     this.DropDownList1.DataBind();

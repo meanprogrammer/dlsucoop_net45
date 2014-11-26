@@ -86,7 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="Account_Settings.aspx" />
+    <Content Include="Account_Settings_old.aspx" />
     <Content Include="AdminLogin.aspx" />
     <Content Include="AdminPage.aspx" />
     <Content Include="ConfirmLoan.aspx" />
@@ -305,6 +305,7 @@
     <Content Include="Report.aspx" />
     <Content Include="RetrievePassword.aspx" />
     <Content Include="SendDeficitEmail.aspx" />
+    <Content Include="ShareCapitals.aspx" />
     <Content Include="SMSReceiver.aspx" />
     <Content Include="style.css" />
     <Content Include="Table.aspx" />
@@ -315,6 +316,7 @@
     <Content Include="Downloads.aspx" />
     <Content Include="SMSHowto.aspx" />
     <Content Include="Registration.aspx" />
+    <Content Include="Account_Settings.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -331,12 +333,12 @@
     <Compile Include="Account.Master.designer.cs">
       <DependentUpon>Account.Master</DependentUpon>
     </Compile>
-    <Compile Include="Account_Settings.aspx.cs">
-      <DependentUpon>Account_Settings.aspx</DependentUpon>
+    <Compile Include="Account_Settings_old.aspx.cs">
+      <DependentUpon>Account_Settings_old.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account_Settings.aspx.designer.cs">
-      <DependentUpon>Account_Settings.aspx</DependentUpon>
+    <Compile Include="Account_Settings_old.aspx.designer.cs">
+      <DependentUpon>Account_Settings_old.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminLogin.aspx.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
@@ -449,6 +451,13 @@
     <Compile Include="SendDeficitEmail.aspx.designer.cs">
       <DependentUpon>SendDeficitEmail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ShareCapitals.aspx.cs">
+      <DependentUpon>ShareCapitals.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShareCapitals.aspx.designer.cs">
+      <DependentUpon>ShareCapitals.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SMSReceiver.aspx.cs">
       <DependentUpon>SMSReceiver.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -510,6 +519,13 @@
     </Compile>
     <Compile Include="Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account_Settings.aspx.cs">
+      <DependentUpon>Account_Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account_Settings.aspx.designer.cs">
+      <DependentUpon>Account_Settings.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
