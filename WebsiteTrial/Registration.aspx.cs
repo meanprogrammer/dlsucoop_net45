@@ -226,7 +226,7 @@ namespace WebsiteTrial
                     //Commented
                     Messages msgObj = new Messages();
                     //Commented
-                    msgObj.SendSMS(number, msgObj.SuccessfulRegistrationMessage(employee[0]));
+                    msgObj.SendSMS(number, msgObj.SuccessfulRegistrationMessage(string.Format("{0},{1} {2}", values[ColumnKeys.LASTNAME], values[ColumnKeys.FIRSTNAME], values[ColumnKeys.MIDDLENAME])));
                     //Commented
                     msgObj.Dispose();
                 }

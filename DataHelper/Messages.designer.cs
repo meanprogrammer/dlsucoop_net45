@@ -42,10 +42,16 @@ namespace DataHelper
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertRegDump(RegDump instance);
+    partial void UpdateRegDump(RegDump instance);
+    partial void DeleteRegDump(RegDump instance);
+    partial void InsertAccessToken(AccessToken instance);
+    partial void UpdateAccessToken(AccessToken instance);
+    partial void DeleteAccessToken(AccessToken instance);
     #endregion
 		
 		public MessagesDataContext() : 
-				base(global::DataHelper.Properties.Settings.Default.MessagesConnectionString, mappingSource)
+				base(global::DataHelper.Properties.Settings.Default.PROD, mappingSource)
 		{
 			OnCreated();
 		}
@@ -103,6 +109,22 @@ namespace DataHelper
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RegDump> RegDumps
+		{
+			get
+			{
+				return this.GetTable<RegDump>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AccessToken> AccessTokens
+		{
+			get
+			{
+				return this.GetTable<AccessToken>();
 			}
 		}
 	}
@@ -1290,6 +1312,202 @@ namespace DataHelper
 					this._EmergencyNumber = value;
 					this.SendPropertyChanged("EmergencyNumber");
 					this.OnEmergencyNumberChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RegDump")]
+	public partial class RegDump : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RecordID;
+		
+		private string _Data;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRecordIDChanging(int value);
+    partial void OnRecordIDChanged();
+    partial void OnDataChanging(string value);
+    partial void OnDataChanged();
+    #endregion
+		
+		public RegDump()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RecordID
+		{
+			get
+			{
+				return this._RecordID;
+			}
+			set
+			{
+				if ((this._RecordID != value))
+				{
+					this.OnRecordIDChanging(value);
+					this.SendPropertyChanging();
+					this._RecordID = value;
+					this.SendPropertyChanged("RecordID");
+					this.OnRecordIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Data", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Data
+		{
+			get
+			{
+				return this._Data;
+			}
+			set
+			{
+				if ((this._Data != value))
+				{
+					this.OnDataChanging(value);
+					this.SendPropertyChanging();
+					this._Data = value;
+					this.SendPropertyChanged("Data");
+					this.OnDataChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AccessTokens")]
+	public partial class AccessToken : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RecordID;
+		
+		private string _EmpNo;
+		
+		private string _AccessToken1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRecordIDChanging(int value);
+    partial void OnRecordIDChanged();
+    partial void OnEmpNoChanging(string value);
+    partial void OnEmpNoChanged();
+    partial void OnAccessToken1Changing(string value);
+    partial void OnAccessToken1Changed();
+    #endregion
+		
+		public AccessToken()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RecordID
+		{
+			get
+			{
+				return this._RecordID;
+			}
+			set
+			{
+				if ((this._RecordID != value))
+				{
+					this.OnRecordIDChanging(value);
+					this.SendPropertyChanging();
+					this._RecordID = value;
+					this.SendPropertyChanged("RecordID");
+					this.OnRecordIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmpNo", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string EmpNo
+		{
+			get
+			{
+				return this._EmpNo;
+			}
+			set
+			{
+				if ((this._EmpNo != value))
+				{
+					this.OnEmpNoChanging(value);
+					this.SendPropertyChanging();
+					this._EmpNo = value;
+					this.SendPropertyChanged("EmpNo");
+					this.OnEmpNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="AccessToken", Storage="_AccessToken1", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
+		public string AccessToken1
+		{
+			get
+			{
+				return this._AccessToken1;
+			}
+			set
+			{
+				if ((this._AccessToken1 != value))
+				{
+					this.OnAccessToken1Changing(value);
+					this.SendPropertyChanging();
+					this._AccessToken1 = value;
+					this.SendPropertyChanged("AccessToken1");
+					this.OnAccessToken1Changed();
 				}
 			}
 		}

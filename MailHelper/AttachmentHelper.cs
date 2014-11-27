@@ -112,8 +112,12 @@ namespace Mail
 
             document.Add(mainTable);
             document.Close();
+            document.Dispose();
 
             byte[] bytes = output.ToArray();
+
+            output.Close();
+            output.Dispose();
 
             File.WriteAllBytes(SaveAs.ToString(), bytes);
         }
@@ -166,10 +170,14 @@ namespace Mail
                 }
                 );
 
-              document.Add(mainTable);
+            document.Add(mainTable);
             document.Close();
+            document.Dispose();
 
             byte[] bytes = output.ToArray();
+
+            output.Close();
+            output.Dispose();
 
             File.WriteAllBytes(SaveAs.ToString(), bytes);
 

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Messages" Class="MessagesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=True" SettingsObjectName="DataHelper.Properties.Settings" SettingsPropertyName="MessagesConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DLSUDCOOP.mssql.somee.com;Initial Catalog=DLSUDCOOP;Persist Security Info=False;User ID=jeduardo_SQLLogin_1;Packet Size=4096;Workstation ID=DLSUDCOOP.mssql.somee.com" SettingsObjectName="DataHelper.Properties.Settings" SettingsPropertyName="PROD" Provider="System.Data.SqlClient" />
   <Table Name="dbo.RelativeEmployee" Member="RelativeEmployees">
     <Type Name="RelativeEmployee">
       <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -58,6 +58,19 @@
       <Column Name="EmergencyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="EmergencyAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="EmergencyNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RegDump" Member="RegDumps">
+    <Type Name="RegDump">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Data" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AccessTokens" Member="AccessTokens">
+    <Type Name="AccessToken">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AccessToken" Member="AccessToken1" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

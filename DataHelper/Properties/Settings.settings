@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DataHelper.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="MessagesConnectionString" Type="(Connection string)" Scope="Application">
+    <Setting Name="HOME" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;ConnectionString&gt;Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=True&lt;/ConnectionString&gt;
@@ -10,13 +10,29 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=True</Value>
     </Setting>
-    <Setting Name="MessagesConnectionString1" Type="(Connection string)" Scope="Application">
+    <Setting Name="OFFICE" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;ConnectionString&gt;Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True</Value>
+    </Setting>
+    <Setting Name="PROD" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;workstation id=DLSUDCOOP.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=DLSUDCOOP.mssql.somee.com;persist security info=False;initial catalog=DLSUDCOOP&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">workstation id=DLSUDCOOP.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=DLSUDCOOP.mssql.somee.com;persist security info=False;initial catalog=DLSUDCOOP</Value>
+    </Setting>
+    <Setting Name="MessagesConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

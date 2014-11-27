@@ -302,6 +302,7 @@
     <Content Include="Pictures\f-2711Desert.jpg" />
     <Content Include="ReceiveXMLSMS.aspx" />
     <Content Include="Registration_old.aspx" />
+    <Content Include="RegSMS.aspx" />
     <Content Include="Report.aspx" />
     <Content Include="RetrievePassword.aspx" />
     <Content Include="SendDeficitEmail.aspx" />
@@ -429,6 +430,13 @@
     </Compile>
     <Compile Include="Registration_old.aspx.designer.cs">
       <DependentUpon>Registration_old.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegSMS.aspx.cs">
+      <DependentUpon>RegSMS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegSMS.aspx.designer.cs">
+      <DependentUpon>RegSMS.aspx</DependentUpon>
     </Compile>
     <Compile Include="Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>
@@ -567,6 +575,7 @@
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\Profile1.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

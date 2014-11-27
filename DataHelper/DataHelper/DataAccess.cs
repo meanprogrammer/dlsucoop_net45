@@ -16,11 +16,11 @@ namespace DataHelper
         //string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
 
         //HOUSE
-        protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
+        //protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
 
         //PROD
-        //protected string conn = @"workstation id=Messages.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=Messages.mssql.somee.com;persist security info=False;initial catalog=Messages";
-
+        protected string conn = @"workstation id=DLSUDCOOP.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=DLSUDCOOP.mssql.somee.com;persist security info=False;initial catalog=DLSUDCOOP";
+        
 		protected SqlConnection MyConn;
 		protected SqlDataReader dr;
 		protected SqlCommand sqlCmd;
@@ -57,6 +57,35 @@ namespace DataHelper
             dr.ItemArray = new object[] { "0", "-- SELECT --" };
             dt.Rows.InsertAt(dr, 0);
             return dt;
+        }
+
+        public void SaveDump(string dump)
+        {
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                RegDump rd = new RegDump();
+                rd.Data = dump;
+                context.RegDumps.InsertOnSubmit(rd);
+                context.SubmitChanges();
+            }
+        }
+
+        public bool SaveAccessToken(string accessToken, string subcriberNumber)
+        {
+            int result = -1;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                User u = context.Users.FirstOrDefault(c=>c.PhoneNumber == subcriberNumber);
+
+                AccessToken at = new AccessToken();
+                at.EmpNo = u.EmpNo;
+                at.AccessToken1 = accessToken;
+
+                context.AccessTokens.InsertOnSubmit(at);
+                result = context.GetChangeSet().Inserts.Count;
+                context.SubmitChanges();
+            }
+            return result > 0;
         }
 
         public DataTable GetAllUsersWithEmpty()
@@ -1311,5 +1340,46 @@ namespace DataHelper
             return dt;
         }
 
+
+        public bool UpdateUserDetailsLinq(User u)
+        {
+            MessagesDataContext context = new MessagesDataContext();
+
+            User updatedUser = context.Users.FirstOrDefault(c => c.EmpNo == u.EmpNo);
+            updatedUser.Email = u.Email;
+            updatedUser.College = u.College;
+            updatedUser.Dept = u.Dept;
+            updatedUser.MemberStatus = u.MemberStatus;
+            updatedUser.DateHired = u.DateHired;
+            updatedUser.Address = u.Address;
+            updatedUser.Birthday = u.Birthday;
+
+            updatedUser.FirstName = u.FirstName;
+            updatedUser.LastName = u.LastName;
+            updatedUser.MiddleName = u.MiddleName;
+            updatedUser.PhoneNumber = u.PhoneNumber;
+            updatedUser.ATMAccountNo = u.ATMAccountNo;
+            updatedUser.TINNo = u.TINNo;
+            updatedUser.SSSNo = u.SSSNo;
+            updatedUser.Gender = u.Gender;
+            updatedUser.CivilStatus = u.CivilStatus;
+            updatedUser.FatherName = u.FatherName;
+            updatedUser.FatherOccupation = u.FatherOccupation;
+            updatedUser.MotherName = u.MotherName;
+            updatedUser.MotherOccupation = u.MotherOccupation;
+            updatedUser.LegalSpouse = u.LegalSpouse;
+            updatedUser.SpouseEmployer = u.SpouseEmployer;
+            updatedUser.BusinessName = u.BusinessName;
+            updatedUser.BusinessAddress = u.BusinessAddress;
+            updatedUser.OtherSourceOfIncome = u.OtherSourceOfIncome;
+            updatedUser.EmergencyName = u.EmergencyName;
+            updatedUser.EmergencyAddress = u.EmergencyAddress;
+            updatedUser.EmergencyNumber = u.EmergencyNumber;
+
+            int result = context.GetChangeSet().Updates.Count;
+            context.SubmitChanges();
+            context.Dispose();
+            return result > 0;
+        }
     }
 }

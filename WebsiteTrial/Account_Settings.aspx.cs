@@ -30,7 +30,7 @@ namespace WebsiteTrial
                     User u = da.GetEmployeeDetailsLinq(empNo);
                     this.tbEmpNum.Text = u.EmpNo;
                     this.tbEmail.Text = u.Email;
-                    this.DDCollege.SelectedIndex = -1;
+                    this.DDCollege.Text = u.College;
                     this.DDDepartment.Text = u.Dept;
                     this.DDStatus.Text = u.MemberStatus;
                     this.Calendar3.SelectedDate = Convert.ToDateTime(u.DateHired);
@@ -59,6 +59,8 @@ namespace WebsiteTrial
                     this.ICENameTextBox.Text = u.EmergencyName;
                     this.ICEAddressTextBox.Text = u.EmergencyAddress;
                     this.ICEContactNumberTextBox.Text = u.EmergencyNumber;
+
+                    
                 }
             }
         }
@@ -102,7 +104,42 @@ namespace WebsiteTrial
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
+            var empNo = this.Session["EmpNo"].ToString();
+            using (DataAccess da = new DataAccess())
+            {
+                User u = new User();
+                u.EmpNo = this.tbEmpNum.Text;
+                u.Email = this.tbEmail.Text;
+                u.College = this.DDCollege.SelectedValue;
+                u.Dept = this.DDDepartment.SelectedValue;
+                u.MemberStatus = this.DDStatus.SelectedValue;
+                u.DateHired = this.Calendar3.SelectedDate;
+                u.Address = this.tbAddress.Text;
+                u.Birthday = this.Calendar1.SelectedDate;
+                u.FirstName = this.tbFirstName.Text;
+                u.LastName = this.tbLastName.Text;
+                u.MiddleName = this.tbMiddleName.Text;
+                u.PhoneNumber = this.tbPhone.Text;
+                u.ATMAccountNo = this.ATMTextbox.Text;
+                u.TINNo = this.TINNoTextbox.Text;
+                u.SSSNo = this.SSSNoTextBox.Text;
+                u.Gender = this.GenderDropDownList.SelectedValue;
+                u.CivilStatus = this.CivilStatusDropDownList.SelectedValue;
+                u.FatherName = this.FatherNameTextBox.Text;
+                u.FatherOccupation = this.FatherOccupationTextBox.Text;
+                u.MotherName = this.MotherNameTextBox.Text;
+                u.MotherOccupation = this.MotherOccupationTextBox.Text;
+                u.LegalSpouse =  this.LegalSpouseTextBox.Text;
+                u.SpouseEmployer = this.SpouseOccupationTextBox.Text;
+                u.BusinessName = this.BusinessNameTextBox.Text;
+                u.BusinessAddress = this.BusinessAddressTextBox.Text;
+                u.OtherSourceOfIncome = this.OtherSourceOfIncomeTextBox.Text;
+                u.EmergencyName = this.ICENameTextBox.Text;
+                u.EmergencyAddress = this.ICEAddressTextBox.Text;
+                u.EmergencyNumber = this.ICEContactNumberTextBox.Text;
 
+                bool result = da.UpdateUserDetailsLinq(u);
+            }
         }
     }
 }

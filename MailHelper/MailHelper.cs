@@ -228,6 +228,7 @@ namespace Mail
 		}
 		public void ClearAttachment()
 		{
+            this.mail.Attachments.Dispose();
 			this.mail.Attachments.Clear();
 		}
 		public void Dispose()

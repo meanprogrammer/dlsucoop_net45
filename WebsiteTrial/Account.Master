@@ -87,7 +87,7 @@
                             <a href="Home_Logged.aspx" class="btn btn-success btn-block">Home</a>
                             <asp:LinkButton ID="LinkButton2" runat="server" onclick="LinkButton2_Click" class="btn btn-success btn-block">Loan Application</asp:LinkButton>
                             <a href="Account_Settings.aspx" class="btn btn-success btn-block">Settings</a>
-                            <asp:LinkButton ID="LinkButton1" runat="server" onclick="LinkButton1_Click"  class="btn btn-success btn-block">Logout</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton1" runat="server" onclick="LinkButton1_Click" CausesValidation="false"  class="btn btn-success btn-block">Logout</asp:LinkButton>
                             <br />
                             <br />
                              <!---chat-->

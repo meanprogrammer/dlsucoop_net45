@@ -123,24 +123,6 @@
             <asp:TextBox ID="SpouseOccupationTextBox" CssClass="form-control input-md" runat="server"></asp:TextBox>
         </div>
     </div>
-    <!--
-    <div class="row">
-        <div class="col-md-6">
-            <label for="tbPassword">Password <span style="color: red; margin-top: 22px;">*</span></label>
-            <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control input-md"
-                TextMode="Password"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" CssClass="validation-message" runat="server" ErrorMessage="Password is Required." ControlToValidate="tbPassword" Display="Dynamic"></asp:RequiredFieldValidator>
-            <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="tbPassword" CssClass="validation-message" ErrorMessage="Password minimum length is 6." ValidateEmptyText="True" ValidationGroup="a" ClientValidationFunction="PasswordLengthValidate" Display="Dynamic"></asp:CustomValidator>
-        </div>
-        <div class="col-md-6">
-            <label for="tbConfirm">Re-type Password <span style="color: red; margin-top: 22px;">*</span></label>
-            <asp:TextBox ID="tbConfirm" runat="server" CssClass="form-control input-md"
-                TextMode="Password"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" CssClass="validation-message" Display="Dynamic" runat="server" ErrorMessage="Password is Required." ControlToValidate="tbConfirm"></asp:RequiredFieldValidator>
-            <asp:CompareValidator ID="CompareValidator1" CssClass="validation-message" runat="server" Display="Dynamic" ErrorMessage="Password does not match." ControlToCompare="tbPassword" ControlToValidate="tbConfirm"></asp:CompareValidator>
-        </div>
-    </div>
-    -->
     <div class="row">
         <div class="col-md-6">
             <label for="DDCollege">College <span style="color: red; margin-top: 22px;">*</span></label>
