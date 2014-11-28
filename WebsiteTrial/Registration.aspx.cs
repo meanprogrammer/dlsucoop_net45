@@ -19,6 +19,14 @@ namespace WebsiteTrial
                 this.college();
                 this.department();
                 this.relatedEmployee();
+                this.NEBdayDayDropDownList.DataSource = GetDays();
+                this.NEBdayDayDropDownList.DataBind();
+
+                this.NEBdayMonthDropDownList.DataSource = GetMonths();
+                this.NEBdayMonthDropDownList.DataBind();
+
+                this.NEBdayYearDropDownList.DataSource = GetYears();
+                this.NEBdayYearDropDownList.DataBind();
             }
             else
             {
@@ -269,7 +277,14 @@ namespace WebsiteTrial
                 values.Add(ColumnKeys.EMAIL, this.tbEmail2.Text);
                 values.Add(ColumnKeys.PASSWORD, this.tbPassword2.Text);
                 values.Add(ColumnKeys.ADDRESS, this.tbAddress2.Text);
-                values.Add(ColumnKeys.BIRTHDATE, this.Calendar2.SelectedDate.ToShortDateString());
+
+                int month = Convert.ToInt32(this.NEBdayMonthDropDownList.SelectedValue);
+                int day = Convert.ToInt32(this.NEBdayDayDropDownList.SelectedValue);
+                int year = Convert.ToInt32(this.NEBdayYearDropDownList.SelectedValue);
+
+                DateTime dt = new DateTime(year, month, day);
+
+                values.Add(ColumnKeys.BIRTHDATE, dt.ToShortDateString());
                 values.Add(ColumnKeys.FIRSTNAME, this.tbFirstName2.Text);
                 values.Add(ColumnKeys.LASTNAME, this.tbLastName2.Text);
                 values.Add(ColumnKeys.MIDDLENAME, this.tbMiddleName2.Text);
@@ -308,7 +323,47 @@ namespace WebsiteTrial
 
         protected void Calendar2_SelectionChanged(object sender, EventArgs e)
         {
-            this.txtbirthday2.Text = this.Calendar2.SelectedDate.ToShortDateString();
+            //this.txtbirthday2.Text = this.Calendar2.SelectedDate.ToShortDateString();
         }
-    }
+
+        private List<ListItem> GetMonths()
+        {
+            List<ListItem> col = new List<ListItem>();
+            col.Add(new ListItem("--SELECT--", string.Empty));
+            col.Add(new ListItem("January", "1"));
+            col.Add(new ListItem("February", "2"));
+            col.Add(new ListItem("March", "3"));
+            col.Add(new ListItem("April", "4"));
+            col.Add(new ListItem("May", "5"));
+            col.Add(new ListItem("June", "6"));
+            col.Add(new ListItem("July", "7"));
+            col.Add(new ListItem("August", "8"));
+            col.Add(new ListItem("September", "9"));
+            col.Add(new ListItem("October", "10"));
+            col.Add(new ListItem("November", "11"));
+            col.Add(new ListItem("December", "12"));
+            return col;
+        }
+
+        private List<ListItem> GetDays() {
+            List<ListItem> col = new List<ListItem>();
+            col.Add(new ListItem("--SELECT--", string.Empty));
+            for (int i = 1; i <= 31; i++)
+            {
+                col.Add(new ListItem(i.ToString(), i.ToString()));
+            }
+            return col;
+        }
+
+        private List<ListItem> GetYears()
+        {
+            List<ListItem> col = new List<ListItem>();
+            col.Add(new ListItem("--SELECT--", string.Empty));
+            for (int i = 2014; i >= 1900; i--)
+            {
+                col.Add(new ListItem(i.ToString(), i.ToString()));
+            }
+            return col;
+        }
+    }    
 }

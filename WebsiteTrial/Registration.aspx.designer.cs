@@ -229,15 +229,6 @@ namespace WebsiteTrial {
         protected global::System.Web.UI.WebControls.TextBox TINNoTextbox;
         
         /// <summary>
-        /// RequiredFieldValidator23 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator23;
-        
-        /// <summary>
         /// SSSNoTextBox control.
         /// </summary>
         /// <remarks>
@@ -245,15 +236,6 @@ namespace WebsiteTrial {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox SSSNoTextBox;
-        
-        /// <summary>
-        /// RequiredFieldValidator24 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator24;
         
         /// <summary>
         /// GenderDropDownList control.
@@ -769,22 +751,31 @@ namespace WebsiteTrial {
         protected global::System.Web.UI.WebControls.Calendar Calendar2;
         
         /// <summary>
-        /// txtbirthday2 control.
+        /// NEBdayMonthDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbirthday2;
+        protected global::System.Web.UI.WebControls.DropDownList NEBdayMonthDropDownList;
         
         /// <summary>
-        /// RequiredFieldValidator21 control.
+        /// NEBdayDayDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator21;
+        protected global::System.Web.UI.WebControls.DropDownList NEBdayDayDropDownList;
+        
+        /// <summary>
+        /// NEBdayYearDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList NEBdayYearDropDownList;
         
         /// <summary>
         /// btnRegister2 control.

@@ -10,7 +10,7 @@
 
     <script src="js/jquery-latest/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap-latest/bootstrap.js"></script>
-
+   <script src="js/bootstrap-datepicker.js"></script>
 
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -28,7 +28,7 @@
                 </h1>
                 <p style="background-image: url('/images/img03b.jpg'); text-align: center; background-size: 100%; color: White; text-shadow: 0px 1px 5px #000; font-weight: bold;" 
                     class="style5">
-                    De La Salle University-Dasmariñas COOP</p>
+                    De La Salle University-Dasmariñas Cooperative</p>
             </div>
         <!-- end header -->
         <!-- start page -->

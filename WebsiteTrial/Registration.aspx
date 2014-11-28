@@ -8,6 +8,9 @@
             else
                 args.IsValid = true;
         }
+
+
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -88,12 +91,10 @@
                                 <div class="col-md-4">
                                     <label for="TINNoTextbox">TIN No.</label>
                                     <asp:TextBox ID="TINNoTextbox" CssClass="form-control input-md" runat="server"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator23" CssClass="validation-message"  runat="server" ErrorMessage="TIN No. is Required." ControlToValidate="TINNoTextbox"></asp:RequiredFieldValidator>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="SSSNoTextBox">SSS No.</label>
                                     <asp:TextBox ID="SSSNoTextBox" CssClass="form-control input-md" runat="server"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator24" CssClass="validation-message"  runat="server" ErrorMessage="SSS No. is Required." ControlToValidate="SSSNoTextBox"></asp:RequiredFieldValidator>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="GenderDropDownList">Gender</label>
@@ -372,10 +373,14 @@
                                             </asp:Calendar>
                                         </div>
                                         <div class="col-md-6">
-                                            <asp:TextBox ID="txtbirthday2" CssClass="form-control input-md" runat="server" ReadOnly="True"></asp:TextBox>
+                                            <asp:DropDownList ID="NEBdayMonthDropDownList" runat="server" CssClass="form-control">
+                                            </asp:DropDownList>
+                                            <asp:DropDownList ID="NEBdayDayDropDownList" runat="server">
+                                            </asp:DropDownList>
+                                            <asp:DropDownList ID="NEBdayYearDropDownList" runat="server"></asp:DropDownList>
                                         </div>
                                     </div> 
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator21" CssClass="validation-message"  runat="server" ErrorMessage="BirthDate is Required." ControlToValidate="txtbirthday2"></asp:RequiredFieldValidator>   
+                                    
                                 </div>
                             </div>
                              <asp:Button ID="btnRegister2" runat="server"

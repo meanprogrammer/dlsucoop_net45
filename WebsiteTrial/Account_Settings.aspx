@@ -60,12 +60,10 @@
         <div class="col-md-4">
             <label for="TINNoTextbox">TIN No.</label>
             <asp:TextBox ID="TINNoTextbox" CssClass="form-control input-md" runat="server"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator23" CssClass="validation-message" runat="server" ErrorMessage="TIN No. is Required." ControlToValidate="TINNoTextbox"></asp:RequiredFieldValidator>
         </div>
         <div class="col-md-4">
             <label for="SSSNoTextBox">SSS No.</label>
             <asp:TextBox ID="SSSNoTextBox" CssClass="form-control input-md" runat="server"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator24" CssClass="validation-message" runat="server" ErrorMessage="SSS No. is Required." ControlToValidate="SSSNoTextBox"></asp:RequiredFieldValidator>
         </div>
         <div class="col-md-4">
             <label for="GenderDropDownList">Gender</label>
