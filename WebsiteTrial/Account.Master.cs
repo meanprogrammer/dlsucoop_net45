@@ -12,6 +12,21 @@ namespace WebsiteTrial
     {
         protected void Page_Load(object sender, System.EventArgs e)
         {
+            string empNo = Session["EmpNo"].ToString();
+            bool isEmployee = false;
+            using (DataAccess da = new DataAccess())
+            {
+                isEmployee = da.IsEmployee(empNo);
+            }
+
+            if (isEmployee == true)
+            {
+                this.SettingsLinkButton.PostBackUrl = "~/Account_Settings.aspx";
+            }
+            else
+            {
+                this.SettingsLinkButton.PostBackUrl = "~/Account_Settings_ne.aspx";
+            }
         }
         protected void LinkButton1_Click(object sender, System.EventArgs e)
         {

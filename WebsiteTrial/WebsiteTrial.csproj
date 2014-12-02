@@ -91,6 +91,7 @@
     <Content Include="AdminPage.aspx" />
     <Content Include="ConfirmLoan.aspx" />
     <Content Include="ConfirmRegistration.aspx" />
+    <Content Include="Account_Settings_ne.aspx" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
@@ -117,7 +118,11 @@
     <Content Include="css\screen.css" />
     <Content Include="css\style.css" />
     <Content Include="Default.aspx" />
+    <Content Include="fonts\COPYING.txt" />
+    <Content Include="fonts\genericons-regular-webfont.svg" />
+    <Content Include="fonts\genericons.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\LICENSE.txt" />
     <Content Include="Global.asax" />
     <Content Include="Home_Logged.aspx" />
     <Content Include="images\1.png" />
@@ -144,6 +149,7 @@
     <Content Include="images\coop\DSC02806.JPG" />
     <Content Include="images\coop\DSC02807.JPG" />
     <Content Include="images\coop\DSC02808.JPG" />
+    <Content Include="images\dlsudcooplogo.jpg" />
     <Content Include="images\dlsu_d_logo copy.png" />
     <Content Include="images\forms\bg_related_act.gif" />
     <Content Include="images\forms\bubble_inner.gif" />
@@ -369,6 +375,13 @@
     <Compile Include="ConfirmRegistration.aspx.designer.cs">
       <DependentUpon>ConfirmRegistration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account_Settings_ne.aspx.cs">
+      <DependentUpon>Account_Settings_ne.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account_Settings_ne.aspx.designer.cs">
+      <DependentUpon>Account_Settings_ne.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -571,6 +584,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\genericons-regular-webfont.eot" />
+    <Content Include="fonts\genericons-regular-webfont.ttf" />
+    <Content Include="fonts\genericons-regular-webfont.woff" />
     <None Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />

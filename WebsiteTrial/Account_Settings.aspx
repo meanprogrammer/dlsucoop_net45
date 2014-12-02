@@ -89,6 +89,7 @@
         <div class="col-md-8">
             &nbsp;
                                
+       
         </div>
     </div>
     <div class="row">
@@ -156,44 +157,64 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <label for="txtdatehired">Date Hired <span style="color: red; margin-top: 22px;">*</span></label>
             <div class="row">
-                <div class="col-md-12">
-                    <asp:Calendar ID="Calendar3" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" OnSelectionChanged="Calendar3_SelectionChanged" Width="200px">
-                        <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
-                        <NextPrevStyle VerticalAlign="Bottom" />
-                        <OtherMonthDayStyle ForeColor="#808080" />
-                        <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
-                        <SelectorStyle BackColor="#CCCCCC" />
-                        <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
-                        <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                        <WeekendDayStyle BackColor="#FFFFCC" />
-                    </asp:Calendar>
-                    <asp:TextBox ID="txtdatehired" runat="server" CssClass="form-control input-md" ReadOnly="True"></asp:TextBox>
+
+                <div class="col-md-3">
+                    <asp:DropDownList ID="DateHiredMonthDropdownlist" runat="server" AppendDataBoundItems="true" CssClass="form-control">
+                        <asp:ListItem Text="--SELECT--" Value="" />
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator11" CssClass="validation-message" runat="server" ErrorMessage="Select Month." ControlToValidate="DateHiredMonthDropdownlist" Display="Dynamic"></asp:RequiredFieldValidator>
+                </div>
+                <div class="col-md-3">
+                    <asp:DropDownList ID="DateHiredDateDropdownlist" runat="server" AppendDataBoundItems="true" CssClass="form-control">
+                        <asp:ListItem Text="--SELECT--" Value="" />
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator26" CssClass="validation-message" runat="server" ErrorMessage="Select Date." ControlToValidate="DateHiredDateDropdownlist" Display="Dynamic"></asp:RequiredFieldValidator>
+                </div>
+                <div class="col-md-3">
+                    <asp:DropDownList ID="DateHiredYearDropdownlist" runat="server" AppendDataBoundItems="true" CssClass="form-control">
+                        <asp:ListItem Text="--SELECT--" Value="" />
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator27" CssClass="validation-message" runat="server" ErrorMessage="Select Year." ControlToValidate="DateHiredYearDropdownlist" Display="Dynamic"></asp:RequiredFieldValidator>
+                </div>
+                <div class="col-md-3">
+                    &nbsp;
+                                       
                 </div>
             </div>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator11" CssClass="validation-message" runat="server" ErrorMessage="Date hired is Required." ControlToValidate="txtdatehired"></asp:RequiredFieldValidator>
         </div>
-        <div class="col-md-6">
+        <div class="row">
+        <div class="col-md-12">
             <label for="txtbirthday">Birthdate  <span style="color: red; margin-top: 22px;">*</span></label>
             <div class="row">
-                <div class="col-md-12">
-                    <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" OnSelectionChanged="Calendar1_SelectionChanged" Width="200px">
-                        <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
-                        <NextPrevStyle VerticalAlign="Bottom" />
-                        <OtherMonthDayStyle ForeColor="#808080" />
-                        <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
-                        <SelectorStyle BackColor="#CCCCCC" />
-                        <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
-                        <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                        <WeekendDayStyle BackColor="#FFFFCC" />
-                    </asp:Calendar>
-                    <asp:TextBox ID="txtbirthday" CssClass="form-control input-md" runat="server" ReadOnly="True"></asp:TextBox>
+
+                <div class="col-md-3">
+                    <asp:DropDownList ID="EmpBdateMonthDropdownlist" runat="server" AppendDataBoundItems="true" CssClass="form-control">
+                        <asp:ListItem Text="--SELECT--" Value="" />
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator13" CssClass="validation-message" runat="server" ErrorMessage="Select Month." ControlToValidate="EmpBdateMonthDropdownlist" Display="Dynamic"></asp:RequiredFieldValidator>
+                </div>
+                <div class="col-md-3">
+                    <asp:DropDownList ID="EmpBdateDateDropdownlist" runat="server" AppendDataBoundItems="true" CssClass="form-control">
+                        <asp:ListItem Text="--SELECT--" Value="" />
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator28" CssClass="validation-message" runat="server" ErrorMessage="Select Date." ControlToValidate="EmpBdateDateDropdownlist" Display="Dynamic"></asp:RequiredFieldValidator>
+                </div>
+                <div class="col-md-3">
+                    <asp:DropDownList ID="EmpBdateYearDropDownList" runat="server" AppendDataBoundItems="true" CssClass="form-control">
+                        <asp:ListItem Text="--SELECT--" Value="" />
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator29" CssClass="validation-message" runat="server" ErrorMessage="Select Year." ControlToValidate="EmpBdateYearDropDownList" Display="Dynamic"></asp:RequiredFieldValidator>
+                </div>
+                <div class="col-md-3">
+                    &nbsp;
+                                       
                 </div>
             </div>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator13" CssClass="validation-message" runat="server" ErrorMessage="BirthDate is Required." ControlToValidate="txtbirthday"></asp:RequiredFieldValidator>
         </div>
+            </div>
     </div>
     <h4>If in business,</h4>
     <div class="row">

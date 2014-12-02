@@ -12,6 +12,13 @@ namespace WebsiteTrial
 {
     public partial class Registration : System.Web.UI.Page
     {
+        private void DataBindDates(DropDownList list)
+        {
+            list.DataTextField = "Text";
+            list.DataValueField = "Value";
+            list.DataBind();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -20,13 +27,31 @@ namespace WebsiteTrial
                 this.department();
                 this.relatedEmployee();
                 this.NEBdayDayDropDownList.DataSource = GetDays();
-                this.NEBdayDayDropDownList.DataBind();
-
+                DataBindDates(NEBdayDayDropDownList);
+                
                 this.NEBdayMonthDropDownList.DataSource = GetMonths();
-                this.NEBdayMonthDropDownList.DataBind();
+                DataBindDates(NEBdayMonthDropDownList);
 
                 this.NEBdayYearDropDownList.DataSource = GetYears();
-                this.NEBdayYearDropDownList.DataBind();
+                DataBindDates(NEBdayYearDropDownList);
+
+                this.DateHiredDateDropdownlist.DataSource = GetDays();
+                DataBindDates(DateHiredDateDropdownlist);
+
+                this.DateHiredMonthDropdownlist.DataSource = GetMonths();
+                DataBindDates(DateHiredMonthDropdownlist);
+
+                this.DateHiredYearDropdownlist.DataSource = GetYears();
+                DataBindDates(DateHiredYearDropdownlist);
+
+                this.EmpBdateMonthDropdownlist.DataSource = GetMonths();
+                DataBindDates(EmpBdateMonthDropdownlist);
+
+                this.EmpBdateDateDropdownlist.DataSource = GetDays();
+                DataBindDates(EmpBdateDateDropdownlist);
+
+                this.EmpBdateYearDropDownList.DataSource = GetYears();
+                DataBindDates(EmpBdateYearDropDownList);
             }
             else
             {
@@ -125,7 +150,7 @@ namespace WebsiteTrial
         {
             this.txtbirthday.Text = this.Calendar2.SelectedDate.ToShortDateString();
             this.Calendar2.Visible = false;
-        }*/
+        }
 
         protected void Calendar3_SelectionChanged(object sender, EventArgs e)
         {
@@ -135,7 +160,7 @@ namespace WebsiteTrial
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
             this.txtbirthday.Text = this.Calendar1.SelectedDate.ToShortDateString();
-        }
+        }*/
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
@@ -176,9 +201,20 @@ namespace WebsiteTrial
                 values.Add(ColumnKeys.COLLEGE, this.DDCollege.Text);
                 values.Add(ColumnKeys.DEPARTMENT, this.DDDepartment.Text);
                 values.Add(ColumnKeys.EMP_STATUS, this.DDStatus.Text);
-                values.Add(ColumnKeys.DATE_HIRED, this.Calendar3.SelectedDate.ToShortDateString());
+
+                int dh_month = Convert.ToInt32(this.DateHiredMonthDropdownlist.SelectedValue);
+                int dh_day = Convert.ToInt32(this.DateHiredDateDropdownlist.SelectedValue);
+                int dh_year = Convert.ToInt32(this.DateHiredYearDropdownlist.SelectedValue);
+                DateTime dh = new DateTime(dh_year, dh_month, dh_day);
+                values.Add(ColumnKeys.DATE_HIRED, dh.ToShortDateString());                
                 values.Add(ColumnKeys.ADDRESS, this.tbAddress.Text);
-                values.Add(ColumnKeys.BIRTHDATE, this.Calendar1.SelectedDate.ToShortDateString());
+
+                int bd_month = Convert.ToInt32(this.EmpBdateMonthDropdownlist.SelectedValue);
+                int bd_day = Convert.ToInt32(this.EmpBdateDateDropdownlist.SelectedValue);
+                int bd_year = Convert.ToInt32(this.EmpBdateYearDropDownList.SelectedValue);
+                DateTime bd = new DateTime(bd_year, bd_month, bd_day);
+
+                values.Add(ColumnKeys.BIRTHDATE, bd.ToShortDateString());
                 values.Add(ColumnKeys.FIRSTNAME, this.tbFirstName.Text);
                 values.Add(ColumnKeys.LASTNAME, this.tbLastName.Text);
                 values.Add(ColumnKeys.MIDDLENAME, this.tbMiddleName.Text);
@@ -201,27 +237,6 @@ namespace WebsiteTrial
                 values.Add(ColumnKeys.EMERGENCYNAME, this.ICENameTextBox.Text);
                 values.Add(ColumnKeys.EMERGENCYADD, this.ICEAddressTextBox.Text);
                 values.Add(ColumnKeys.EMERGENCYNO, this.ICEContactNumberTextBox.Text);
-
-                /*
-[ATMAccountNo] [nvarchar](50) NULL,
-[TINNo] [nvarchar](50) NULL,
-[SSSNo] [nvarchar](50) NULL,
-[Gender] [nvarchar](10) NULL,
-[CivilStatus] [nvarchar](20) NULL,
-[FatherName] [nvarchar](50) NULL,
-[FatherOccupation] [nvarchar](50) NULL,
-[MotherName] [nvarchar](50) NULL,
-[MotherOccupation] [nvarchar](50) NULL,
-[LegalSpouse] [nvarchar](50) NULL,
-[SpouseEmployer] [nvarchar](50) NULL,
-[BusinessName] [nvarchar](50) NULL,
-[BusinessAddress] [nvarchar](150) NULL,
-[OtherSourceOfIncome] [nvarchar](250) NULL,
-[EmergencyName] [nvarchar](50) NULL,
-[EmergencyAddress] [nvarchar](50) NULL,
-[EmergencyNumber] [nvarchar](50) NULL
-*/
-
 
                 using (MailHelper mail = new MailHelper())
                 {
@@ -278,7 +293,7 @@ namespace WebsiteTrial
                 values.Add(ColumnKeys.PASSWORD, this.tbPassword2.Text);
                 values.Add(ColumnKeys.ADDRESS, this.tbAddress2.Text);
 
-                int month = Convert.ToInt32(this.NEBdayMonthDropDownList.SelectedValue);
+                int month = Convert.ToInt32(this.NEBdayMonthDropDownList.SelectedItem.Value);
                 int day = Convert.ToInt32(this.NEBdayDayDropDownList.SelectedValue);
                 int year = Convert.ToInt32(this.NEBdayYearDropDownList.SelectedValue);
 
@@ -326,42 +341,40 @@ namespace WebsiteTrial
             //this.txtbirthday2.Text = this.Calendar2.SelectedDate.ToShortDateString();
         }
 
-        private List<ListItem> GetMonths()
+        private List<DateMonthDTO> GetMonths()
         {
-            List<ListItem> col = new List<ListItem>();
-            col.Add(new ListItem("--SELECT--", string.Empty));
-            col.Add(new ListItem("January", "1"));
-            col.Add(new ListItem("February", "2"));
-            col.Add(new ListItem("March", "3"));
-            col.Add(new ListItem("April", "4"));
-            col.Add(new ListItem("May", "5"));
-            col.Add(new ListItem("June", "6"));
-            col.Add(new ListItem("July", "7"));
-            col.Add(new ListItem("August", "8"));
-            col.Add(new ListItem("September", "9"));
-            col.Add(new ListItem("October", "10"));
-            col.Add(new ListItem("November", "11"));
-            col.Add(new ListItem("December", "12"));
+            List<DateMonthDTO> col = new List<DateMonthDTO>();
+            col.Add(new DateMonthDTO("January", "1"));
+            col.Add(new DateMonthDTO("February", "2"));
+            col.Add(new DateMonthDTO("March", "3"));
+            col.Add(new DateMonthDTO("April", "4"));
+            col.Add(new DateMonthDTO("May", "5"));
+            col.Add(new DateMonthDTO("June", "6"));
+            col.Add(new DateMonthDTO("July", "7"));
+            col.Add(new DateMonthDTO("August", "8"));
+            col.Add(new DateMonthDTO("September", "9"));
+            col.Add(new DateMonthDTO("October", "10"));
+            col.Add(new DateMonthDTO("November", "11"));
+            col.Add(new DateMonthDTO("December", "12"));
             return col;
         }
 
-        private List<ListItem> GetDays() {
-            List<ListItem> col = new List<ListItem>();
-            col.Add(new ListItem("--SELECT--", string.Empty));
+        private List<DateMonthDTO> GetDays()
+        {
+            List<DateMonthDTO> col = new List<DateMonthDTO>();
             for (int i = 1; i <= 31; i++)
             {
-                col.Add(new ListItem(i.ToString(), i.ToString()));
+                col.Add(new DateMonthDTO(i.ToString(), i.ToString()));
             }
             return col;
         }
 
-        private List<ListItem> GetYears()
+        private List<DateMonthDTO> GetYears()
         {
-            List<ListItem> col = new List<ListItem>();
-            col.Add(new ListItem("--SELECT--", string.Empty));
+            List<DateMonthDTO> col = new List<DateMonthDTO>();
             for (int i = 2014; i >= 1900; i--)
             {
-                col.Add(new ListItem(i.ToString(), i.ToString()));
+                col.Add(new DateMonthDTO(i.ToString(), i.ToString()));
             }
             return col;
         }

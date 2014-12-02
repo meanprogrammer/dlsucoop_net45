@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Messages" Class="MessagesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=True" SettingsObjectName="DataHelper.Properties.Settings" SettingsPropertyName="HOME" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True" SettingsObjectName="DataHelper.Properties.Settings" SettingsPropertyName="OFFICE" Provider="System.Data.SqlClient" />
   <Table Name="dbo.RelativeEmployee" Member="RelativeEmployees">
     <Type Name="RelativeEmployee">
       <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

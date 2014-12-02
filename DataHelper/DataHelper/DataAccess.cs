@@ -13,14 +13,17 @@ namespace DataHelper
 	public class DataAccess : IDisposable
 	{
         //OFFICE
-        //string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
+        string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
 
         //HOUSE
-        protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
+        //protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
 
         //PROD
         //protected string conn = @"workstation id=DLSUDCOOP.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=DLSUDCOOP.mssql.somee.com;persist security info=False;initial catalog=DLSUDCOOP";
-        
+
+        //LAGUNA
+        //protected string conn = @"Data Source=PROGRAMMERPC\SQL2012;Initial Catalog=Messages;Integrated Security=true;";
+
 		protected SqlConnection MyConn;
 		protected SqlDataReader dr;
 		protected SqlCommand sqlCmd;
@@ -49,6 +52,14 @@ namespace DataHelper
 			this.sqlCmd.ExecuteNonQuery();
 			this.EndProcess();
 		}
+
+        public string RelatedEmployee(string empNo)
+        {
+            string result = string.Empty;
+            MessagesDataContext context = new MessagesDataContext();
+            RelativeEmployee rEmp = context.RelativeEmployees.FirstOrDefault(c=>c.EmpNo == empNo);
+            return rEmp.RelativeEmpNo;
+        }
 
         public DataTable GetAllUsers() {
             this.cmd = "Select EmpNo, (EmpNo + ' - ' + LastName+', '+FirstName+' '+MiddleName) as Name FROM Users";
@@ -1340,6 +1351,10 @@ namespace DataHelper
             return dt;
         }
 
+        public bool IsEmployee(string empId) {
+            User u = GetEmployeeDetailsLinq(empId);
+            return u.UserType.ToUpper() == "EMPLOYEE";
+        }
 
         public bool UpdateUserDetailsLinq(User u)
         {

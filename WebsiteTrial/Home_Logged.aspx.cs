@@ -42,10 +42,13 @@ namespace WebsiteTrial
                     this.FirstNameLabel.Text = details.FirstName;
                     this.MILabel.Text = details.MiddleName;
                     this.lblEmail.Text = details.Email;
-                    this.lblCollege.Text = da2.GetCollegeName(details.College);
-                    this.lblDepartment.Text = da2.GetDepartmentName(details.College, details.Dept);
-                    this.lblMemberStatus.Text = details.MemberStatus;
-                    this.lblDateHired.Text = Convert.ToDateTime(details.DateHired).ToLongDateString();
+                    if (details.UserType.ToUpper() == "EMPLOYEE")
+                    {
+                        this.lblCollege.Text = da2.GetCollegeName(details.College);
+                        this.lblDepartment.Text = da2.GetDepartmentName(details.College, details.Dept);
+                        this.lblMemberStatus.Text = details.MemberStatus;
+                        this.lblDateHired.Text = Convert.ToDateTime(details.DateHired).ToLongDateString();
+                    }
                     this.lblPhoneNumber.Text = details.PhoneNumber;
                     this.Image2.ImageUrl = "~/Pictures/" + da2.GetImage(this.Session["EmpNo"].ToString());
                     this.DropDownList1.DataSource = da2.GetAllTransaction(details.EmpNo);
