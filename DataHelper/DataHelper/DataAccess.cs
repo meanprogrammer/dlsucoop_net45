@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Data.Linq;
 
 namespace DataHelper
 {
@@ -61,6 +62,17 @@ namespace DataHelper
                 result = sc != null;
             }
             return result;
+        }
+
+        public double GetTotalShareCapitals(string empNo)
+        {
+            double total = 0f;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                IQueryable<ShareCapitalPayment> all = context.ShareCapitalPayments.Where(c => c.EmpNo == empNo);
+                total = all.Sum(c => c.Amount);                
+            }
+            return total;
         }
 
         public bool SaveShareCapital2(string empNo, double amount) {
