@@ -312,7 +312,7 @@
     <Content Include="Report.aspx" />
     <Content Include="RetrievePassword.aspx" />
     <Content Include="SendDeficitEmail.aspx" />
-    <Content Include="ShareCapitals.aspx" />
+    <Content Include="PayShareCapitals.aspx" />
     <Content Include="SMSReceiver.aspx" />
     <Content Include="style.css" />
     <Content Include="Table.aspx" />
@@ -473,12 +473,12 @@
     <Compile Include="SendDeficitEmail.aspx.designer.cs">
       <DependentUpon>SendDeficitEmail.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ShareCapitals.aspx.cs">
-      <DependentUpon>ShareCapitals.aspx</DependentUpon>
+    <Compile Include="PayShareCapitals.aspx.cs">
+      <DependentUpon>PayShareCapitals.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ShareCapitals.aspx.designer.cs">
-      <DependentUpon>ShareCapitals.aspx</DependentUpon>
+    <Compile Include="PayShareCapitals.aspx.designer.cs">
+      <DependentUpon>PayShareCapitals.aspx</DependentUpon>
     </Compile>
     <Compile Include="SMSReceiver.aspx.cs">
       <DependentUpon>SMSReceiver.aspx</DependentUpon>

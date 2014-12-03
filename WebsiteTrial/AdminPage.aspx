@@ -86,7 +86,7 @@
         CssClass="btn btn-success" />
     <asp:Button ID="PaymentButton" runat="server" onclick="PaymentButton_Click" 
         Text="Payment" CssClass="btn btn-success" />
-    <asp:HyperLink ID="HyperLink1" CssClass="btn btn-default btn-md" NavigateUrl="~/ShareCapitals.aspx" runat="server">Share Capitals</asp:HyperLink>
+    <asp:HyperLink ID="HyperLink1" CssClass="btn btn-default btn-md" NavigateUrl="~/PayShareCapitals.aspx" runat="server">Share Capitals</asp:HyperLink>
 &nbsp;<br />
 </div>
     </form>

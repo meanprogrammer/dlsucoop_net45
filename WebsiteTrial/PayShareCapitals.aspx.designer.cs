@@ -10,7 +10,7 @@
 namespace WebsiteTrial {
     
     
-    public partial class ShareCapitals {
+    public partial class PayShareCapitals {
         
         /// <summary>
         /// form1 control.

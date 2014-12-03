@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ShareCapitals.aspx.cs" Inherits="WebsiteTrial.ShareCapitals" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PayShareCapitals.aspx.cs" Inherits="WebsiteTrial.PayShareCapitals" %>
 
 <!DOCTYPE html>
 

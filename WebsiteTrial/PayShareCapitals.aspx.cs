@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace WebsiteTrial
 {
-    public partial class ShareCapitals : System.Web.UI.Page
+    public partial class PayShareCapitals : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -13,10 +13,10 @@ namespace DataHelper
 	public class DataAccess : IDisposable
 	{
         //OFFICE
-        string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
+        //string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
 
         //HOUSE
-        //protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
+        protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
 
         //PROD
         //protected string conn = @"workstation id=DLSUDCOOP.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=DLSUDCOOP.mssql.somee.com;persist security info=False;initial catalog=DLSUDCOOP";
@@ -67,11 +67,20 @@ namespace DataHelper
             int result = 0;
             using (MessagesDataContext context = new MessagesDataContext())
             {
-                ShareCapital sc = new ShareCapital();
-                sc.EmpNo = empNo;
-                sc.ShareCapital1 = amount;
-                context.ShareCapitals.InsertOnSubmit(sc);
-                result = context.GetChangeSet().Inserts.Count;
+                ShareCapital sc = context.ShareCapitals.FirstOrDefault(c => c.EmpNo == empNo);
+                if (sc == null)
+                {
+                    sc = new ShareCapital();
+                    sc.EmpNo = empNo;
+                    sc.ShareCapital1 = amount;
+                    context.ShareCapitals.InsertOnSubmit(sc);
+                    result = context.GetChangeSet().Inserts.Count;
+                }
+                else
+                {
+                    sc.ShareCapital1 = amount;
+                    result = context.GetChangeSet().Updates.Count;
+                }
                 context.SubmitChanges();
             }
             return result > 0;
@@ -423,13 +432,17 @@ namespace DataHelper
 
         public bool SaveShareCapital(string empNo, double share)
         {
-            MessagesDataContext context = new MessagesDataContext();
-            ShareCapital sc = new ShareCapital();
-            sc.EmpNo = empNo;
-            sc.ShareCapital1 = share;
-            context.ShareCapitals.InsertOnSubmit(sc);
-            int result = context.GetChangeSet().Inserts.Count;
-            context.SubmitChanges();
+            int result = 0;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                ShareCapitalPayment scp = new ShareCapitalPayment();
+                scp.EmpNo = empNo;
+                scp.Amount = share;
+                scp.DatePaid = DateTime.Now;
+                context.ShareCapitalPayments.InsertOnSubmit(scp);
+                result = context.GetChangeSet().Inserts.Count;
+                context.SubmitChanges();
+            }
             return result > 0;
         }
 

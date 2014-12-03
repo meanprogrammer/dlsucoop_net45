@@ -13,13 +13,15 @@ namespace WebsiteTrial
         protected void Page_Load(object sender, EventArgs e)
         {
             string empNo = Session["empNo"].ToString();
-            using (DataAccess da = new DataAccess())
+            if (!Page.IsPostBack)
             {
-                ShareCapital sc = da.GetShareCapital(empNo);
-                if (sc != null)
+                using (DataAccess da = new DataAccess())
                 {
-                    this.TextBox1.Text = sc.ShareCapital1.ToString();
-                    this.TextBox1.Enabled = false;
+                    ShareCapital sc = da.GetShareCapital(empNo);
+                    if (sc != null)
+                    {
+                        this.TextBox1.Text = sc.ShareCapital1.ToString();
+                    }
                 }
             }
         }
