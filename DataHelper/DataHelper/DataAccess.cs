@@ -53,6 +53,40 @@ namespace DataHelper
 			this.EndProcess();
 		}
 
+        public bool HasShareCapital(string empNo) {
+            bool result = false;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                ShareCapital sc = context.ShareCapitals.FirstOrDefault(c => c.EmpNo == empNo);
+                result = sc != null;
+            }
+            return result;
+        }
+
+        public bool SaveShareCapital2(string empNo, double amount) {
+            int result = 0;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                ShareCapital sc = new ShareCapital();
+                sc.EmpNo = empNo;
+                sc.ShareCapital1 = amount;
+                context.ShareCapitals.InsertOnSubmit(sc);
+                result = context.GetChangeSet().Inserts.Count;
+                context.SubmitChanges();
+            }
+            return result > 0;
+        }
+
+        public ShareCapital GetShareCapital(string empNo)
+        {
+            ShareCapital sc = null;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                sc = context.ShareCapitals.FirstOrDefault(c => c.EmpNo == empNo);
+            }
+            return sc;
+        }
+
         public string RelatedEmployee(string empNo)
         {
             string result = string.Empty;

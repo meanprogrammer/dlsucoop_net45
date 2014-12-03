@@ -324,6 +324,7 @@
     <Content Include="SMSHowto.aspx" />
     <Content Include="Registration.aspx" />
     <Content Include="Account_Settings.aspx" />
+    <Content Include="UserShareCapital.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -547,6 +548,13 @@
     </Compile>
     <Compile Include="Account_Settings.aspx.designer.cs">
       <DependentUpon>Account_Settings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserShareCapital.aspx.cs">
+      <DependentUpon>UserShareCapital.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserShareCapital.aspx.designer.cs">
+      <DependentUpon>UserShareCapital.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
