@@ -41,6 +41,17 @@ namespace DataHelper
 			this.sqlCmd = new SqlCommand(this.cmd, this.MyConn);
 			this.dt = new DataTable();
 		}
+
+        public List<LoanType> GetLoanTypes()
+        {
+            List<LoanType> result = new List<LoanType>();
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                result = context.LoanTypes.ToList();
+            }
+            return result;
+        }
+
 		public void InsertMessage(string pID, string pSource, string pMsg, string pUDH)
 		{
 			this.sqlCmd.CommandText = "Insert into MSGS values (@ID, @Source, @Msg, @UDH, @DateReceived)";

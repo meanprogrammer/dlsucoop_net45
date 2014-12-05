@@ -28,6 +28,18 @@ namespace WebsiteTrial
             {
                 base.Response.Redirect("~/Default.aspx");
             }
+
+            if (!Page.IsPostBack)
+            { 
+                using(DataAccess da = new DataAccess())
+	            {
+                    this.DDType.DataSource = da.GetLoanTypes();
+                    this.DDType.DataTextField = "Type";
+                    this.DDType.DataValueField = "RecordID";
+                    this.DDType.DataBind();
+	            }
+                
+            }
         }
         private void CheckIfSameEmpNo()
         {

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Account.Master" AutoEventWireup="True" CodeBehind="Loan.aspx.cs" Inherits="WebsiteTrial.Loan" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <link href="css/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
@@ -10,9 +11,9 @@
             $('#Button1').click(function () {
 
                 if (!Page_ClientValidate()) {
-                    return;    
+                    return;
                 }
-                
+
                 $('#agreement-modal').dialog(
                         {
                             modal: true,
@@ -36,8 +37,7 @@
         });
     </script>
     <style type="text/css">
-        .style6
-        {
+        .style6 {
             width: 100%;
         }
     </style>
@@ -45,9 +45,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table class="table table-override">
         <tr>
-            <td width="30%">
-                Type of Loan:<asp:ScriptManager ID="ScriptManager1" runat="server">
-                </asp:ScriptManager>
+            <td width="30%">Type of Loan:<asp:ScriptManager ID="ScriptManager1" runat="server">
+            </asp:ScriptManager>
             </td>
             <td width="70%">
                 <asp:DropDownList ID="DDType" runat="server" class="form-control">
@@ -64,36 +63,39 @@
             </td>
         </tr>
         <tr>
-            <td>
-                Reason:</td>
+            <td>&nbsp;</td>
             <td colspan="2">
-                <asp:TextBox ID="tbReason" runat="server" Height="137px" placeholder="REQUIRED - Reason for loan." class="form-control input-md" TextMode="MultiLine" 
-                    ></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-                    ControlToValidate="tbReason" Display="Dynamic" 
-                    ErrorMessage="* reason is required." ForeColor="Red"></asp:RequiredFieldValidator>
-            </td>
+                &nbsp;</td>
         </tr>
         <tr>
-            <td>
-                Amount:<asp:UpdatePanel ID="UpdatePanel3" runat="server">
-                    <ContentTemplate>
-                        <asp:Label ID="lblNoteMoney" runat="server" ForeColor="Red"></asp:Label>
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="tbAmount" EventName="TextChanged" />
-                    </Triggers>
-                </asp:UpdatePanel>
+            <td>Amount:<asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                <ContentTemplate>
+                    <asp:Label ID="lblNoteMoney" runat="server" ForeColor="Red"></asp:Label>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="tbAmount" EventName="TextChanged" />
+                </Triggers>
+            </asp:UpdatePanel>
             </td>
             <td colspan="2">
-                <asp:TextBox ID="tbAmount" runat="server" placeholder="REQUIRED - Amount of loan." CssClass="form-control input-md"  
-                    AutoPostBack="True" ontextchanged="tbAmount_TextChanged"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                    ControlToValidate="tbAmount" Display="Dynamic" 
+                <asp:TextBox ID="tbAmount" runat="server" placeholder="REQUIRED - Amount of loan." CssClass="form-control input-md"
+                    AutoPostBack="True" OnTextChanged="tbAmount_TextChanged"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                    ControlToValidate="tbAmount" Display="Dynamic"
                     ErrorMessage="* amount is required." ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
-<%--        <tr>
+        <tr>
+            <td>Reason:</td>
+            <td colspan="2">
+                <asp:TextBox ID="tbReason" runat="server" Height="137px" placeholder="REQUIRED - Reason for loan." class="form-control input-md" TextMode="MultiLine"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                    ControlToValidate="tbReason" Display="Dynamic"
+                    ErrorMessage="* reason is required." ForeColor="Red"></asp:RequiredFieldValidator>
+            </td>
+        </tr>
+
+        <%--        <tr>
             <td>
                 &nbsp;</td>
             <td>
@@ -102,85 +104,78 @@
                 &nbsp;</td>
         </tr>--%>
         <tr>
-            <td>
-                Months to pay:<asp:UpdatePanel ID="UpdatePanel4" runat="server">
-                    <ContentTemplate>
-                        <asp:Label ID="lblNoteMonth" runat="server" ForeColor="Red"></asp:Label>
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="tbMonths" EventName="TextChanged" />
-                    </Triggers>
-                </asp:UpdatePanel>
+            <td>Months to pay:<asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                <ContentTemplate>
+                    <asp:Label ID="lblNoteMonth" runat="server" ForeColor="Red"></asp:Label>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="tbMonths" EventName="TextChanged" />
+                </Triggers>
+            </asp:UpdatePanel>
             </td>
             <td colspan="2">
-                <asp:TextBox ID="tbMonths" runat="server" placeholder="REQUIRED - no. of months." CssClass="form-control input-md"  
-                    AutoPostBack="True" ontextchanged="tbMonths_TextChanged"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
-                    ControlToValidate="tbMonths" Display="Dynamic" 
+                <asp:TextBox ID="tbMonths" runat="server" placeholder="REQUIRED - no. of months." CssClass="form-control input-md"
+                    AutoPostBack="True" OnTextChanged="tbMonths_TextChanged"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
+                    ControlToValidate="tbMonths" Display="Dynamic"
                     ErrorMessage="* months to pay is required." ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
-            <td>
-                Co-maker Employee # 1:<asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
-                        <asp:Label ID="lblCoMaker" runat="server" ForeColor="Red"></asp:Label>
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="tbCoMaker" EventName="TextChanged" />
-                    </Triggers>
-                </asp:UpdatePanel>
+            <td>Co-maker Employee # 1:<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <asp:Label ID="lblCoMaker" runat="server" ForeColor="Red"></asp:Label>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="tbCoMaker" EventName="TextChanged" />
+                </Triggers>
+            </asp:UpdatePanel>
             </td>
             <td colspan="2">
-                <asp:TextBox ID="tbCoMaker" runat="server" placeholder="REQUIRED - First co-maker." CssClass="form-control input-md" 
-                     AutoPostBack="True" ontextchanged="tbCoMaker_TextChanged"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
-                    ControlToValidate="tbCoMaker" Display="Dynamic" 
+                <asp:TextBox ID="tbCoMaker" runat="server" placeholder="REQUIRED - First co-maker." CssClass="form-control input-md"
+                    AutoPostBack="True" OnTextChanged="tbCoMaker_TextChanged"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
+                    ControlToValidate="tbCoMaker" Display="Dynamic"
                     ErrorMessage="* co-maker 1 is required." ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
-            <td>
-                Co-maker Employee # 2:<asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                    <ContentTemplate>
-                        <asp:Label ID="lblCoMaker2" runat="server" ForeColor="Red"></asp:Label>
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="tbCoMaker2" EventName="TextChanged" />
-                    </Triggers>
-                </asp:UpdatePanel>
+            <td>Co-maker Employee # 2:<asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                <ContentTemplate>
+                    <asp:Label ID="lblCoMaker2" runat="server" ForeColor="Red"></asp:Label>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="tbCoMaker2" EventName="TextChanged" />
+                </Triggers>
+            </asp:UpdatePanel>
             </td>
             <td colspan="2">
-                <asp:TextBox ID="tbCoMaker2" runat="server" placeholder="REQUIRED - Second co-maker." CssClass="form-control input-md" 
-                     AutoPostBack="True" ontextchanged="tbCoMaker2_TextChanged"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
-                    ControlToValidate="tbCoMaker2" Display="Dynamic" 
+                <asp:TextBox ID="tbCoMaker2" runat="server" placeholder="REQUIRED - Second co-maker." CssClass="form-control input-md"
+                    AutoPostBack="True" OnTextChanged="tbCoMaker2_TextChanged"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server"
+                    ControlToValidate="tbCoMaker2" Display="Dynamic"
                     ErrorMessage="* co-maker 2 is required." ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
-            <td>
-                &nbsp;</td>
+            <td>&nbsp;</td>
             <td>
                 <asp:Label ID="lblConfirmNote" runat="server" ForeColor="Red"></asp:Label>
             </td>
-            <td>
-                &nbsp;</td>
+            <td>&nbsp;</td>
         </tr>
         <tr>
+            <td>&nbsp;</td>
             <td>
-                &nbsp;</td>
-            <td>
-                
+
                 <input type="button" id="Button1" class="btn btn-success" value="Submit" />
             </td>
-            <td>
-                &nbsp;</td>
+            <td>&nbsp;</td>
         </tr>
     </table>
-   
+
     <div id="agreement-modal">
-        <div id="agreement-content" style="overflow-y:scroll;overflow:auto;height:450px;width:650px;">
+        <div id="agreement-content" style="overflow-y: scroll; overflow: auto; height: 450px; width: 650px;">
             The standard Lorem Ipsum passage, used since the 1500s
 
 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -200,8 +195,9 @@ Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
 1914 translation by H. Rackham
 
 "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."
+       
         </div>
-            <asp:Button ID="AcceptButton" ClientIDMode="Static" runat="server" style="display:none;" Text="Accept" 
-                onclick="Button1_Click" />
+        <asp:Button ID="AcceptButton" ClientIDMode="Static" runat="server" Style="display: none;" Text="Accept"
+            OnClick="Button1_Click" />
     </div>
 </asp:Content>

@@ -51,6 +51,9 @@ namespace DataHelper
     partial void InsertShareCapitalPayment(ShareCapitalPayment instance);
     partial void UpdateShareCapitalPayment(ShareCapitalPayment instance);
     partial void DeleteShareCapitalPayment(ShareCapitalPayment instance);
+    partial void InsertLoanType(LoanType instance);
+    partial void UpdateLoanType(LoanType instance);
+    partial void DeleteLoanType(LoanType instance);
     #endregion
 		
 		public MessagesDataContext() : 
@@ -136,6 +139,14 @@ namespace DataHelper
 			get
 			{
 				return this.GetTable<ShareCapitalPayment>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LoanType> LoanTypes
+		{
+			get
+			{
+				return this.GetTable<LoanType>();
 			}
 		}
 	}
@@ -1653,6 +1664,92 @@ namespace DataHelper
 					this._Amount = value;
 					this.SendPropertyChanged("Amount");
 					this.OnAmountChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LoanTypes")]
+	public partial class LoanType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RecordID;
+		
+		private string _Type;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRecordIDChanging(int value);
+    partial void OnRecordIDChanged();
+    partial void OnTypeChanging(string value);
+    partial void OnTypeChanged();
+    #endregion
+		
+		public LoanType()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RecordID
+		{
+			get
+			{
+				return this._RecordID;
+			}
+			set
+			{
+				if ((this._RecordID != value))
+				{
+					this.OnRecordIDChanging(value);
+					this.SendPropertyChanging();
+					this._RecordID = value;
+					this.SendPropertyChanged("RecordID");
+					this.OnRecordIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="LoanType", Storage="_Type", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
 				}
 			}
 		}
