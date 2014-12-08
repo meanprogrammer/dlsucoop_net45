@@ -50,5 +50,11 @@
         <elementListCompartment Id="62ec3931-17fa-4ded-b2ca-4ee047a41eac" absoluteBounds="1.7650000000000001, 7.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="482650c5-4332-449d-9dd3-a24f12305660" absoluteBounds="4.375, 5.375, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/MessagesDataContext/LoanAmountMatrix" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ccc7a204-c3cb-46fa-9519-ae8d4cb07688" absoluteBounds="4.39, 5.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

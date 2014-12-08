@@ -22,6 +22,15 @@ namespace WebsiteTrial {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
+        /// mainupdatepanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel mainupdatepanel;
+        
+        /// <summary>
         /// DDType control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace WebsiteTrial {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DDType;
+        
+        /// <summary>
+        /// AllowedAmountDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList AllowedAmountDropDownList;
         
         /// <summary>
         /// UpdatePanel3 control.

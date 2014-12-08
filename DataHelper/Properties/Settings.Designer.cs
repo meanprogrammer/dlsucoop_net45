@@ -27,6 +27,16 @@ namespace DataHelper.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=GT683\\SQL2012EXP;Initial Catalog=Messages;Integrated Security=True")]
+        public string MessagesConnectionString {
+            get {
+                return ((string)(this["MessagesConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=GT683\\SQL2012EXP;Initial Catalog=Messages;Integrated Security=True")]
         public string HOME {
             get {
                 return ((string)(this["HOME"]));
@@ -58,10 +68,11 @@ namespace DataHelper.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=GT683\\SQL2012EXP;Initial Catalog=Messages;Integrated Security=True")]
-        public string MessagesConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PROGRAMMERPC\\SQL2012;Initial Catalog=Messages;Integrated Security=Tru" +
+            "e")]
+        public string LAGUNA {
             get {
-                return ((string)(this["MessagesConnectionString"]));
+                return ((string)(this["LAGUNA"]));
             }
         }
     }

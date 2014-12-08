@@ -87,4 +87,15 @@
       <Column Name="LoanType" Member="Type" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.LoanAmountMatrix" Member="LoanAmountMatrixes">
+    <Type Name="LoanAmountMatrix">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LoanType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LoanAmount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="RequiredShareCapital" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Interest" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MonthsPayable" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProcessingFee" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

@@ -54,6 +54,9 @@ namespace DataHelper
     partial void InsertLoanType(LoanType instance);
     partial void UpdateLoanType(LoanType instance);
     partial void DeleteLoanType(LoanType instance);
+    partial void InsertLoanAmountMatrix(LoanAmountMatrix instance);
+    partial void UpdateLoanAmountMatrix(LoanAmountMatrix instance);
+    partial void DeleteLoanAmountMatrix(LoanAmountMatrix instance);
     #endregion
 		
 		public MessagesDataContext() : 
@@ -147,6 +150,14 @@ namespace DataHelper
 			get
 			{
 				return this.GetTable<LoanType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LoanAmountMatrix> LoanAmountMatrixes
+		{
+			get
+			{
+				return this.GetTable<LoanAmountMatrix>();
 			}
 		}
 	}
@@ -1750,6 +1761,212 @@ namespace DataHelper
 					this._Type = value;
 					this.SendPropertyChanged("Type");
 					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LoanAmountMatrix")]
+	public partial class LoanAmountMatrix : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RecordID;
+		
+		private int _LoanType;
+		
+		private double _LoanAmount;
+		
+		private double _RequiredShareCapital;
+		
+		private double _Interest;
+		
+		private int _MonthsPayable;
+		
+		private System.Nullable<double> _ProcessingFee;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRecordIDChanging(int value);
+    partial void OnRecordIDChanged();
+    partial void OnLoanTypeChanging(int value);
+    partial void OnLoanTypeChanged();
+    partial void OnLoanAmountChanging(double value);
+    partial void OnLoanAmountChanged();
+    partial void OnRequiredShareCapitalChanging(double value);
+    partial void OnRequiredShareCapitalChanged();
+    partial void OnInterestChanging(double value);
+    partial void OnInterestChanged();
+    partial void OnMonthsPayableChanging(int value);
+    partial void OnMonthsPayableChanged();
+    partial void OnProcessingFeeChanging(System.Nullable<double> value);
+    partial void OnProcessingFeeChanged();
+    #endregion
+		
+		public LoanAmountMatrix()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RecordID
+		{
+			get
+			{
+				return this._RecordID;
+			}
+			set
+			{
+				if ((this._RecordID != value))
+				{
+					this.OnRecordIDChanging(value);
+					this.SendPropertyChanging();
+					this._RecordID = value;
+					this.SendPropertyChanged("RecordID");
+					this.OnRecordIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoanType", DbType="Int NOT NULL")]
+		public int LoanType
+		{
+			get
+			{
+				return this._LoanType;
+			}
+			set
+			{
+				if ((this._LoanType != value))
+				{
+					this.OnLoanTypeChanging(value);
+					this.SendPropertyChanging();
+					this._LoanType = value;
+					this.SendPropertyChanged("LoanType");
+					this.OnLoanTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoanAmount", DbType="Float NOT NULL")]
+		public double LoanAmount
+		{
+			get
+			{
+				return this._LoanAmount;
+			}
+			set
+			{
+				if ((this._LoanAmount != value))
+				{
+					this.OnLoanAmountChanging(value);
+					this.SendPropertyChanging();
+					this._LoanAmount = value;
+					this.SendPropertyChanged("LoanAmount");
+					this.OnLoanAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RequiredShareCapital", DbType="Float NOT NULL")]
+		public double RequiredShareCapital
+		{
+			get
+			{
+				return this._RequiredShareCapital;
+			}
+			set
+			{
+				if ((this._RequiredShareCapital != value))
+				{
+					this.OnRequiredShareCapitalChanging(value);
+					this.SendPropertyChanging();
+					this._RequiredShareCapital = value;
+					this.SendPropertyChanged("RequiredShareCapital");
+					this.OnRequiredShareCapitalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Interest", DbType="Float NOT NULL")]
+		public double Interest
+		{
+			get
+			{
+				return this._Interest;
+			}
+			set
+			{
+				if ((this._Interest != value))
+				{
+					this.OnInterestChanging(value);
+					this.SendPropertyChanging();
+					this._Interest = value;
+					this.SendPropertyChanged("Interest");
+					this.OnInterestChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MonthsPayable", DbType="Int NOT NULL")]
+		public int MonthsPayable
+		{
+			get
+			{
+				return this._MonthsPayable;
+			}
+			set
+			{
+				if ((this._MonthsPayable != value))
+				{
+					this.OnMonthsPayableChanging(value);
+					this.SendPropertyChanging();
+					this._MonthsPayable = value;
+					this.SendPropertyChanged("MonthsPayable");
+					this.OnMonthsPayableChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProcessingFee", DbType="Float")]
+		public System.Nullable<double> ProcessingFee
+		{
+			get
+			{
+				return this._ProcessingFee;
+			}
+			set
+			{
+				if ((this._ProcessingFee != value))
+				{
+					this.OnProcessingFeeChanging(value);
+					this.SendPropertyChanging();
+					this._ProcessingFee = value;
+					this.SendPropertyChanged("ProcessingFee");
+					this.OnProcessingFeeChanged();
 				}
 			}
 		}

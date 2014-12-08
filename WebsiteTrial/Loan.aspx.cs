@@ -241,5 +241,19 @@ namespace WebsiteTrial
             }
             this.lblConfirmNote.Text = "Check inputs";
         }
+
+        protected void DDType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.DDType.SelectedIndex > 0)
+            {
+                using (DataAccess da = new DataAccess())
+                {
+                    this.AllowedAmountDropDownList.DataSource = da.GetLoanAmountMatrix(int.Parse(this.DDType.SelectedValue), this.EmpNo);
+                    this.AllowedAmountDropDownList.DataTextField = "LoanAmount";
+                    this.AllowedAmountDropDownList.DataValueField = "RecordID";
+                    this.AllowedAmountDropDownList.DataBind();
+                }
+            }
+        }
     }
 }
