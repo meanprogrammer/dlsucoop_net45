@@ -600,6 +600,7 @@
     <None Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\direct.pubxml" />
+    <None Include="Properties\PublishProfiles\house.pubxml" />
     <None Include="Properties\PublishProfiles\officepublish.pubxml" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
   </ItemGroup>
