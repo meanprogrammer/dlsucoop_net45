@@ -28,7 +28,7 @@ namespace WebsiteTrial
                 this.relatedEmployee();
                 this.NEBdayDayDropDownList.DataSource = GetDays();
                 DataBindDates(NEBdayDayDropDownList);
-                
+
                 this.NEBdayMonthDropDownList.DataSource = GetMonths();
                 DataBindDates(NEBdayMonthDropDownList);
 
@@ -136,32 +136,6 @@ namespace WebsiteTrial
             this.department();
         }
 
-        /*
-        protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
-        {
-            if (!this.Calendar2.Visible)
-            {
-                this.Calendar2.Visible = true;
-                return;
-            }
-            this.Calendar2.Visible = false;
-        }
-        protected void Calendar2_SelectionChanged(object sender, System.EventArgs e)
-        {
-            this.txtbirthday.Text = this.Calendar2.SelectedDate.ToShortDateString();
-            this.Calendar2.Visible = false;
-        }
-
-        protected void Calendar3_SelectionChanged(object sender, EventArgs e)
-        {
-            this.txtdatehired.Text = this.Calendar3.SelectedDate.ToShortDateString();
-        }
-
-        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
-        {
-            this.txtbirthday.Text = this.Calendar1.SelectedDate.ToShortDateString();
-        }*/
-
         protected void btnRegister_Click(object sender, EventArgs e)
         {
             if (!Page.IsValid)
@@ -169,103 +143,118 @@ namespace WebsiteTrial
 
             using (DataAccess da = new DataAccess())
             {
-                //if ())
-
-                //if (MessageParse.IsValidEmail(this.tbEmail.Text)) //&& MessageParse.IsLaSalleEmail(this.tbEmail.Text))
-
-                System.Collections.Generic.List<string> employee = new System.Collections.Generic.List<string>();
-                //employee.Add(this.tbName.Text);
-
-                /*
-                employee.Add("oldname");
-                employee.Add(this.tbEmpNum.Text);
-                employee.Add(this.tbEmail.Text);
-                employee.Add(this.tbPassword.Text);
-                employee.Add(this.DDCollege.Text);
-                employee.Add(this.DDDepartment.Text);
-                employee.Add(this.DDStatus.Text);
-                employee.Add(this.Calendar3.SelectedDate.ToShortDateString());
-                employee.Add(this.tbAddress.Text);
-                employee.Add(this.Calendar1.SelectedDate.ToShortDateString());
-                employee.Add(this.tbFirstName.Text);
-                employee.Add(this.tbLastName.Text);
-                employee.Add(this.tbMiddleName.Text);
-                employee.Add(this.RegistrationTypeDropDownList.SelectedValue);
-                 * */
-                string number = this.tbPhone.Text;
-
-                Dictionary<string, string> values = new Dictionary<string, string>();
-                values.Add(ColumnKeys.EMP_NO, this.tbEmpNum.Text);
-                values.Add(ColumnKeys.EMAIL, this.tbEmail.Text);
-                values.Add(ColumnKeys.PASSWORD, this.tbPassword.Text);
-                values.Add(ColumnKeys.COLLEGE, this.DDCollege.Text);
-                values.Add(ColumnKeys.DEPARTMENT, this.DDDepartment.Text);
-                values.Add(ColumnKeys.EMP_STATUS, this.DDStatus.Text);
-
-                int dh_month = Convert.ToInt32(this.DateHiredMonthDropdownlist.SelectedValue);
-                int dh_day = Convert.ToInt32(this.DateHiredDateDropdownlist.SelectedValue);
-                int dh_year = Convert.ToInt32(this.DateHiredYearDropdownlist.SelectedValue);
-                DateTime dh = new DateTime(dh_year, dh_month, dh_day);
-                values.Add(ColumnKeys.DATE_HIRED, dh.ToShortDateString());                
-                values.Add(ColumnKeys.ADDRESS, this.tbAddress.Text);
-
-                int bd_month = Convert.ToInt32(this.EmpBdateMonthDropdownlist.SelectedValue);
-                int bd_day = Convert.ToInt32(this.EmpBdateDateDropdownlist.SelectedValue);
-                int bd_year = Convert.ToInt32(this.EmpBdateYearDropDownList.SelectedValue);
-                DateTime bd = new DateTime(bd_year, bd_month, bd_day);
-
-                values.Add(ColumnKeys.BIRTHDATE, bd.ToShortDateString());
-                values.Add(ColumnKeys.FIRSTNAME, this.tbFirstName.Text);
-                values.Add(ColumnKeys.LASTNAME, this.tbLastName.Text);
-                values.Add(ColumnKeys.MIDDLENAME, this.tbMiddleName.Text);
-                values.Add(ColumnKeys.REG_TYPE, this.RegistrationTypeDropDownList.SelectedValue);
-                values.Add(ColumnKeys.MOBILE, number);
-                values.Add(ColumnKeys.ATMNO, this.ATMTextbox.Text);
-                values.Add(ColumnKeys.TINNO, this.TINNoTextbox.Text);
-                values.Add(ColumnKeys.SSSNO, this.SSSNoTextBox.Text);
-                values.Add(ColumnKeys.GENDER, this.GenderDropDownList.SelectedValue);
-                values.Add(ColumnKeys.CIVILSTATUS, this.CivilStatusDropDownList.SelectedValue);
-                values.Add(ColumnKeys.FATHERNAME, this.FatherNameTextBox.Text);
-                values.Add(ColumnKeys.FATHER_OCC, this.FatherOccupationTextBox.Text);
-                values.Add(ColumnKeys.MOTHERNAME, this.MotherNameTextBox.Text);
-                values.Add(ColumnKeys.MOTHER_OCC, this.MotherOccupationTextBox.Text);
-                values.Add(ColumnKeys.SPOUSE, this.LegalSpouseTextBox.Text);
-                values.Add(ColumnKeys.SPOUSE_EMP, this.SpouseOccupationTextBox.Text);
-                values.Add(ColumnKeys.BUSINESSNAME, this.BusinessNameTextBox.Text);
-                values.Add(ColumnKeys.BUSINESSADD, this.BusinessAddressTextBox.Text);
-                values.Add(ColumnKeys.OTHERSOURCE, this.OtherSourceOfIncomeTextBox.Text);
-                values.Add(ColumnKeys.EMERGENCYNAME, this.ICENameTextBox.Text);
-                values.Add(ColumnKeys.EMERGENCYADD, this.ICEAddressTextBox.Text);
-                values.Add(ColumnKeys.EMERGENCYNO, this.ICEContactNumberTextBox.Text);
-
-                using (MailHelper mail = new MailHelper())
+                try
                 {
-                    da.SaveEmployeeRegistrationLinq(values);
-                    //da.SMSRegistrationInsert(employee, number);
-                    //Commented
-                    mail.SendMailMessage("dlsudmailer@gmail.com", this.tbEmail.Text, "Confirmation Link", mail.MakeEmailBody(this.tbEmpNum.Text));
-                    //mail.SendMailMessage(mail.MakeEmailBody(this.tbEmpNum.Text));
-                    da.SMSRegistrationUpdateMailPass(this.tbEmpNum.Text, mail.Pass);
-                    //Commented
-                    Messages msgObj = new Messages();
-                    //Commented
-                    msgObj.SendSMS(number, msgObj.SuccessfulRegistrationMessage(string.Format("{0},{1} {2}", values[ColumnKeys.LASTNAME], values[ColumnKeys.FIRSTNAME], values[ColumnKeys.MIDDLENAME])));
-                    //Commented
-                    msgObj.Dispose();
+                    //if (MessageParse.IsValidEmail(this.tbEmail.Text)) //&& MessageParse.IsLaSalleEmail(this.tbEmail.Text))
+                    System.Collections.Generic.List<string> employee = new System.Collections.Generic.List<string>();
+
+                    string number = this.tbPhone.Text;
+
+                    Dictionary<string, string> values = new Dictionary<string, string>();
+                    values.Add(ColumnKeys.EMP_NO, this.tbEmpNum.Text);
+                    values.Add(ColumnKeys.EMAIL, this.tbEmail.Text);
+                    values.Add(ColumnKeys.PASSWORD, this.tbPassword.Text);
+                    values.Add(ColumnKeys.COLLEGE, this.DDCollege.Text);
+                    values.Add(ColumnKeys.DEPARTMENT, this.DDDepartment.Text);
+                    values.Add(ColumnKeys.EMP_STATUS, this.DDStatus.Text);
+
+                    int dh_month = Convert.ToInt32(this.DateHiredMonthDropdownlist.SelectedValue);
+                    int dh_day = Convert.ToInt32(this.DateHiredDateDropdownlist.SelectedValue);
+                    int dh_year = Convert.ToInt32(this.DateHiredYearDropdownlist.SelectedValue);
+                    DateTime dh = new DateTime(dh_year, dh_month, dh_day);
+                    values.Add(ColumnKeys.DATE_HIRED, dh.ToShortDateString());
+                    values.Add(ColumnKeys.ADDRESS, this.tbAddress.Text);
+
+                    int bd_month = Convert.ToInt32(this.EmpBdateMonthDropdownlist.SelectedValue);
+                    int bd_day = Convert.ToInt32(this.EmpBdateDateDropdownlist.SelectedValue);
+                    int bd_year = Convert.ToInt32(this.EmpBdateYearDropDownList.SelectedValue);
+                    DateTime bd = new DateTime(bd_year, bd_month, bd_day);
+
+                    values.Add(ColumnKeys.BIRTHDATE, bd.ToShortDateString());
+                    values.Add(ColumnKeys.FIRSTNAME, this.tbFirstName.Text);
+                    values.Add(ColumnKeys.LASTNAME, this.tbLastName.Text);
+                    values.Add(ColumnKeys.MIDDLENAME, this.tbMiddleName.Text);
+                    values.Add(ColumnKeys.REG_TYPE, this.RegistrationTypeDropDownList.SelectedValue);
+                    values.Add(ColumnKeys.MOBILE, number);
+                    values.Add(ColumnKeys.ATMNO, this.ATMTextbox.Text);
+                    values.Add(ColumnKeys.TINNO, this.TINNoTextbox.Text);
+                    values.Add(ColumnKeys.SSSNO, this.SSSNoTextBox.Text);
+                    values.Add(ColumnKeys.GENDER, this.GenderDropDownList.SelectedValue);
+                    values.Add(ColumnKeys.CIVILSTATUS, this.CivilStatusDropDownList.SelectedValue);
+                    values.Add(ColumnKeys.FATHERNAME, this.FatherNameTextBox.Text);
+                    values.Add(ColumnKeys.FATHER_OCC, this.FatherOccupationTextBox.Text);
+                    values.Add(ColumnKeys.MOTHERNAME, this.MotherNameTextBox.Text);
+                    values.Add(ColumnKeys.MOTHER_OCC, this.MotherOccupationTextBox.Text);
+                    values.Add(ColumnKeys.SPOUSE, this.LegalSpouseTextBox.Text);
+                    values.Add(ColumnKeys.SPOUSE_EMP, this.SpouseOccupationTextBox.Text);
+                    values.Add(ColumnKeys.BUSINESSNAME, this.BusinessNameTextBox.Text);
+                    values.Add(ColumnKeys.BUSINESSADD, this.BusinessAddressTextBox.Text);
+                    values.Add(ColumnKeys.OTHERSOURCE, this.OtherSourceOfIncomeTextBox.Text);
+                    values.Add(ColumnKeys.EMERGENCYNAME, this.ICENameTextBox.Text);
+                    values.Add(ColumnKeys.EMERGENCYADD, this.ICEAddressTextBox.Text);
+                    values.Add(ColumnKeys.EMERGENCYNO, this.ICEContactNumberTextBox.Text);
+
+                    using (MailHelper mail = new MailHelper())
+                    {
+                        da.SaveEmployeeRegistrationLinq(values);
+                        //da.SMSRegistrationInsert(employee, number);
+                        //Commented
+                        mail.SendMailMessage("dlsudmailer@gmail.com", this.tbEmail.Text, "Confirmation Link", mail.MakeEmailBody(this.tbEmpNum.Text));
+                        //mail.SendMailMessage(mail.MakeEmailBody(this.tbEmpNum.Text));
+                        da.SMSRegistrationUpdateMailPass(this.tbEmpNum.Text, mail.Pass);
+                        //Commented
+                        Messages msgObj = new Messages();
+                        //Commented
+                        msgObj.SendSMS(number, msgObj.SuccessfulRegistrationMessage(string.Format("{0},{1} {2}", values[ColumnKeys.LASTNAME], values[ColumnKeys.FIRSTNAME], values[ColumnKeys.MIDDLENAME])));
+                        //Commented
+                        msgObj.Dispose();
+                    }
+                    ClearEmployee();
+                    this.alertmessage.InnerText = "You have registered to DLSU-D Coop. Please check you email for the confirmation link.";
+                    this.AlertDiv.Attributes["class"] = "alert alert-success";
                 }
-                base.Response.Redirect("~/Message.aspx?msg=You have registered to DLSU-D Coop. Please check you email for the confirmation link.");
-
-                /*}
-                else
+                catch (Exception ex)
                 {
-                    this.lblEmailNote.Text = "Email must be a valid La Salle Dasmariñas Email Address.";
+                    this.alertmessage.InnerText = ex.Message;
+                    this.AlertDiv.Attributes["class"] = "alert alert-danger";
                 }
             }
-            else
+        }
+
+        private void ClearEmployee()
+        {
+            foreach (var item in this.RegistrationMultiView.Views[0].Controls)
             {
-                this.lblConfirmNote.Text = "Employee Exist";
-            }*/
+                if (item is TextBox)
+                {
+                    ((TextBox)item).Text = string.Empty;
+                }
+
+                if (item is DropDownList)
+                {
+                    ((DropDownList)item).SelectedIndex = -1;
+                }
             }
+            this.tbPassword.Attributes["value"] = string.Empty;
+            this.tbConfirm.Attributes["value"] = string.Empty;
+        }
+
+        private void ClearNonEmployee()
+        {
+            foreach (var item in this.RegistrationMultiView.Views[1].Controls)
+            {
+                if (item is TextBox)
+                {
+                    ((TextBox)item).Text = string.Empty;
+                }
+
+                if (item is DropDownList)
+                {
+                    ((DropDownList)item).SelectedIndex = -1;
+                }
+            }
+            this.tbPassword2.Attributes["value"] = string.Empty;
+            this.tbConfirm2.Attributes["value"] = string.Empty;
         }
 
         protected void ValidateRegistration(object source, ServerValidateEventArgs args)
@@ -285,54 +274,57 @@ namespace WebsiteTrial
             {
                 //if (MessageParse.IsValidEmail(this.tbEmail.Text)) //&& MessageParse.IsLaSalleEmail(this.tbEmail.Text))
 
-                string number = this.tbPhone2.Text;
-
-                Dictionary<string, string> values = new Dictionary<string, string>();
-                values.Add(ColumnKeys.EMP_NO, da.GetLastNonEmployeeID());
-                values.Add(ColumnKeys.EMAIL, this.tbEmail2.Text);
-                values.Add(ColumnKeys.PASSWORD, this.tbPassword2.Text);
-                values.Add(ColumnKeys.ADDRESS, this.tbAddress2.Text);
-
-                int month = Convert.ToInt32(this.NEBdayMonthDropDownList.SelectedItem.Value);
-                int day = Convert.ToInt32(this.NEBdayDayDropDownList.SelectedValue);
-                int year = Convert.ToInt32(this.NEBdayYearDropDownList.SelectedValue);
-
-                DateTime dt = new DateTime(year, month, day);
-
-                values.Add(ColumnKeys.BIRTHDATE, dt.ToShortDateString());
-                values.Add(ColumnKeys.FIRSTNAME, this.tbFirstName2.Text);
-                values.Add(ColumnKeys.LASTNAME, this.tbLastName2.Text);
-                values.Add(ColumnKeys.MIDDLENAME, this.tbMiddleName2.Text);
-                values.Add(ColumnKeys.REG_TYPE, this.RegistrationTypeDropDownList.SelectedValue);
-                values.Add(ColumnKeys.MOBILE, number);
-                values.Add(ColumnKeys.RELATIVE_ID, this.RelativeEmpDropDownList.SelectedValue);
-
-                using (MailHelper mail = new MailHelper())
+                try
                 {
-                    da.SMSRegistrationInsertNonEmployeeLinq(values);
-                    //Commented
-                    mail.SendMailMessage("dlsudmailer@gmail.com", this.tbEmail2.Text, "Confirmation Link", mail.MakeEmailBody(values[ColumnKeys.EMP_NO]));
-                    //mail.SendMailMessage(mail.MakeEmailBody(this.tbEmpNum.Text));
-                    da.SMSRegistrationUpdateMailPass(values[ColumnKeys.EMP_NO], mail.Pass);
-                    //Commented
-                    Messages msgObj = new Messages();
-                    //Commented
-                    msgObj.SendSMS(number, msgObj.SuccessfulRegistrationMessage(values[ColumnKeys.EMP_NO]));
-                    //Commented
-                    msgObj.Dispose();
-                }
-                base.Response.Redirect("~/Message.aspx?msg=You have registered to DLSU-D Coop. Please check you email for the confirmation link.");
 
-                /*}
-                else
-                {
-                    this.lblEmailNote.Text = "Email must be a valid La Salle Dasmariñas Email Address.";
+
+                    string number = this.tbPhone2.Text;
+
+                    Dictionary<string, string> values = new Dictionary<string, string>();
+                    values.Add(ColumnKeys.EMP_NO, da.GetLastNonEmployeeID());
+                    values.Add(ColumnKeys.EMAIL, this.tbEmail2.Text);
+                    values.Add(ColumnKeys.PASSWORD, this.tbPassword2.Text);
+                    values.Add(ColumnKeys.ADDRESS, this.tbAddress2.Text);
+
+                    int month = Convert.ToInt32(this.NEBdayMonthDropDownList.SelectedItem.Value);
+                    int day = Convert.ToInt32(this.NEBdayDayDropDownList.SelectedValue);
+                    int year = Convert.ToInt32(this.NEBdayYearDropDownList.SelectedValue);
+
+                    DateTime dt = new DateTime(year, month, day);
+
+                    values.Add(ColumnKeys.BIRTHDATE, dt.ToShortDateString());
+                    values.Add(ColumnKeys.FIRSTNAME, this.tbFirstName2.Text);
+                    values.Add(ColumnKeys.LASTNAME, this.tbLastName2.Text);
+                    values.Add(ColumnKeys.MIDDLENAME, this.tbMiddleName2.Text);
+                    values.Add(ColumnKeys.REG_TYPE, this.RegistrationTypeDropDownList.SelectedValue);
+                    values.Add(ColumnKeys.MOBILE, number);
+                    values.Add(ColumnKeys.RELATIVE_ID, this.RelativeEmpDropDownList.SelectedValue);
+
+                    using (MailHelper mail = new MailHelper())
+                    {
+                        da.SMSRegistrationInsertNonEmployeeLinq(values);
+                        //Commented
+                        mail.SendMailMessage("dlsudmailer@gmail.com", this.tbEmail2.Text, "Confirmation Link", mail.MakeEmailBody(values[ColumnKeys.EMP_NO]));
+                        //mail.SendMailMessage(mail.MakeEmailBody(this.tbEmpNum.Text));
+                        da.SMSRegistrationUpdateMailPass(values[ColumnKeys.EMP_NO], mail.Pass);
+                        //Commented
+                        Messages msgObj = new Messages();
+                        //Commented
+                        msgObj.SendSMS(number, msgObj.SuccessfulRegistrationMessage(values[ColumnKeys.EMP_NO]));
+                        //Commented
+                        msgObj.Dispose();
+
+
+                    }
+                    //base.Response.Redirect("~/Message.aspx?msg=You have registered to DLSU-D Coop. Please check you email for the confirmation link.");
+                    this.alertmessage.InnerText = "You have registered to DLSU-D Coop. Please check you email for the confirmation link.";
+                    this.AlertDiv.Attributes["class"] = "alert alert-success";
                 }
-            }
-            else
-            {
-                this.lblConfirmNote.Text = "Employee Exist";
-            }*/
+                catch (Exception ex)
+                {
+                    this.alertmessage.InnerText = ex.Message;
+                    this.AlertDiv.Attributes["class"] = "alert alert-danger";                
+                }
             }
         }
 
@@ -378,5 +370,5 @@ namespace WebsiteTrial
             }
             return col;
         }
-    }    
+    }
 }

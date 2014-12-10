@@ -31,6 +31,24 @@ namespace WebsiteTrial {
         protected global::System.Web.UI.UpdatePanel RegistrationUpdatePanel;
         
         /// <summary>
+        /// AlertDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AlertDiv;
+        
+        /// <summary>
+        /// alertmessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertmessage;
+        
+        /// <summary>
         /// RegistrationTypeDropDownList control.
         /// </summary>
         /// <remarks>

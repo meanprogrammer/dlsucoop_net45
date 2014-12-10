@@ -18,6 +18,9 @@
     </asp:ScriptManager>
     <asp:UpdatePanel ID="RegistrationUpdatePanel" runat="server">
         <ContentTemplate>
+            <div runat="server" clientidmode="Static" id="AlertDiv">
+                <strong runat="server" clientidmode="Static" id="alertmessage"></strong>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <label for="RegistrationTypeDropDownList">Registration Type</label>
