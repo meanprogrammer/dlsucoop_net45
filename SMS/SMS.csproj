@@ -40,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -49,6 +50,10 @@
     <Compile Include="SMSHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataHelper\DataHelper.csproj">
+      <Project>{5a449202-cf0c-46ea-a470-a3e460cd4f40}</Project>
+      <Name>DataHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GlobeLabsApi.Library\GlobeLabsApi.csproj">
       <Project>{7cd7c280-f52b-49eb-adad-04aa5952c5fe}</Project>
       <Name>GlobeLabsApi</Name>

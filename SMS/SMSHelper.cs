@@ -8,9 +8,15 @@ namespace SMS
 {
     public class SMSHelper
     {
+        /*
         const string APP_ID = "ekz5qSALXAzhMoT6XBcXMKh75zrqSBbb";
         const string APP_SECRET = "9e6fc50f715cedbe655c285fbd6efe53033112251ab3b3776424dfc18cdf88a6";
         const string SHORTCODE = "21580262";
+        */
+
+        const string APP_ID = "pMMGCL5RKpu4Rik9R7cRaxuGzMXMCM7z";
+        const string APP_SECRET = "db0260bd73db0f582d9be6d8fd14dcf00371b92de411faa5c04838cafc93a38d";
+        const string SHORTCODE = "21583300";
 
         private GlobeLabs api = null;
         private SMSDataHelper data = null;

@@ -20,7 +20,7 @@ namespace WebsiteTrial
             using (DataAccess da = new DataAccess())
             {
                 da.SaveAccessToken(accessToken, subcriberNumber);
-                da.SaveDump(string.Format("{0}-{1}", accessToken, subcriberNumber));
+                //da.SaveDump(string.Format("{0}-{1}", accessToken, subcriberNumber));
             }
         }
     }

@@ -314,6 +314,7 @@
     <Content Include="SendDeficitEmail.aspx" />
     <Content Include="PayShareCapitals.aspx" />
     <Content Include="SMSReceiver.aspx" />
+    <Content Include="SMStest.aspx" />
     <Content Include="style.css" />
     <Content Include="Table.aspx" />
     <Content Include="WebForm1.aspx" />
@@ -486,6 +487,13 @@
     </Compile>
     <Compile Include="SMSReceiver.aspx.designer.cs">
       <DependentUpon>SMSReceiver.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SMStest.aspx.cs">
+      <DependentUpon>SMStest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SMStest.aspx.designer.cs">
+      <DependentUpon>SMStest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Table.aspx.cs">
       <DependentUpon>Table.aspx</DependentUpon>
