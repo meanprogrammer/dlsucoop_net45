@@ -397,3 +397,23 @@ img.right {
 .validation-message {
     color:#FF0000;
 }
+
+
+.agreement {
+    top:20%;left:25%; height: 400px;  width:50% ; position:absolute !important;border:solid 1px black;
+    background-color:#fff;
+    padding:20px;
+   overflow:auto;
+   z-index:2;
+}
+
+.agreement-backround {
+    background-color: Gray;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}

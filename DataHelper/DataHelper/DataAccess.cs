@@ -60,17 +60,30 @@ namespace DataHelper
                 result = context.LoanAmountMatrixes.Where(c => c.LoanType == loanType).ToList();
 
                 double totalShare = GetTotalShareCapitals(empNo);
-
+                /*
                 foreach (LoanAmountMatrix item in result)
                 {
                     if (totalShare < item.RequiredShareCapital)
                     {
                         result.Remove(item);
                     }
-                }
+                }*/
 
+                result = (from r in result
+                          where r.RequiredShareCapital <= totalShare
+                           select r).ToList();
             }
             return result;
+        }
+
+        public LoanAmountMatrix GetOneLoanMatrixById(int recordId)
+        {
+            LoanAmountMatrix lm = null;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                lm = context.LoanAmountMatrixes.FirstOrDefault(c => c.RecordID == recordId);
+            }
+            return lm;
         }
 
         public void InsertMessage(string pID, string pSource, string pMsg, string pUDH)
@@ -103,7 +116,10 @@ namespace DataHelper
             using (MessagesDataContext context = new MessagesDataContext())
             {
                 IQueryable<ShareCapitalPayment> all = context.ShareCapitalPayments.Where(c => c.EmpNo == empNo);
-                total = all.Sum(c => c.Amount);
+                if (all != null && all.Count() > 0)
+                {
+                    total = all.Sum(c => c.Amount);
+                }
             }
             return total;
         }
@@ -192,6 +208,16 @@ namespace DataHelper
         public DataTable GetAllUsersWithEmpty()
         {
             this.cmd = "Select EmpNo, (EmpNo + ' - ' + LastName+', '+FirstName+' '+MiddleName) as Name FROM Users";
+            DataTable dt = this.GetTable(this.cmd);
+            DataRow dr = dt.NewRow();
+            dr.ItemArray = new object[] { "", "-- SELECT --" };
+            dt.Rows.InsertAt(dr, 0);
+            return dt;
+        }
+
+        public DataTable GetAllUsersWithEmptyExceptOne(string empNo)
+        {
+            this.cmd = "Select EmpNo, (EmpNo + ' - ' + LastName+', '+FirstName+' '+MiddleName) as Name FROM Users WHERE EmpNo <> '" + empNo + "' AND DateConfirmed IS NOT NULL";
             DataTable dt = this.GetTable(this.cmd);
             DataRow dr = dt.NewRow();
             dr.ItemArray = new object[] { "", "-- SELECT --" };
@@ -590,6 +616,20 @@ namespace DataHelper
             this.EndProcess();
             return result;
         }
+
+        public bool InsertLoanApplicationLinq(UnconfirmedLoan uLoan, LoanApplication loan)
+        {
+            int result = 0;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                context.UnconfirmedLoans.InsertOnSubmit(uLoan);
+                context.LoanApplications.InsertOnSubmit(loan);
+                result = context.GetChangeSet().Inserts.Count;
+                context.SubmitChanges();
+            }
+            return result > 0;
+        }
+
         public void InsertLoanApplication(List<string> loanDetails, string makerSMS, string makerConfirm, string coMakerSMS, string coMakerConfirm, string coMaker2SMS, string coMaker2Confirm)
         {
             int lastTransactionID = this.GetLastTransactionID();

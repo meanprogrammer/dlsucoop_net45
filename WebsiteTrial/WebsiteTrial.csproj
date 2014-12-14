@@ -301,6 +301,7 @@
     <Content Include="js\modal\jquery.ui.resizable.js" />
     <Content Include="js\modal\jquery.ui.widget.js" />
     <Content Include="Loan.aspx" />
+    <Content Include="Mailtest.aspx" />
     <Content Include="Message.aspx" />
     <Content Include="Payment.aspx" />
     <Content Include="Pictures\00000000001288819122043.jpg" />
@@ -414,6 +415,13 @@
     </Compile>
     <Compile Include="Loan.aspx.designer.cs">
       <DependentUpon>Loan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mailtest.aspx.cs">
+      <DependentUpon>Mailtest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mailtest.aspx.designer.cs">
+      <DependentUpon>Mailtest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Message.aspx.cs">
       <DependentUpon>Message.aspx</DependentUpon>
@@ -568,7 +576,9 @@
   <ItemGroup>
     <Content Include="Account.Master" />
     <Content Include="Home.Master" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataHelper\DataHelper.csproj">
@@ -609,6 +619,7 @@
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\direct.pubxml" />
     <None Include="Properties\PublishProfiles\house.pubxml" />
+    <None Include="Properties\PublishProfiles\laguna.pubxml" />
     <None Include="Properties\PublishProfiles\officepublish.pubxml" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
   </ItemGroup>

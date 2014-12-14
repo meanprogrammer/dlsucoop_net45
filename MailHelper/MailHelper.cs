@@ -20,6 +20,10 @@ namespace Mail
 		private Attachment file;
 		private SmtpClient smtp;
 		private string URL;
+
+        private string mailAddress = ConfigurationManager.AppSettings.Get("emailUser");
+        private string mailPassword = ConfigurationManager.AppSettings.Get("emailPass");
+
 		public string CurrentURL
 		{
 			get
@@ -47,7 +51,7 @@ namespace Mail
             this.smtp = new SmtpClient("smtp.gmail.com");
             this.smtp.UseDefaultCredentials = false;
             this.smtp.EnableSsl = true;
-            NetworkCredential basicCredential = new NetworkCredential("dlsudmailer@gmail.com", "Green1234");
+            NetworkCredential basicCredential = new NetworkCredential(mailAddress, mailPassword);
             this.smtp.Credentials = basicCredential;
             this.smtp.Port = 587;
             this.smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
@@ -73,7 +77,7 @@ namespace Mail
             {
                 server.UseDefaultCredentials = false;
                 server.EnableSsl = true;
-                NetworkCredential basicCredential = new NetworkCredential("dlsudmailer@gmail.com", "Green1234");
+                NetworkCredential basicCredential = new NetworkCredential(this.mailAddress, this.mailPassword);
                 server.Credentials = basicCredential;
                 server.Port = 587;
                 server.DeliveryMethod = SmtpDeliveryMethod.Network;
@@ -93,7 +97,7 @@ namespace Mail
 			this.smtp.Dispose();
             this.smtp.UseDefaultCredentials = false;
             this.smtp.EnableSsl = true;
-            NetworkCredential basicCredential = new NetworkCredential("dlsudmailer@gmail.com", "Green1234");
+            NetworkCredential basicCredential = new NetworkCredential(mailAddress, mailPassword);
             this.smtp.Credentials = basicCredential;
             this.smtp.Port = 587;
 			this.mail.To.Clear();

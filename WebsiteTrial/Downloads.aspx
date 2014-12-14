@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <h3>Links to Downloadable forms:</h3><br />
 
-<h4><a href="http://www.dlsud.edu.ph/offices/DevelopmentCooperative/forms.htm">http://www.dlsud.edu.ph/offices/DevelopmentCooperative/forms.htm</a></h4>
+<h4><a href="http://dlsud.edu.ph/dlsudc.htm">http://dlsud.edu.ph/dlsudc.htm</a></h4>
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">

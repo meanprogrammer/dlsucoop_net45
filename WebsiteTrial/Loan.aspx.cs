@@ -6,6 +6,8 @@ using System.Web.UI;
 using DataHelper;
 using SMS;
 using Mail;
+using System.Web.UI.WebControls;
+using System.Text;
 
 namespace WebsiteTrial
 {
@@ -15,6 +17,9 @@ namespace WebsiteTrial
         private bool valid = true;
         protected void Page_Load(object sender, System.EventArgs e)
         {
+            this.Session["Logged"] = true;
+            this.Session["empNo"] = "100023";
+
             if (System.Convert.ToBoolean(this.Session["Logged"]))
             {
                 this.EmpNo = this.Session["EmpNo"].ToString();
@@ -37,24 +42,23 @@ namespace WebsiteTrial
                     this.DDType.DataTextField = "Type";
                     this.DDType.DataValueField = "RecordID";
                     this.DDType.DataBind();
+
+                    this.Comaker1DropDownList.DataSource = da.GetAllUsersWithEmptyExceptOne(this.EmpNo);
+                    this.Comaker1DropDownList.DataTextField = "Name";
+                    this.Comaker1DropDownList.DataValueField = "EmpNo";
+                    this.Comaker1DropDownList.DataBind();
+
+                    this.Comaker2DropDownList.DataSource = da.GetAllUsersWithEmptyExceptOne(this.EmpNo);
+                    this.Comaker2DropDownList.DataTextField = "Name";
+                    this.Comaker2DropDownList.DataValueField = "EmpNo";
+                    this.Comaker2DropDownList.DataBind();
+
+                    this.ShareCapitalTextBox.Text = da.GetTotalShareCapitals(this.EmpNo).ToString();
 	            }
                 
             }
         }
-        private void CheckIfSameEmpNo()
-        {
-            this.valid = true;
-            if (this.tbCoMaker.Text != "" && this.EmpNo == this.tbCoMaker.Text)
-            {
-                this.lblCoMaker.Text = "*";
-                this.valid = false;
-            }
-            if (this.tbCoMaker2.Text != "" && (this.EmpNo == this.tbCoMaker2.Text || this.tbCoMaker2.Text == this.tbCoMaker.Text))
-            {
-                this.lblCoMaker2.Text = "*";
-                this.valid = false;
-            }
-        }
+
         private bool UserHasLoan(string emp)
         {
             using (DataAccess da = new DataAccess())
@@ -67,124 +71,122 @@ namespace WebsiteTrial
             }
             return false;
         }
-        protected void tbAmount_TextChanged(object sender, System.EventArgs e)
-        {
-            double num;
-            bool numeric = double.TryParse(this.tbAmount.Text, out num);
-            this.lblNoteMoney.Text = "";
-            if (!numeric)
-            {
-                this.lblNoteMoney.Text = "Input must be numeric.";
-                this.valid = false;
-                return;
-            }
-            this.valid = true;
-        }
-        protected void tbMonths_TextChanged(object sender, System.EventArgs e)
-        {
-            int num;
-            bool numeric = int.TryParse(this.tbMonths.Text, out num);
-            this.lblNoteMonth.Text = "";
-            if (!numeric)
-            {
-                this.lblNoteMonth.Text = "Input must be numeric.";
-                this.valid = false;
-                return;
-            }
-            this.valid = true;
-        }
-        protected void tbCoMaker_TextChanged(object sender, System.EventArgs e)
-        {
-            this.valid = false;
-            this.lblCoMaker.Text = "";
-            if (this.EmpNo != this.tbCoMaker.Text)
-            {
-                using (DataAccess da = new DataAccess())
-                {
-                    if (da.EmployeeNumberExistAndConfirmed(this.tbCoMaker.Text))
-                    {
-                        if (da.HasLoanApplication(this.tbCoMaker.Text))
-                        {
-                            this.lblCoMaker.Text = "CoMaker still has a loan application.";
-                        }
-                        else
-                        {
-                            this.valid = true;
-                        }
-                    }
-                    else
-                    {
-                        this.lblCoMaker.Text = "CoMaker Employee number does not exist.";
-                    }
-                    goto IL_A2;
-                }
-            }
-            this.lblCoMaker2.Text = "This is your Employee number.";
-        IL_A2:
-            if (this.tbCoMaker.Text == "")
-            {
-                this.lblCoMaker.Text = "";
-                this.valid = true;
-            }
-        }
-        protected void tbCoMaker2_TextChanged(object sender, System.EventArgs e)
-        {
-            this.valid = false;
-            this.lblCoMaker2.Text = "";
-            if (this.EmpNo != this.tbCoMaker2.Text)
-            {
-                using (DataAccess da = new DataAccess())
-                {
-                    if (da.EmployeeNumberExistAndConfirmed(this.tbCoMaker2.Text))
-                    {
-                        if (da.HasLoanApplication(this.tbCoMaker2.Text))
-                        {
-                            this.lblCoMaker.Text = "CoMaker still has a loan application.";
-                        }
-                        else
-                        {
-                            this.valid = false;
-                        }
-                    }
-                    else
-                    {
-                        this.lblCoMaker.Text = "CoMaker Employee number does not exist.";
-                    }
-                    goto IL_A2;
-                }
-            }
-            this.lblCoMaker2.Text = "This is your Employee number.";
-        IL_A2:
-            if (this.tbCoMaker2.Text == "")
-            {
-                this.lblCoMaker2.Text = "";
-                this.valid = true;
-            }
-        }
+        
         protected void Button1_Click(object sender, System.EventArgs e)
+        {
+
+            if (!Page.IsValid)
+            {
+                return;
+            }
+            this.Panel1.Visible = true;
+            this.Panel2.Visible = true;        
+        }
+
+        protected void DDType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.DDType.SelectedIndex > 0)
+            {
+                using (DataAccess da = new DataAccess())
+                {
+                    this.AllowedAmountDropDownList.DataSource = da.GetLoanAmountMatrix(int.Parse(this.DDType.SelectedValue), this.EmpNo);
+                    this.AllowedAmountDropDownList.DataTextField = "LoanAmount";
+                    this.AllowedAmountDropDownList.DataValueField = "RecordID";
+                    this.AllowedAmountDropDownList.DataBind();
+                    this.AllowedAmountDropDownList.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--SELECT--", ""));
+                    this.AllowedAmountDropDownList.SelectedIndex = -1;
+                    this.MonthsToPayLabel.Text = string.Empty;
+                    this.tbAmount.Text = string.Empty;
+                    if (this.DDType.SelectedValue == "1" || this.DDType.SelectedValue == "10")
+                    {
+                        this.AllowedAmountDropDownList.Enabled = false;
+                        this.amtlabel.Visible = true;
+                        this.tbAmount.Visible = true;
+                    }
+                    else 
+                    {
+                        this.AllowedAmountDropDownList.Enabled = true;
+                        this.amtlabel.Visible = false;
+                        this.tbAmount.Visible = false;
+                    }
+
+                    if (this.DDType.SelectedValue == "1") 
+                    {
+                        this.MonthsToPayLabel.Text = "12";
+                    }
+                }
+            }
+        }
+
+        protected void AllowedAmountDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selected = this.AllowedAmountDropDownList.SelectedValue;
+            if (string.IsNullOrEmpty(selected)) { this.MonthsToPayLabel.Text = string.Empty; return; }
+            using (DataAccess da = new DataAccess())
+            {
+                LoanAmountMatrix lm = da.GetOneLoanMatrixById(int.Parse(selected));
+                this.MonthsToPayLabel.Text = lm.MonthsPayable.ToString();
+                this.ProcessingFeeTextBox.Text = lm.ProcessingFee.ToString();
+            }
+        }
+
+
+        protected void ValidateLoanAmount(object source, ServerValidateEventArgs args)
+        {
+            StringBuilder b = new StringBuilder();
+
+            using (DataAccess da = new DataAccess())
+            {
+                //args.IsValid = (!da.EmployeeNumberExist(this.tbEmpNum.Text) && !da.NewRegistrationExist(this.tbEmpNum.Text, this.tbEmail.Text, this.tbPhone.Text.Trim()));
+
+                var selected = this.DDType.SelectedValue;
+                if (!string.IsNullOrEmpty(selected))
+                {
+                    if (selected == "1")
+                    {
+                        double share = da.GetTotalShareCapitals(this.EmpNo);
+                        double maxLoan = share * 3;
+
+                        args.IsValid = maxLoan >= double.Parse(this.tbAmount.Text);
+
+                        if (!args.IsValid) {
+                            b.AppendFormat("{0}{1}", "Maximum loan is your total share x 3.", Environment.NewLine);
+                        }
+                    }
+
+                    if (selected == "10")
+                    {
+                        double share = da.GetTotalShareCapitals(this.EmpNo);
+                        args.IsValid = share > 10000;
+                        if (!args.IsValid) 
+                        {
+                            b.AppendFormat("{0}{1}", "To avail motorcycle loan, you must atleast paid 10,000 of share capital.", Environment.NewLine);
+                        }
+                    }
+                    this.CustomValidator1.ErrorMessage = b.ToString();
+                }
+
+            }
+        }
+
+        protected void AcceptButton_Click(object sender, EventArgs e)
         {
             DataAccess da = new DataAccess();
             Messages msgObj = new Messages();
-            if (this.tbReason.Text == "" || this.tbMonths.Text == "" || this.tbAmount.Text == "")
-            {
-                this.valid = false;
-            }
+
             System.Collections.Generic.List<string> msgDetails = new System.Collections.Generic.List<string>();
-            if (this.valid)
-            {
+         
+
+
                 msgDetails.Add(this.EmpNo);
                 msgDetails.Add(this.DDType.Text);
                 msgDetails.Add(this.tbReason.Text);
                 msgDetails.Add(this.tbAmount.Text);
-                msgDetails.Add(this.tbMonths.Text);
-                if (this.tbCoMaker.Text != "")
-                {
-                    msgDetails.Add(this.tbCoMaker.Text);
-                }
-                if (this.tbCoMaker2.Text != "")
-                {
-                    msgDetails.Add(this.tbCoMaker2.Text);
-                }
+                msgDetails.Add(this.MonthsToPayLabel.Text);
+
+                msgDetails.Add(this.Comaker1DropDownList.SelectedValue);
+                msgDetails.Add(this.Comaker2DropDownList.SelectedValue);
+
                 string coMakerSMSConfirm = "";
                 string coMakerConfirm = "";
                 string coMaker2SMSConfirm = "";
@@ -236,24 +238,15 @@ namespace WebsiteTrial
                 //Commented
                 mail.Dispose();
                 //Commented
-                base.Response.Redirect("~\\Message.aspx?msg=You have applied for a loan. Please check your email for the confirmation link.");
-                return;
-            }
-            this.lblConfirmNote.Text = "Check inputs";
+                //base.Response.Redirect("~\\Message.aspx?msg=You have applied for a loan. Please check your email for the confirmation link.");
+                //return;
+            
         }
 
-        protected void DDType_SelectedIndexChanged(object sender, EventArgs e)
+        protected void CancelButton_Click(object sender, EventArgs e)
         {
-            if (this.DDType.SelectedIndex > 0)
-            {
-                using (DataAccess da = new DataAccess())
-                {
-                    this.AllowedAmountDropDownList.DataSource = da.GetLoanAmountMatrix(int.Parse(this.DDType.SelectedValue), this.EmpNo);
-                    this.AllowedAmountDropDownList.DataTextField = "LoanAmount";
-                    this.AllowedAmountDropDownList.DataValueField = "RecordID";
-                    this.AllowedAmountDropDownList.DataBind();
-                }
-            }
+            this.Panel1.Visible = false;
+            this.Panel2.Visible = false;
         }
     }
 }
