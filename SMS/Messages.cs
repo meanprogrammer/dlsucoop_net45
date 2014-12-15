@@ -126,12 +126,12 @@ namespace SMS
 
             if (ConfigurationManager.AppSettings.Get("allowsms") == "true")
             {
-                WebClient wc = new WebClient();
-                string url = string.Format("http://smsreg.net63.net/send.php?subscriber_number={0}&message={1}", pNumber, pMessage);
-                string result = wc.DownloadString(url);
+                //WebClient wc = new WebClient();
+                //string url = string.Format("http://smsreg.net63.net/send.php?subscriber_number={0}&message={1}", pNumber, pMessage);
+                //string result = wc.DownloadString(url);
 
-                //SMSHelper sms = new SMSHelper();
-                //sms.SendSMS(pNumber, pMessage);
+                SMSHelper sms = new SMSHelper();
+                sms.SendSMS(pNumber, pMessage);
             }
 		}
 		public void Dispose()

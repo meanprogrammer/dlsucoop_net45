@@ -12,6 +12,9 @@ namespace WebsiteTrial
     {
         protected void Page_Load(object sender, System.EventArgs e)
         {
+            this.Session["Logged"] = true;
+            this.Session["empNo"] = "100023";
+
             string empNo = Session["EmpNo"].ToString();
             bool isEmployee = false;
             using (DataAccess da = new DataAccess())

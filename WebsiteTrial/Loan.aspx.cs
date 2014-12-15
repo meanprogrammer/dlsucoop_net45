@@ -14,7 +14,6 @@ namespace WebsiteTrial
     public partial class Loan : Page
     {
         private string EmpNo;
-        private bool valid = true;
         protected void Page_Load(object sender, System.EventArgs e)
         {
             this.Session["Logged"] = true;
@@ -102,17 +101,14 @@ namespace WebsiteTrial
                         this.AllowedAmountDropDownList.Enabled = false;
                         this.amtlabel.Visible = true;
                         this.tbAmount.Visible = true;
+                        this.MonthsToPayLabel.ReadOnly = false;
                     }
-                    else 
+                    else
                     {
                         this.AllowedAmountDropDownList.Enabled = true;
                         this.amtlabel.Visible = false;
                         this.tbAmount.Visible = false;
-                    }
-
-                    if (this.DDType.SelectedValue == "1") 
-                    {
-                        this.MonthsToPayLabel.Text = "12";
+                        this.MonthsToPayLabel.ReadOnly = true;
                     }
                 }
             }
@@ -144,6 +140,15 @@ namespace WebsiteTrial
                 {
                     if (selected == "1")
                     {
+                        double amount = 0f;
+                        if (!double.TryParse(this.tbAmount.Text.Trim(), out amount))
+                        {
+                            args.IsValid = false;
+                            b.AppendFormat("{0}{1}", "For regular loans, Amount is required.", Environment.NewLine);
+                            this.CustomValidator1.ErrorMessage = b.ToString();
+                            return;
+                        }
+
                         double share = da.GetTotalShareCapitals(this.EmpNo);
                         double maxLoan = share * 3;
 
@@ -152,6 +157,32 @@ namespace WebsiteTrial
                         if (!args.IsValid) {
                             b.AppendFormat("{0}{1}", "Maximum loan is your total share x 3.", Environment.NewLine);
                         }
+
+                        
+                            if (string.IsNullOrEmpty(this.MonthsToPayLabel.Text.Trim()))
+                            {
+                                b.AppendFormat("{0}{1}", "Months to pay: Please enter between 1 and 18.", Environment.NewLine);
+                                args.IsValid = false;
+                                this.CustomValidator1.ErrorMessage = b.ToString();
+                                return;
+                            }
+
+                            int mtp = 0;
+                            if (int.TryParse(this.MonthsToPayLabel.Text, out mtp))
+                            {
+                                if (mtp <= 0 || mtp > 18)
+                                {
+                                    b.AppendFormat("{0}{1}", "Months to pay: Please enter between 1 and 18.", Environment.NewLine);
+                                    args.IsValid = false;
+                                }
+                            }
+                            else
+                            {
+                                b.AppendFormat("{0}{1}", "Months to pay: Please enter a valid digit.", Environment.NewLine);
+                                args.IsValid = false;
+                            }
+                            CustomValidator2.ErrorMessage = b.ToString();
+                        
                     }
 
                     if (selected == "10")
@@ -161,6 +192,13 @@ namespace WebsiteTrial
                         if (!args.IsValid) 
                         {
                             b.AppendFormat("{0}{1}", "To avail motorcycle loan, you must atleast paid 10,000 of share capital.", Environment.NewLine);
+                        }
+
+                        double amount = 0f;
+                        if (!double.TryParse(this.tbAmount.Text.Trim(), out amount))
+                        {
+                            args.IsValid = false;
+                            b.AppendFormat("{0}{1}", "For regular loans, Amount is required.", Environment.NewLine);
                         }
                     }
                     this.CustomValidator1.ErrorMessage = b.ToString();
@@ -247,6 +285,13 @@ namespace WebsiteTrial
         {
             this.Panel1.Visible = false;
             this.Panel2.Visible = false;
+        }
+
+        protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            StringBuilder b = new StringBuilder();
+            args.IsValid = true;
+            
         }
     }
 }

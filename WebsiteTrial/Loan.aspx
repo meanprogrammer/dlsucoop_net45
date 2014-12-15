@@ -65,6 +65,7 @@
                 <div class="col-md-6">
                     <label>Months to pay</label>
                     <asp:TextBox ID="MonthsToPayLabel" ReadOnly="true" CssClass="form-control input-md" runat="server"></asp:TextBox>
+    <asp:CustomValidator ID="CustomValidator2" runat="server" ControlToValidate="MonthsToPayLabel" CssClass="validation-message" OnServerValidate="CustomValidator2_ServerValidate"></asp:CustomValidator>
                 </div>
             </div>
             <div class="row">
