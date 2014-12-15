@@ -18,7 +18,7 @@
         <ContentTemplate>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="alert alert-info">
+                    <div runat="server" clientidmode="Static" id="msgbox" class="alert alert-info">
                             The amount that will show on allowed amount will be filtered to the amount you are only eligible based on you share capital.</div>
                 </div>
             </div>
@@ -94,6 +94,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <asp:Button ID="Button1" runat="server" Text="Submit Loan" CssClass="btn btn-success btn-md" OnClick="Button1_Click" />
+                    <asp:Button ID="Button2" runat="server" CausesValidation="False" OnClick="Button2_Click" Text="Button" />
                 </div>
             </div>
             <!--
@@ -118,7 +119,7 @@
                     <asp:Button ID="AcceptButton" ClientIDMode="Static" CssClass="btn btn-primary btn-block btn-md" runat="server" Text="Accept" OnClick="AcceptButton_Click" />
                 </div>
                 <div class="col-md-2">
-                    <asp:Button ID="CancelButton" CssClass="btn btn-block btn-default btn-md" runat="server" Text="Button" OnClick="CancelButton_Click" />
+                    <asp:Button ID="CancelButton" CssClass="btn btn-block btn-default btn-md" runat="server" Text="Cancel" OnClick="CancelButton_Click" />
                 </div>
             </div>
             <br />

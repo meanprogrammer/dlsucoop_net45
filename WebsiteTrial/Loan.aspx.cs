@@ -16,10 +16,7 @@ namespace WebsiteTrial
         private string EmpNo;
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            this.Session["Logged"] = true;
-            this.Session["empNo"] = "100023";
-
-            if (System.Convert.ToBoolean(this.Session["Logged"]))
+             if (System.Convert.ToBoolean(this.Session["Logged"]))
             {
                 this.EmpNo = this.Session["EmpNo"].ToString();
                 if (this.UserHasLoan(this.EmpNo))
@@ -278,7 +275,22 @@ namespace WebsiteTrial
                 //Commented
                 //base.Response.Redirect("~\\Message.aspx?msg=You have applied for a loan. Please check your email for the confirmation link.");
                 //return;
-            
+
+                this.msgbox.InnerHtml = "You have applied for a loan. Please check your email for the confirmation link.";
+                CancelButton_Click(sender, e);
+                ClearControls();
+        }
+
+        private void ClearControls()
+        {
+            this.DDType.SelectedIndex = -1;
+            this.tbAmount.Text = string.Empty;
+            this.Comaker1DropDownList.SelectedIndex = -1;
+            this.Comaker2DropDownList.SelectedIndex = -1;
+            this.AllowedAmountDropDownList.SelectedIndex = -1;
+            this.tbReason.Text = string.Empty;
+            this.MonthsToPayLabel.Text = string.Empty;
+            this.ProcessingFeeTextBox.Text = string.Empty;
         }
 
         protected void CancelButton_Click(object sender, EventArgs e)
@@ -292,6 +304,11 @@ namespace WebsiteTrial
             StringBuilder b = new StringBuilder();
             args.IsValid = true;
             
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            ClearControls();
         }
     }
 }
