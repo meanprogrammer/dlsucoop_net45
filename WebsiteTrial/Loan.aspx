@@ -94,7 +94,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <asp:Button ID="Button1" runat="server" Text="Submit Loan" CssClass="btn btn-success btn-md" OnClick="Button1_Click" />
-                    <asp:Button ID="Button2" runat="server" CausesValidation="False" OnClick="Button2_Click" Text="Button" />
                 </div>
             </div>
             <!--

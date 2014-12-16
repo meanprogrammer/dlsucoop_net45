@@ -20,7 +20,7 @@ namespace WebsiteTrial
 
             DataAccess da = new DataAccess();
             var id = Request.QueryString["id"];
-            List<string> empdetails = da.GetEmployeeDetails(id);
+            User empdetails = da.GetEmployeeDetailsLinq(id);
             
             var document = new Document();
             document.SetPageSize(iTextSharp.text.PageSize.A4);
@@ -38,19 +38,19 @@ namespace WebsiteTrial
             mainTable.AddCell(PdfHelper.CreateCellWithText(string.Format("SUBSIDIARY LEDGER - {0} {1}", DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture), DateTime.Now.Year), colspan: 4, fontSize: 10, fonttype: 0));
 
             mainTable.AddCell(PdfHelper.CreateCellWithText(
-                string.Format("Emp # : {0}", empdetails[0]), colspan: 4, fontSize: 10, fonttype: 0));
+                string.Format("Emp # : {0}", empdetails.EmpNo), colspan: 4, fontSize: 10, fonttype: 0));
 
             mainTable.AddCell(PdfHelper.CreateCellWithText(
-                string.Format("Name : {0}", empdetails[1]), colspan: 4, fontSize: 10, fonttype: 0));
+                string.Format("Name : {0}", string.Format("{0} {1}, {2}", empdetails.LastName, empdetails.FirstName, empdetails.MiddleName)), colspan: 4, fontSize: 10, fonttype: 0));
 
             mainTable.AddCell(PdfHelper.CreateCellWithText(
-                string.Format("College : {0}", empdetails[9]), colspan: 2, fontSize: 10, fonttype: 0));
+                string.Format("College : {0}", empdetails.College), colspan: 2, fontSize: 10, fonttype: 0));
 
             mainTable.AddCell(PdfHelper.CreateCellWithText(
-                string.Format("Department : {0}", empdetails[10]), colspan: 2, fontSize: 10, fonttype: 0));
+                string.Format("Department : {0}", empdetails.Dept), colspan: 2, fontSize: 10, fonttype: 0));
 
             mainTable.AddCell(PdfHelper.CreateCellWithText(
-                string.Format("Status : {0}", empdetails[5]), colspan: 4, fontSize: 10, fonttype: 0));
+                string.Format("Status : {0}", empdetails.MemberStatus), colspan: 4, fontSize: 10, fonttype: 0));
             mainTable.AddCell(PdfHelper.CreateCellWithText(" ", bottomborder: 1, colspan: 4));
 
             PdfPTable historyTable = new PdfPTable(new float[] { 2f, 2f, 2f, 2f, 2f });

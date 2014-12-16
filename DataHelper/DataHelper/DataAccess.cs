@@ -1079,7 +1079,10 @@ namespace DataHelper
         }
         public DataTable GetUserLoanDetails(string empNo)
         {
-            this.cmd = "Select * from LoanApplication where EmpNo = '" + empNo + "'";
+            this.cmd = "Select * from LoanApplication where EmpNo = '" + empNo + "' " +
+                        "and DateApproved is not null "+
+                        "and Confirmed > 0 " +
+                        "and (Done > 0 or Declined > 0)";
             return this.GetTable(this.cmd);
         }
 

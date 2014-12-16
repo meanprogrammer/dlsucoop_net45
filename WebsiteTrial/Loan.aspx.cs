@@ -216,7 +216,8 @@ namespace WebsiteTrial
                 msgDetails.Add(this.EmpNo);
                 msgDetails.Add(this.DDType.Text);
                 msgDetails.Add(this.tbReason.Text);
-                msgDetails.Add(this.tbAmount.Text);
+                var amount = this.DDType.SelectedValue == "1" ? this.tbAmount.Text : this.AllowedAmountDropDownList.SelectedItem.Text; 
+                msgDetails.Add(amount);
                 msgDetails.Add(this.MonthsToPayLabel.Text);
 
                 msgDetails.Add(this.Comaker1DropDownList.SelectedValue);
@@ -304,11 +305,6 @@ namespace WebsiteTrial
             StringBuilder b = new StringBuilder();
             args.IsValid = true;
             
-        }
-
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-            ClearControls();
         }
     }
 }
