@@ -63,7 +63,7 @@ namespace DataHelper
     #endregion
 		
 		public MessagesDataContext() : 
-				base(global::DataHelper.Properties.Settings.Default.HOME, mappingSource)
+				base(global::DataHelper.Properties.Settings.Default.PROD, mappingSource)
 		{
 			OnCreated();
 		}

@@ -4,12 +4,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table class="table table-override">
         <tr>
-            <td>
-                &nbsp;</td>
-            <td>
-                &nbsp;</td>
-            <td>
-                &nbsp;</td>
+            <td colspan="3">
+            <div runat="server" clientidmode="Static" id="AlertDiv">
+                <strong runat="server" clientidmode="Static" id="alertmessage"></strong>
+            </div>    
+            </td>
         </tr>
         <tr>
             <td>
@@ -18,14 +17,14 @@
                 <asp:TextBox ID="TextBox1" class="form-control" runat="server" Width="270px"></asp:TextBox>
             </td>
             <td>
-                &nbsp;</td>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" CssClass="validation-message" Display="Dynamic" ErrorMessage="*" ControlToValidate="TextBox1"></asp:RequiredFieldValidator>
+            </td>
         </tr>
         <tr>
             <td>
                 &nbsp;</td>
             <td>
-                <asp:Label ID="Label1" runat="server" Font-Size="Small" ForeColor="Red"></asp:Label>
-            </td>
+                &nbsp;</td>
             <td>
                 &nbsp;</td>
         </tr>

@@ -17,8 +17,7 @@ namespace WebsiteTrial
         }
         protected void Button1_Click(object sender, System.EventArgs e)
         {
-            if (this.TextBox1.Text != "")
-            {
+                
                 using (DataAccess da = new DataAccess())
                 {
                     if (da.EmployeeNumberExist(this.TextBox1.Text))
@@ -29,16 +28,17 @@ namespace WebsiteTrial
                         {
                             mail.SendMailMessage("no_reply@dlsudcoop.com", da.GetEmployeeEmail(this.TextBox1.Text), "Password Recovery", sb.ToString());
                         }
-                        base.Response.Redirect("~/Messsage.aspx?msg=Your password has been sent to your email");
+                        this.alertmessage.InnerText = "Your password has been sent to your email.";
+                        this.AlertDiv.Attributes["class"] = "alert alert-success";
                     }
                     else
                     {
-                        this.Label1.Text = "Employee number does not exist in our database.";
+                        this.alertmessage.InnerText = "Employee number does not exist in our database.";
+                        this.AlertDiv.Attributes["class"] = "alert alert-danger";
                     }
                     return;
                 }
-            }
-            this.Label1.Text = "Please type your employee number.";
+
         }
 
         protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
