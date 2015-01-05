@@ -316,8 +316,10 @@ namespace WebsiteTrial
 
 
                     }
+                    ClearNonEmployee();
                     //base.Response.Redirect("~/Message.aspx?msg=You have registered to DLSU-D Coop. Please check you email for the confirmation link.");
-                    this.alertmessage.InnerText = "You have registered to DLSU-D Coop. Please check you email for the confirmation link.";
+                    this.alertmessage.InnerText = "You have registered to DLSU-D Coop. Please check you email for the confirmation link." +
+                                                    string.Format("Your non-employee id is {0}.", values[ColumnKeys.EMP_NO]);
                     this.AlertDiv.Attributes["class"] = "alert alert-success";
                 }
                 catch (Exception ex)

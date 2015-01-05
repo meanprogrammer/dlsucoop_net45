@@ -17,10 +17,10 @@ namespace DataHelper
         //string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
 
         //HOUSE
-        //protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
+        protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
 
         //PROD
-        protected string conn = @"workstation id=Messages.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=Messages.mssql.somee.com;persist security info=False;initial catalog=Messages;";
+        //protected string conn = @"workstation id=Messages.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=Messages.mssql.somee.com;persist security info=False;initial catalog=Messages;";
 
         //LAGUNA
         //protected string conn = @"Data Source=PROGRAMMERPC\SQL2012;Initial Catalog=Messages;Integrated Security=true;";
@@ -94,7 +94,7 @@ namespace DataHelper
             this.sqlCmd.Parameters.Add("@Msg", SqlDbType.NVarChar).Value = pMsg;
             this.sqlCmd.Parameters.Add("@UDH", SqlDbType.NVarChar).Value = pUDH;
             this.sqlCmd.Parameters.Add("@DateReceived", SqlDbType.DateTime).Value = DateTime.Now;
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
         }
@@ -235,12 +235,14 @@ namespace DataHelper
             return dt;
         }
 
+        
+
         public void SMSRegistrationInsert(List<string> regDetails, string number)
         {
             this.sqlCmd.CommandText = "Insert into UnconfirmedUsers (EmpNo,DateRegistered) values (@EmpNo, @Date)";
             this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = regDetails[1];
             this.sqlCmd.Parameters.Add("@Date", SqlDbType.Date).Value = DateTime.Now.ToShortDateString();
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.MyConn.Close();
             if (regDetails.Count == 4)
@@ -269,7 +271,7 @@ namespace DataHelper
             this.sqlCmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = regDetails[11];
             this.sqlCmd.Parameters.Add("@MiddleName", SqlDbType.NVarChar).Value = regDetails[12];
             //}
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
         }
@@ -280,7 +282,7 @@ namespace DataHelper
             int startingId = 10000;
 
             this.sqlCmd.CommandText = "SELECT EmpNo FROM Users WHERE UserType='Non-Employee'";
-            this.MyConn.Open();
+            OpenConnection();
             IDataReader reader = this.sqlCmd.ExecuteReader();
             List<string> ids = new List<string>();
             while (reader.Read())
@@ -365,10 +367,7 @@ namespace DataHelper
             this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = regDetails[0];
             this.sqlCmd.Parameters.Add("@Date", SqlDbType.Date).Value = DateTime.Now.ToShortDateString();
 
-            if (this.MyConn.State == ConnectionState.Closed)
-            {
-                this.MyConn.Open();
-            }
+            OpenConnection();
 
             this.sqlCmd.ExecuteNonQuery();
             this.MyConn.Close();
@@ -396,7 +395,7 @@ namespace DataHelper
             context.SubmitChanges();
 
             //}
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.MyConn.Close();
             this.EndProcess();
@@ -419,7 +418,7 @@ namespace DataHelper
             /*
                     if (this.MyConn.State == ConnectionState.Closed)
                     {
-                        this.MyConn.Open();
+                        OpenConnection();
                     }
             
 
@@ -467,7 +466,7 @@ namespace DataHelper
             context.Dispose();
 
             //}
-            //this.MyConn.Open();
+            //OpenConnection();
             //this.sqlCmd.ExecuteNonQuery();
             //this.MyConn.Close();
             //this.EndProcess();
@@ -478,7 +477,7 @@ namespace DataHelper
             this.sqlCmd.CommandText = "Update UnconfirmedUsers set ConfirmationCode = @ConfirmCode where EmpNo = @EmpNo";
             this.sqlCmd.Parameters.Add("@ConfirmCode", SqlDbType.NVarChar).Value = confirmCode;
             this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = empNo;
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
         }
@@ -487,7 +486,7 @@ namespace DataHelper
             this.cmd = "Select EmpNo, LastName, FirstName, MiddleName, Email, Password, Address, Birthday, College, Dept, PhoneNumber, DateConfirmed, MemberStatus from Users where EmpNo = '" + empNo + "'";
             this.sqlCmd.CommandText = this.cmd;
             bool result = true;
-            this.MyConn.Open();
+            OpenConnection();
             using (this.dr = this.sqlCmd.ExecuteReader())
             {
                 this.dr.Read();
@@ -523,7 +522,7 @@ namespace DataHelper
         {
             this.cmd = "Select Password from Users where EmpNo = '" + empNo + "'";
             this.sqlCmd.CommandText = this.cmd;
-            this.MyConn.Open();
+            OpenConnection();
             string result = "";
             using (this.dr = this.sqlCmd.ExecuteReader())
             {
@@ -540,7 +539,7 @@ namespace DataHelper
             this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = empNo;
             this.sqlCmd.Parameters.Add("@CC", SqlDbType.NVarChar).Value = confirmCode;
             this.sqlCmd.Parameters.Add("@Date", SqlDbType.Date).Value = DateTime.Now.ToShortDateString();
-            this.MyConn.Open();
+            OpenConnection();
             this.dr = this.sqlCmd.ExecuteReader();
             if (this.dr.Read())
             {
@@ -556,12 +555,7 @@ namespace DataHelper
             }
             this.EndProcess();
         }
-        public void DeleteAllRecords(string tableName)
-        {
-            this.sqlCmd.CommandText = "Delete from " + tableName;
-            this.MyConn.Open();
-            this.EndProcess();
-        }
+        
         public bool NewRegistrationExist(string empNo, string eMail, string number)
         {
             bool result = false;
@@ -569,7 +563,7 @@ namespace DataHelper
             this.sqlCmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = eMail;
             this.sqlCmd.Parameters.Add("@Number", SqlDbType.NVarChar).Value = number;
             this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = empNo;
-            this.MyConn.Open();
+            OpenConnection();
             this.dr = this.sqlCmd.ExecuteReader();
             while (this.dr.Read())
             {
@@ -591,7 +585,8 @@ namespace DataHelper
             bool result = false;
             this.sqlCmd.CommandText = "Select * from Users where EmpNo = @EmpNo";
             this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = empNo;
-            this.MyConn.Open();
+            OpenConnection();
+            
             this.dr = this.sqlCmd.ExecuteReader();
             while (this.dr.Read())
             {
@@ -606,7 +601,7 @@ namespace DataHelper
             bool result = false;
             this.sqlCmd.CommandText = "Select * from Users where EmpNo = @EmpNo AND DateConfirmed IS NOT NULL";
             this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = empNo;
-            this.MyConn.Open();
+            OpenConnection();
             this.dr = this.sqlCmd.ExecuteReader();
             while (this.dr.Read())
             {
@@ -642,7 +637,7 @@ namespace DataHelper
             this.sqlCmd.Parameters.Add("@cEmail", SqlDbType.NVarChar).Value = coMakerConfirm;
             this.sqlCmd.Parameters.Add("@c2SMS", SqlDbType.NVarChar).Value = coMaker2SMS;
             this.sqlCmd.Parameters.Add("@c2Email", SqlDbType.NVarChar).Value = coMaker2Confirm;
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             if (loanDetails.Count == 5)
             {
@@ -682,7 +677,7 @@ namespace DataHelper
             string result = "";
             this.sqlCmd.CommandText = "Select (LastName+', '+FirstName+' '+MiddleName) as Name from Users where EmpNo = @EmpNo";
             this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = empNo;
-            this.MyConn.Open();
+            OpenConnection();
             this.dr = this.sqlCmd.ExecuteReader();
             if (this.dr.Read())
             {
@@ -697,7 +692,7 @@ namespace DataHelper
             string result = "";
             this.sqlCmd.CommandText = "Select PhoneNumber from Users where EmpNo = @EmpNo";
             this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = empNo;
-            this.MyConn.Open();
+            OpenConnection();
             this.dr = this.sqlCmd.ExecuteReader();
             if (this.dr.Read())
             {
@@ -710,7 +705,7 @@ namespace DataHelper
         public int GetLastTransactionID()
         {
             this.sqlCmd.CommandText = "Select TransactionID from LoanApplication Order By TransactionID DESC";
-            this.MyConn.Open();
+            OpenConnection();
             this.dr = this.sqlCmd.ExecuteReader();
 
             if (!this.dr.HasRows)
@@ -729,7 +724,7 @@ namespace DataHelper
         public string GetEmployeeEmail(string empNo)
         {
             this.sqlCmd.CommandText = "Select Email from Users where EmpNo = '" + empNo + "'";
-            this.MyConn.Open();
+            OpenConnection();
             this.dr = this.sqlCmd.ExecuteReader();
             string result = "";
             while (this.dr.Read())
@@ -745,7 +740,7 @@ namespace DataHelper
             bool result = false;
             this.sqlCmd.CommandText = "Select * from LoanApplication where EmpNo = @EmpNo and Done = 0";
             this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = empNo;
-            this.MyConn.Open();
+            OpenConnection();
             this.dr = this.sqlCmd.ExecuteReader();
             while (this.dr.Read())
             {
@@ -762,7 +757,7 @@ namespace DataHelper
             this.sqlCmd.Parameters.Add("@Trans", SqlDbType.Int).Value = trans;
             this.sqlCmd.Parameters.Add("@CC", SqlDbType.NVarChar).Value = confirmationCode;
             this.sqlCmd.Parameters.Add("@value", SqlDbType.Bit).Value = true;
-            this.MyConn.Open();
+            OpenConnection();
             if (!comaker)
             {
                 this.sqlCmd.CommandText = "Select * from UnconfirmedLoan where TransactionID = @Trans AND (ConfirmCodeMakerSMS = @CC OR ConfirmCodeMakerEmail = @CC)";
@@ -811,7 +806,7 @@ namespace DataHelper
             {
                 this.sqlCmd.Connection = this.MyConn;
             }
-            this.MyConn.Open();
+            OpenConnection();
             this.dr = this.sqlCmd.ExecuteReader();
             this.dr.Read();
             bool boolean = this.dr.GetBoolean(1);
@@ -869,7 +864,7 @@ namespace DataHelper
             this.sqlCmd.CommandText = "Select EmpNo, CoMakerEmpNo, CoMaker2EmpNo from LoanApplication where TransactionID = @TransID";
             this.sqlCmd.Parameters.Add("@TransID", SqlDbType.NVarChar).Value = trans;
             string result = "";
-            this.MyConn.Open();
+            OpenConnection();
             using (this.dr = this.sqlCmd.ExecuteReader())
             {
                 if (this.dr.Read())
@@ -914,7 +909,7 @@ namespace DataHelper
             this.sqlCmd.CommandText = "Select Confirmed from LoanApplication where TransactionID = @Trans";
             this.sqlCmd.Parameters.Add("Trans", SqlDbType.Int).Value = trans;
             bool result = false;
-            this.MyConn.Open();
+            OpenConnection();
             using (this.dr = this.sqlCmd.ExecuteReader())
             {
                 if (this.dr.Read())
@@ -945,7 +940,7 @@ namespace DataHelper
                 "d.DepartmentID = u.Dept " +
                 "where EmpNo = '" + empNo + "'";
             this.sqlCmd.CommandText = this.cmd;
-            this.MyConn.Open();
+            OpenConnection();
             using (this.dr = this.sqlCmd.ExecuteReader())
             {
                 this.dr.Read();
@@ -1024,7 +1019,7 @@ namespace DataHelper
             List<string> list = new List<string>();
             this.cmd = "Select * from LoanApplication where TransactionID = '" + transactionID + "'";
             this.sqlCmd.CommandText = this.cmd;
-            this.MyConn.Open();
+            OpenConnection();
             using (this.dr = this.sqlCmd.ExecuteReader())
             {
                 this.dr.Read();
@@ -1118,7 +1113,7 @@ namespace DataHelper
             this.sqlCmd.Parameters.Add("@PayAmount", SqlDbType.Money).Value = amount;
             this.sqlCmd.Parameters.Add("@Note", SqlDbType.NVarChar).Value = note;
             this.sqlCmd.Parameters.Add("@PayDate", SqlDbType.DateTime).Value = DateTime.Now;
-            this.MyConn.Open();
+            OpenConnection();
             int result = this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
             return result > 0;
@@ -1134,7 +1129,7 @@ namespace DataHelper
             this.cmd = "Update Users set Picture = @Pic where EmpNo = '" + empNo + "'";
             this.sqlCmd.CommandText = this.cmd;
             this.sqlCmd.Parameters.Add("@Pic", SqlDbType.NVarChar).Value = imagePath;
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
         }
@@ -1143,7 +1138,7 @@ namespace DataHelper
             string result = "";
             this.sqlCmd.CommandText = "Select Picture from Users where empno = @EmpNo";
             this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = empNo;
-            this.MyConn.Open();
+            OpenConnection();
             using (this.dr = this.sqlCmd.ExecuteReader())
             {
                 while (this.dr.Read())
@@ -1188,7 +1183,7 @@ namespace DataHelper
             this.sqlCmd.CommandText = this.cmd;
             try
             {
-                this.MyConn.Open();
+                OpenConnection();
                 using (this.dr = this.sqlCmd.ExecuteReader())
                 {
                     if (this.dr.Read())
@@ -1209,7 +1204,7 @@ namespace DataHelper
             this.sqlCmd.CommandText = "Select * from Users where empno = @EmpNo";
             this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = user;
             string a = "";
-            this.MyConn.Open();
+            OpenConnection();
             using (this.dr = this.sqlCmd.ExecuteReader())
             {
                 if (this.dr.Read())
@@ -1229,7 +1224,7 @@ namespace DataHelper
         {
             this.cmd = "Update Users set Password = '" + pass + "'";
             this.sqlCmd.CommandText = this.cmd;
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
         }
@@ -1247,7 +1242,7 @@ namespace DataHelper
             this.sqlCmd.Parameters.Add("@PhoneNumber", SqlDbType.NVarChar).Value = details[7];
             this.sqlCmd.Parameters.Add("@MemberStatus", SqlDbType.NVarChar).Value = details[8];
             this.sqlCmd.Parameters.Add("@DateHired", SqlDbType.NVarChar).Value = details[9];
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
         }
@@ -1310,7 +1305,7 @@ namespace DataHelper
         {
             this.cmd = "Update LoanApplication set Done = 1 where TransactionID = '" + TransID + "'";
             this.sqlCmd.CommandText = this.cmd;
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
         }
@@ -1318,10 +1313,19 @@ namespace DataHelper
         {
             this.cmd = "Update LoanApplication set Declined = 1 where TransactionID = '" + TransID + "'";
             this.sqlCmd.CommandText = this.cmd;
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
         }
+
+        private void OpenConnection() 
+        {
+            if (this.MyConn.State == ConnectionState.Closed)
+            {
+                this.MyConn.Open();
+            }
+        }
+
         public void approve(int ID, DateTime DateApproved, DateTime DateDue)
         {
             this.cmd = "Update LoanApplication set DateApproved = @Date,DateDue = @Due  where TransactionID = @ID";
@@ -1329,7 +1333,7 @@ namespace DataHelper
             this.sqlCmd.Parameters.Add("@Date", SqlDbType.Date).Value = DateApproved;
             this.sqlCmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
             this.sqlCmd.Parameters.Add("@Due", SqlDbType.Date).Value = DateDue;
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
         }
@@ -1424,7 +1428,7 @@ namespace DataHelper
             //this.sqlCmd.Parameters.Add("@Pic", SqlDbType.NVarChar).Value = imagePath;
             this.sqlCmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = transactionID;
             this.sqlCmd.Parameters.Add("@Balance", SqlDbType.Money).Value = payamount;
-            this.MyConn.Open();
+            OpenConnection();
             int result = this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
             return result > 0;
@@ -1451,7 +1455,7 @@ namespace DataHelper
         {
             this.cmd = "TRUNCATE TABLE LoanApplication";
             this.sqlCmd.CommandText = this.cmd;
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
         }
@@ -1460,7 +1464,7 @@ namespace DataHelper
         {
             this.cmd = "TRUNCATE TABLE UnconfirmedLoan";
             this.sqlCmd.CommandText = this.cmd;
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
         }
@@ -1469,7 +1473,7 @@ namespace DataHelper
         {
             this.cmd = "TRUNCATE TABLE MSGS";
             this.sqlCmd.CommandText = this.cmd;
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
         }
@@ -1478,7 +1482,7 @@ namespace DataHelper
         {
             this.cmd = "TRUNCATE TABLE Payments";
             this.sqlCmd.CommandText = this.cmd;
-            this.MyConn.Open();
+            OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
         }

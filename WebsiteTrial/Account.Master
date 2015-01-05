@@ -34,7 +34,7 @@
                     <tr>
                         <td>
                             <asp:Image ID="Image1" runat="server"  
-                            ImageUrl="~/images/dlsudcooplogo.jpg"  />
+                            ImageUrl="~/images/dlsudcooplogo.jpg" style="margin-right:10px;"  />
                         </td>
                         <td>
                              <span class="style3" style="text-shadow: 0px 1px 5px #000; color: #FFFFFF;">
