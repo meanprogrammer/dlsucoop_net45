@@ -17,10 +17,10 @@ namespace DataHelper
         //string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
 
         //HOUSE
-        //protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
+        protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
 
         //PROD
-        protected string conn = @"workstation id=Messages.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=Messages.mssql.somee.com;persist security info=False;initial catalog=Messages;";
+        //protected string conn = @"workstation id=Messages.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=Messages.mssql.somee.com;persist security info=False;initial catalog=Messages;";
 
         //LAGUNA
         //protected string conn = @"Data Source=PROGRAMMERPC\SQL2012;Initial Catalog=Messages;Integrated Security=true;";
@@ -88,6 +88,7 @@ namespace DataHelper
 
         public void InsertMessage(string pID, string pSource, string pMsg, string pUDH)
         {
+            /*
             this.sqlCmd.CommandText = "Insert into MSGS values (@ID, @Source, @Msg, @UDH, @DateReceived)";
             this.sqlCmd.Parameters.Add("@ID", SqlDbType.NVarChar).Value = pID;
             this.sqlCmd.Parameters.Add("@Source", SqlDbType.NVarChar).Value = pSource;
@@ -97,6 +98,20 @@ namespace DataHelper
             OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
+            */
+
+            using (MessagesDataContext context = new MessagesDataContext()) 
+            {
+                MSG msg = new MSG();
+                msg.ID = pID;
+                msg.Source = pSource;
+                msg.Msg1 = pMsg;
+                msg.UDH = pUDH;
+                msg.DateReceived = DateTime.Now;
+
+                context.MSGs.InsertOnSubmit(msg);
+                context.SubmitChanges();
+            }
         }
 
         public bool HasShareCapital(string empNo)
@@ -363,10 +378,20 @@ namespace DataHelper
 
         public void SMSRegistrationInsertNonEmployee(List<string> regDetails, string number)
         {
+            /*
             this.sqlCmd.CommandText = "Insert into UnconfirmedUsers (EmpNo,DateRegistered) values (@EmpNo, @Date)";
             this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = regDetails[0];
             this.sqlCmd.Parameters.Add("@Date", SqlDbType.Date).Value = DateTime.Now.ToShortDateString();
-
+            */
+            using(MessagesDataContext context = new MessagesDataContext())
+            {
+                UnconfirmedUser uc = new UnconfirmedUser();
+                uc.EmpNo = regDetails[0];
+                uc.DateRegistered = DateTime.Now;
+                context.UnconfirmedUsers.InsertOnSubmit(uc);
+                context.SubmitChanges();
+            }
+            
             OpenConnection();
 
             this.sqlCmd.ExecuteNonQuery();
@@ -387,13 +412,14 @@ namespace DataHelper
             this.sqlCmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = regDetails[6];
             this.sqlCmd.Parameters.Add("@MiddleName", SqlDbType.NVarChar).Value = regDetails[7];
 
-            MessagesDataContext context = new MessagesDataContext();
-            RelativeEmployee re = new RelativeEmployee();
-            re.EmpNo = regDetails[0];
-            re.RelativeEmpNo = regDetails[9];
-            context.RelativeEmployees.InsertOnSubmit(re);
-            context.SubmitChanges();
-
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                RelativeEmployee re = new RelativeEmployee();
+                re.EmpNo = regDetails[0];
+                re.RelativeEmpNo = regDetails[9];
+                context.RelativeEmployees.InsertOnSubmit(re);
+                context.SubmitChanges();
+            }
             //}
             OpenConnection();
             this.sqlCmd.ExecuteNonQuery();

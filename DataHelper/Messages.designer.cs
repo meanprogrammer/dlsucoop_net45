@@ -63,7 +63,7 @@ namespace DataHelper
     #endregion
 		
 		public MessagesDataContext() : 
-				base(global::DataHelper.Properties.Settings.Default.PROD, mappingSource)
+				base(global::DataHelper.Properties.Settings.Default.HOME, mappingSource)
 		{
 			OnCreated();
 		}
@@ -177,6 +177,14 @@ namespace DataHelper
 			get
 			{
 				return this.GetTable<LoanApplication>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MSG> MSGs
+		{
+			get
+			{
+				return this.GetTable<MSG>();
 			}
 		}
 	}
@@ -2588,6 +2596,105 @@ namespace DataHelper
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MSGS")]
+	public partial class MSG
+	{
+		
+		private string _ID;
+		
+		private string _Source;
+		
+		private string _Msg1;
+		
+		private string _UDH;
+		
+		private System.Nullable<System.DateTime> _DateReceived;
+		
+		public MSG()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="NVarChar(50)")]
+		public string ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Source", DbType="NVarChar(50)")]
+		public string Source
+		{
+			get
+			{
+				return this._Source;
+			}
+			set
+			{
+				if ((this._Source != value))
+				{
+					this._Source = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Msg", Storage="_Msg1", DbType="NVarChar(MAX)")]
+		public string Msg1
+		{
+			get
+			{
+				return this._Msg1;
+			}
+			set
+			{
+				if ((this._Msg1 != value))
+				{
+					this._Msg1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UDH", DbType="NVarChar(50)")]
+		public string UDH
+		{
+			get
+			{
+				return this._UDH;
+			}
+			set
+			{
+				if ((this._UDH != value))
+				{
+					this._UDH = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateReceived", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateReceived
+		{
+			get
+			{
+				return this._DateReceived;
+			}
+			set
+			{
+				if ((this._DateReceived != value))
+				{
+					this._DateReceived = value;
+				}
 			}
 		}
 	}
