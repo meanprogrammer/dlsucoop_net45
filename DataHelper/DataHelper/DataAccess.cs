@@ -17,10 +17,10 @@ namespace DataHelper
         //string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
 
         //HOUSE
-        protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
+        //protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
 
         //PROD
-        //protected string conn = @"workstation id=Messages.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=Messages.mssql.somee.com;persist security info=False;initial catalog=Messages;";
+        protected string conn = @"workstation id=Messages.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=Messages.mssql.somee.com;persist security info=False;initial catalog=Messages;";
 
         //LAGUNA
         //protected string conn = @"Data Source=PROGRAMMERPC\SQL2012;Initial Catalog=Messages;Integrated Security=true;";
@@ -507,24 +507,29 @@ namespace DataHelper
             this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();
         }
+
         public bool CompleteDetail(string empNo)
         {
-            this.cmd = "Select EmpNo, LastName, FirstName, MiddleName, Email, Password, Address, Birthday, College, Dept, PhoneNumber, DateConfirmed, MemberStatus from Users where EmpNo = '" + empNo + "'";
-            this.sqlCmd.CommandText = this.cmd;
             bool result = true;
-            OpenConnection();
-            using (this.dr = this.sqlCmd.ExecuteReader())
+            if (!empNo.StartsWith("NE-"))
             {
-                this.dr.Read();
-                for (int i = 0; i < this.dr.FieldCount; i++)
+                this.cmd = "Select EmpNo, LastName, FirstName, MiddleName, Email, Password, Address, Birthday, College, Dept, PhoneNumber, DateConfirmed, MemberStatus from Users where EmpNo = '" + empNo + "'";
+                this.sqlCmd.CommandText = this.cmd;
+
+                OpenConnection();
+                using (this.dr = this.sqlCmd.ExecuteReader())
                 {
-                    if (this.dr.IsDBNull(i))
+                    this.dr.Read();
+                    for (int i = 0; i < this.dr.FieldCount; i++)
                     {
-                        result = false;
+                        if (this.dr.IsDBNull(i))
+                        {
+                            result = false;
+                        }
                     }
                 }
+                this.EndProcess();
             }
-            this.EndProcess();
             return result;
         }
 

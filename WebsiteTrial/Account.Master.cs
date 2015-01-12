@@ -10,9 +10,19 @@ namespace WebsiteTrial
 {
     public partial class Account : MasterPage
     {
+        private string GetCurrentPageName()
+        {
+            string sPath = Request.Url.AbsolutePath;
+            System.IO.FileInfo oInfo = new System.IO.FileInfo(sPath);
+            string sRet = oInfo.Name;
+            return sRet;
+        }
+
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            string empNo = Session["EmpNo"].ToString();
+
+                string empNo = Session["EmpNo"].ToString();
+
             bool isEmployee = false;
             using (DataAccess da = new DataAccess())
             {

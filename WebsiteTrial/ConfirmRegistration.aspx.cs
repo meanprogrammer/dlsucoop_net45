@@ -17,10 +17,11 @@ namespace WebsiteTrial
                 string confirmCode = base.Request.QueryString["confirmationCode"].ToString();
                 string empNo = base.Request.QueryString["user"].ToString();
                 da.ConfirmUser(empNo, confirmCode);
-                base.Response.Redirect("~/Message.aspx?msg=Registration confirmed. Please login at the Home Page.");
+                this.Literal1.Text = "<h3>Registration confirmed. Please login at the Home Page. <a href='Default.aspx'>Click Here</a></h3>";
+                //base.Response.Redirect("~/Message.aspx?msg=");
             }
             da.Dispose();
-            base.Response.Redirect("~/Default.aspx");
+            //base.Response.Redirect("~/Default.aspx");
         }
     }
 }
