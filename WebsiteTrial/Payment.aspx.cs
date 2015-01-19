@@ -15,7 +15,7 @@ namespace WebsiteTrial
         {
             if (!Page.IsPostBack)
             {
-                this.EmpDropDownList.DataSource = da.GetAllUsers();
+                this.EmpDropDownList.DataSource = da.GetAllUsersWithEmpty();
                 this.EmpDropDownList.DataTextField = "Name";
                 this.EmpDropDownList.DataValueField = "EmpNo";
                 this.EmpDropDownList.DataBind();
@@ -43,18 +43,39 @@ namespace WebsiteTrial
         protected void PayButton_Click(object sender, EventArgs e)
         {
             var selectedLoan = this.LoansRadioButtonList.SelectedValue;
+
+            if (string.IsNullOrEmpty(selectedLoan))
+            {
+                this.ResultLiteral.Text = "<h5 style='color:Red;'>Select a loan to pay.</h5>";
+                return;
+            }
+
             double payamount = 0;
             double.TryParse(this.PayAmountTextBox.Text, out payamount);
+
+            if (payamount == 0) 
+            {
+                this.ResultLiteral.Text = "<h5 style='color:Red;'>pay must not be zero.</h5>";
+                return;
+            }
+
+            if (payamount > da.GetOutStandingBalance(selectedLoan))
+            {
+                this.ResultLiteral.Text = "<div class=\"alert alert-danger\" role=\"alert\"><strong>Payment must not be greater than balance.</strong></div>";
+                return;
+            }
+
+
             bool result = da.Pay(selectedLoan, payamount, this.NoteTextBox.Text);
             if (result)
             {
                 result = result && da.UpdateBalance(selectedLoan, payamount);
-
+                da.UpdateLoanPayStatus(int.Parse(selectedLoan));
             }
 
             if (result)
             {
-                this.ResultLiteral.Text = "<h5 style='color:Green;'>Pay Success!</h5>";
+                this.ResultLiteral.Text = "<div class=\"alert alert-success\" role=\"alert\"><strong>Pay Success!</strong></div>";
                 this.EmpDropDownList.SelectedIndex = 0;
                 this.NoteTextBox.Text = string.Empty;
                 this.PayAmountTextBox.Text = string.Empty;
@@ -62,7 +83,7 @@ namespace WebsiteTrial
             }
             else
             {
-                this.ResultLiteral.Text = "<h5 style='color:Red;'>Pay failed!</h5>";
+                this.ResultLiteral.Text = "<div class=\"alert alert-danger\" role=\"alert\"><strong>Pay Failed!</strong></div>";
             }
         }
     }

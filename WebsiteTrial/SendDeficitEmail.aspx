@@ -25,70 +25,59 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div class="container">
         <h1>Send Deficit Email</h1>
-        <table class="table table-override" style="width:600px !important;">
-            <tr>
-                <td>Select User</td>
-                <td>
-                    <asp:DropDownList ID="UserDropDownList" class="form-control" runat="server">
+        <div class="row">
+            <div class="col-md-12">
+                <label>Select User</label>
+                <asp:DropDownList ID="UserDropDownList" class="form-control" runat="server">
                     </asp:DropDownList>
-                </td>
-                <td></td>
-                <td></td>
-                <td class="style1">&nbsp;</td>
-            </tr>
-            <tr>
-                <td>Amount in Words:</td>
-                <td colspan="3">
-                    <asp:TextBox ID="AmountWordsTextBox" CssClass="form-control input-md" runat="server"></asp:TextBox>
-                </td>
-                <td class="style1">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-                        ControlToValidate="AmountWordsTextBox" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td>Amount:</td>
-                <td colspan="3">
-                    <asp:TextBox ID="AmountTextBox" CssClass="form-control input-md" runat="server"></asp:TextBox>
-                </td>
-                <td class="style1">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                        ControlToValidate="AmountTextBox" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td>Deduction For</td>
-                <td colspan="3">
-                    <asp:TextBox ID="DeductionForTextbox" CssClass="form-control input-md" runat="server"></asp:TextBox>
-                </td>
-                <td class="style1">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>Amount in Words</label>
+                <asp:TextBox ID="AmountWordsTextBox" CssClass="form-control input-md" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>Amount</label>
+                <asp:TextBox ID="AmountTextBox" CssClass="form-control input-md" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-11">
+                <label>Deduction For</label>
+                <asp:TextBox ID="DeductionForTextbox" CssClass="form-control input-md" runat="server"></asp:TextBox>
+                
+            </div>
+            <div class="col-md-1">
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
                         ControlToValidate="DeductionForTextbox" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td>As Of Date</td>
-                <td colspan="3">
-                    <asp:TextBox ID="AsOfDateTextBox" CssClass="form-control input-md" runat="server" ClientIDMode="Static"></asp:TextBox>
-                </td>
-                <td class="style1">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-11">
+                <label>As Of Date</label>
+                <asp:TextBox ID="AsOfDateTextBox" CssClass="form-control input-md" runat="server" ClientIDMode="Static"></asp:TextBox>
+            </div>
+            <div class="col-md-1">
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
                         ControlToValidate="AsOfDateTextBox" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td>Deadline</td>
-                <td colspan="3">
-                    <asp:TextBox ID="DeadlineTextBox" CssClass="form-control input-md" runat="server" ClientIDMode="Static"></asp:TextBox>
-                </td>
-                <td class="style1">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-11">
+                <label>Deadline</label>
+                <asp:TextBox ID="DeadlineTextBox" CssClass="form-control input-md" runat="server" ClientIDMode="Static"></asp:TextBox>
+            </div>
+            <div class="col-md-1">
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
                         ControlToValidate="DeadlineTextBox" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
-                </td>
-            </tr>
-        </table>
+            </div>
+        </div>
+  <br />
         <asp:Button ID="PreviewButton" runat="server" class="btn btn-success" Text="Preview" 
             onclick="PreviewButton_Click" />
         &nbsp;<asp:Button ID="SendButton" runat="server" class="btn btn-success" onclick="SendButton_Click" 

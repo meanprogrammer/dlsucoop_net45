@@ -92,6 +92,36 @@ namespace Mail
                 }
             }
 		}
+
+        public void SendMailMessage(string from, string to, string subject, string body, bool isBodyHtml)
+        {
+            //this.mail.From = new MailAddress(from);
+            //this.mail.To.Add(to);
+            //this.mail.Subject = subject;
+            //this.mail.Body = body;
+            //this.smtp.Send(this.mail);
+
+            this.mail = new MailMessage();
+            using (SmtpClient server = new SmtpClient("smtp.gmail.com"))
+            {
+                server.UseDefaultCredentials = false;
+                server.EnableSsl = true;
+                NetworkCredential basicCredential = new NetworkCredential(this.mailAddress, this.mailPassword);
+                server.Credentials = basicCredential;
+                server.Port = 587;
+                server.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                this.mail.From = new MailAddress(from);
+                this.mail.To.Add(to);
+                this.mail.Subject = subject;
+                this.mail.Body = body;
+                this.mail.IsBodyHtml = isBodyHtml;
+                if (ConfigurationManager.AppSettings.Get("allowemail") == "true")
+                {
+                    server.Send(this.mail);
+                }
+            }
+        }
 		public void RefreshSMTP()
 		{
 			this.smtp.Dispose();

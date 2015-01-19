@@ -8,6 +8,7 @@ using System.Text;
 using System.Net.Mail;
 using System.Net;
 using System.Globalization;
+using Mail;
 
 namespace WebsiteTrial
 {
@@ -28,7 +29,8 @@ namespace WebsiteTrial
 
         protected void PreviewButton_Click(object sender, EventArgs e)
         {
-            if (!IsValid) {
+            if (!IsValid)
+            {
                 return;
             }
             StringBuilder b = new StringBuilder();
@@ -50,7 +52,7 @@ namespace WebsiteTrial
             b.AppendFormat("This is to inform you that your dificit in the amount of {0} ONLY ({1}) as of {2} pay day, representing your {3}.",
                 this.AmountWordsTextBox.Text, this.AmountTextBox.Text, DateTime.ParseExact(this.AsOfDateTextBox.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture).ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture), this.DeductionForTextbox.Text);
             b.AppendFormat("<br />"); b.AppendFormat("<br />");
-            b.AppendFormat("Kindly remit your cash payment on or before <strong>{0}</strong> to maintain your good credit standing with our cooperative.", DateTime.ParseExact(this.DeadlineTextBox.Text,"MM/dd/yyyy", null).ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture));
+            b.AppendFormat("Kindly remit your cash payment on or before <strong>{0}</strong> to maintain your good credit standing with our cooperative.", DateTime.ParseExact(this.DeadlineTextBox.Text, "MM/dd/yyyy", null).ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture));
             b.Append(" A deficit in any pay day shall result in the denial of any subsequent loan application. Your good standing status will only be");
             b.Append(" restored upon your showing of sufficient net pay for two (2) consecutive pay days.");
             b.AppendFormat("<br />"); b.AppendFormat("<br />");
@@ -62,7 +64,9 @@ namespace WebsiteTrial
         {
             try
             {
-                var smtp = new SmtpClient
+                DataHelper.DataAccess da = new DataHelper.DataAccess();
+                string email = da.GetEmployeeEmail(this.UserDropDownList.SelectedValue);
+                /*var smtp = new SmtpClient
                 {
                     Host = "smtp.gmail.com",
                     Port = 587,
@@ -71,22 +75,26 @@ namespace WebsiteTrial
                     UseDefaultCredentials = false,
                     Credentials = new NetworkCredential("dlsudmailer@gmail.com", "Green1234")
                 };
-                DataHelper.DataAccess da = new DataHelper.DataAccess();
-                string email = da.GetEmployeeEmail(this.UserDropDownList.SelectedValue);
+                
+                
 
                 MailMessage mm = new MailMessage();
                 mm.From = new MailAddress("dlsudmailer@gmail.com");
                 mm.To.Add(new MailAddress(email));
                 mm.Body = this.PreviewLiteral.Text;
                 mm.IsBodyHtml = true;
-                mm.Subject = "DEFICIT IN SALARY DEDUCTION";
+                mm.Subject = ;
                 smtp.Send(mm);
+                */
+
+                MailHelper mh = new MailHelper();
+                mh.SendMailMessage("dlsudmailer@gmail.com", email, "DEFICIT IN SALARY DEDUCTION", this.PreviewLiteral.Text, true);
             }
             catch (Exception ex)
             {
                 throw;
             }
-            
+
         }
     }
 }

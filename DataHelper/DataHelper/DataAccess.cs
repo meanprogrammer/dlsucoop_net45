@@ -1150,6 +1150,20 @@ namespace DataHelper
             return result > 0;
         }
 
+        public double GetOutStandingBalance(string transactionId)
+        {
+            double result = 0f;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                var record = context.LoanApplications.FirstOrDefault(c => c.TransactionID == int.Parse(transactionId));
+                if (record != null)
+                {
+                    result = Convert.ToDouble(record.Balance);
+                }
+            }
+            return result;
+        }
+
         public DataTable GetAllEmployeeDetails(string empNo)
         {
             this.cmd = "Select * from Users where EmpNo = '" + empNo + "'";
@@ -1452,6 +1466,22 @@ namespace DataHelper
             this.MyConn.Close();
         }
 
+        public void UpdateLoanPayStatus(int transactionId) 
+        {
+            using(MessagesDataContext context = new MessagesDataContext()) 
+            {
+                LoanApplication lap = context.LoanApplications.FirstOrDefault(c => c.TransactionID == transactionId);
+                if (lap != null)
+                {
+                    if (lap.Balance == 0)
+                    {
+                        lap.Done = true;
+                    }
+                    context.SubmitChanges();
+                }
+            }
+        }
+
         public bool UpdateBalance(string transactionID, double payamount)
         {
             this.cmd = "UPDATE LoanApplication SET Balance = (Balance - @Balance) WHERE TransactionID = @TransactionID";
@@ -1477,7 +1507,7 @@ namespace DataHelper
 
         public DataTable GetAllUnconfirmedUsers()
         {
-            this.cmd = "Select * from UnconfirmedUsers WHERE ConfirmationCode IS NULL";
+            this.cmd = "Select EmpNo,DateRegistered from UnconfirmedUsers WHERE ConfirmationCode IS NULL";
             DataTable dt = this.GetTable(this.cmd);
             return dt;
         }
