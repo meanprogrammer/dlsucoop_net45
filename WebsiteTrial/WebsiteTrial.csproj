@@ -315,7 +315,6 @@
     <Content Include="SMStest.aspx" />
     <Content Include="style.css" />
     <Content Include="Table.aspx" />
-    <Content Include="WebForm1.aspx" />
     <Content Include="FAQ.aspx" />
     <Content Include="MissionVision.aspx" />
     <Content Include="ContactUs.aspx" />
@@ -506,12 +505,6 @@
     </Compile>
     <Compile Include="Table.aspx.designer.cs">
       <DependentUpon>Table.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="FAQ.aspx.cs">
       <DependentUpon>FAQ.aspx</DependentUpon>
