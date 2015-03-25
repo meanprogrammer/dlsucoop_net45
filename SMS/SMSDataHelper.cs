@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataHelper;
-using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace SMS
 {
