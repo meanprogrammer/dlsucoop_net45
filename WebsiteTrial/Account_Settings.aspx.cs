@@ -176,6 +176,11 @@ namespace WebsiteTrial
                 u.EmergencyNumber = this.ICEContactNumberTextBox.Text;
 
                 bool result = da.UpdateUserDetailsLinq(u);
+
+                if (result) 
+                { 
+
+                }
             }
         }
 
