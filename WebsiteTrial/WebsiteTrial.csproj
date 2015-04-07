@@ -602,6 +602,14 @@
     <Content Include="fonts\genericons-regular-webfont.eot" />
     <Content Include="fonts\genericons-regular-webfont.ttf" />
     <Content Include="fonts\genericons-regular-webfont.woff" />
+    <Content Include="Files\forms\BIODATA.pdf" />
+    <Content Include="Files\forms\brochure.pdf" />
+    <Content Include="Files\forms\DLSU-D DC_Authority_for_Salary_Deduction.pdf" />
+    <Content Include="Files\forms\DLSU-D_DC_Data_Form.pdf" />
+    <Content Include="Files\forms\DLSU-D_DC_Loan_Application_Form.pdf" />
+    <Content Include="Files\forms\DLSU-D_DC_Promissory_Note.pdf" />
+    <Content Include="Files\forms\DLSU-D_DC_Subscription_Slip.pdf" />
+    <Content Include="Files\forms\DLSU-D_DC_Withdrawal_Slip_for.pdf" />
     <None Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />

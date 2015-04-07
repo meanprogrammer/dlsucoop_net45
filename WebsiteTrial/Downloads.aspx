@@ -14,7 +14,7 @@
         <tbody>
             <tr>
                 <td>Biodata</td>
-                <td><a href="http://dlsud.edu.ph/Offices/DLSUDDC/assets/docs/BIODATA.pdf" target="_new">pdf</a></td>
+                <td><a href="http://www.dlsud.edu.ph/Offices/DLSUDDC/assets/docs/BIODATA.pdf" target="_new">pdf</a></td>
             </tr>
             <tr>
                 <td>Authority for Salary Deduction</td>
