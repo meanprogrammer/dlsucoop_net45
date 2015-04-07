@@ -18,31 +18,31 @@
             </tr>
             <tr>
                 <td>Authority for Salary Deduction</td>
-                <td><a href="http://dlsud.edu.ph/Offices/DLSUDDC/assets/docs/DLSU-D DC_Authority_for_Salary_Deduction.pdf" target="_new">pdf</a></td>
+                <td><a href="http://www.dlsud.edu.ph/Offices/DLSUDDC/assets/docs/DLSU-D DC_Authority_for_Salary_Deduction.pdf" target="_new">pdf</a></td>
             </tr>
             <tr>
                 <td>Brochure</td>
-                <td><a href="http://dlsud.edu.ph/Offices/DLSUDDC/assets/docs/brochure.pdf" target="_new">pdf</a></td>
+                <td><a href="http://www.dlsud.edu.ph/Offices/DLSUDDC/assets/docs/brochure.pdf" target="_new">pdf</a></td>
             </tr>
             <tr>
                 <td>DLSU-D DC Data Form</td>
-                <td><a href="http://dlsud.edu.ph/Offices/DLSUDDC/assets/docs/DLSU-D_DC_Data_Form.pdf" target="_new">pdf</a></td>
+                <td><a href="http://www.dlsud.edu.ph/Offices/DLSUDDC/assets/docs/DLSU-D_DC_Data_Form.pdf" target="_new">pdf</a></td>
             </tr>
             <tr>
                 <td>DLSU-D FDC Loan Application Form</td>
-                <td><a href="http://dlsud.edu.ph/Offices/DLSUDDC/assets/docs/DLSU-D_DC_Loan_Application_Form.pdf" target="_new">pdf</a></td>
+                <td><a href="http://www.dlsud.edu.ph/Offices/DLSUDDC/assets/docs/DLSU-D_DC_Loan_Application_Form.pdf" target="_new">pdf</a></td>
             </tr>
             <tr>
                 <td>DLSU-D Promisory Note</td>
-                <td><a href="http://dlsud.edu.ph/Offices/DLSUDDC/assets/docs/DLSU-D_DC_Promissory_Note.pdf" target="_new">pdf</a></td>
+                <td><a href="http://www.dlsud.edu.ph/Offices/DLSUDDC/assets/docs/DLSU-D_DC_Promissory_Note.pdf" target="_new">pdf</a></td>
             </tr>
             <tr>
                 <td>DLSU-D FDC Subscription Slip</td>
-                <td><a href="http://dlsud.edu.ph/Offices/DLSUDDC/assets/docs/DLSU-D_DC_Subscription_Slip.pdf" target="_new">pdf</a></td>
+                <td><a href="http://www.dlsud.edu.ph/Offices/DLSUDDC/assets/docs/DLSU-D_DC_Subscription_Slip.pdf" target="_new">pdf</a></td>
             </tr>
             <tr>
                 <td>DLSU-D Withrawal Slip</td>
-                <td><a href="http://dlsud.edu.ph/Offices/DLSUDDC/assets/docs/DLSU-D_DC_Withdrawal_Slip_for.pdf" target="_new">pdf</a></td>
+                <td><a href="http://www.dlsud.edu.ph/Offices/DLSUDDC/assets/docs/DLSU-D_DC_Withdrawal_Slip_for.pdf" target="_new">pdf</a></td>
             </tr>
         </tbody>
     </table>
