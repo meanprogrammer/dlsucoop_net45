@@ -48,7 +48,7 @@ namespace Mail
 		public MailHelper()
 		{
             this.mail = new MailMessage();
-            this.smtp = new SmtpClient("smtp.gmail.com");
+            this.smtp = new SmtpClient("smtp.mailgun.org");
             this.smtp.UseDefaultCredentials = false;
             this.smtp.EnableSsl = true;
             NetworkCredential basicCredential = new NetworkCredential(mailAddress, mailPassword);
@@ -73,7 +73,7 @@ namespace Mail
             //this.smtp.Send(this.mail);
 
             this.mail = new MailMessage();
-            using (SmtpClient server = new SmtpClient("smtp.gmail.com"))
+            using (SmtpClient server = new SmtpClient("smtp.mailgun.org"))
             {
                 server.UseDefaultCredentials = false;
                 server.EnableSsl = true;
@@ -102,7 +102,7 @@ namespace Mail
             //this.smtp.Send(this.mail);
 
             this.mail = new MailMessage();
-            using (SmtpClient server = new SmtpClient("smtp.gmail.com"))
+            using (SmtpClient server = new SmtpClient("smtp.mailgun.org"))
             {
                 server.UseDefaultCredentials = false;
                 server.EnableSsl = true;
