@@ -1,25 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Messages" Class="MessagesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="db2c447530bbbf4501bfd9a466008d7240" Class="MessagesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=2c447530-bbbf-4501-bfd9-a466008d7240.sqlserver.sequelizer.com;Initial Catalog=db2c447530bbbf4501bfd9a466008d7240;User ID=qrwacltsiqlzconc" SettingsObjectName="DataHelper.Properties.Settings" SettingsPropertyName="PROD" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.RelativeEmployee" Member="RelativeEmployees">
-    <Type Name="RelativeEmployee">
+  <Table Name="dbo.AccessTokens" Member="AccessTokens">
+    <Type Name="AccessToken">
       <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="EmpNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="RelativeEmpNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.UnconfirmedUsers" Member="UnconfirmedUsers">
-    <Type Name="UnconfirmedUser">
-      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="DateRegistered" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="ConfirmationCode" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ShareCapital" Member="ShareCapitals">
-    <Type Name="ShareCapital">
-      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ShareCapital" Member="ShareCapital1" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="AccessToken" Member="AccessToken1" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.Users" Member="Users">
@@ -60,31 +45,36 @@
       <Column Name="EmergencyNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.RegDump" Member="RegDumps">
-    <Type Name="RegDump">
-      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Data" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+  <Table Name="dbo.AdminAccount" Member="AdminAccounts">
+    <Type Name="AdminAccount">
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.AccessTokens" Member="AccessTokens">
-    <Type Name="AccessToken">
-      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="AccessToken" Member="AccessToken1" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+  <Table Name="dbo.College" Member="Colleges">
+    <Type Name="College">
+      <Column Name="CollegeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CollegeName" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.ShareCapitalPayments" Member="ShareCapitalPayments">
-    <Type Name="ShareCapitalPayment">
-      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="DatePaid" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Amount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+  <Table Name="dbo.Department" Member="Departments">
+    <Type Name="Department">
+      <Column Name="CollegeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DepartmentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DepartmentName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.LoanTypes" Member="LoanTypes">
-    <Type Name="LoanType">
+  <Table Name="dbo.InboundSMS" Member="InboundSMs">
+    <Type Name="InboundSM">
       <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="LoanType" Member="Type" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MsgDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DestinationAddress" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MessageId" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ResourceURL" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SenderAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Timestamp" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsRead" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.LoanAmountMatrix" Member="LoanAmountMatrixes">
@@ -98,24 +88,9 @@
       <Column Name="ProcessingFee" Type="System.Double" DbType="Float" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.UnconfirmedLoan" Member="UnconfirmedLoans">
-    <Type Name="UnconfirmedLoan">
-      <Column Name="TransactionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ConfirmedByMaker" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ConfirmedByCoMaker" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="DateFiled" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="ConfirmCodeMakerSMS" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
-      <Column Name="ConfirmCodeCoMakerSMS" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
-      <Column Name="ConfirmCodeMakerEmail" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
-      <Column Name="ConfirmCodeCoMakerEmail" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
-      <Column Name="ConfirmedByCoMaker2" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ConfirmCodeCoMaker2SMS" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
-      <Column Name="ConfirmCodeCoMaker2Email" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.LoanApplication" Member="LoanApplications">
     <Type Name="LoanApplication">
-      <Column Name="TransactionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TransactionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="EmpNo" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="CoMakerEmpNo" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="TypeOfLoan" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
@@ -131,6 +106,12 @@
       <Column Name="Balance" Type="System.Decimal" DbType="Money" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.LoanTypes" Member="LoanTypes">
+    <Type Name="LoanType">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LoanType" Member="LoanType1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Table Name="dbo.MSGS" Member="MSGs">
     <Type Name="MSG">
       <Column Name="ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
@@ -138,6 +119,74 @@
       <Column Name="Msg" Member="Msg1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="UDH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="DateReceived" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payments" Member="Payments">
+    <Type Name="Payment">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TransactionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PayAmount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="PayDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RegDump" Member="RegDumps">
+    <Type Name="RegDump">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Data" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RelativeEmployee" Member="RelativeEmployees">
+    <Type Name="RelativeEmployee">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RelativeEmpNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ShareCapital" Member="ShareCapitals">
+    <Type Name="ShareCapital">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ShareCapital" Member="ShareCapital1" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ShareCapitalPayments" Member="ShareCapitalPayments">
+    <Type Name="ShareCapitalPayment">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DatePaid" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UnconfirmedLoan" Member="UnconfirmedLoans">
+    <Type Name="UnconfirmedLoan">
+      <Column Name="TransactionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ConfirmedByMaker" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ConfirmedByCoMaker" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DateFiled" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="ConfirmCodeMakerSMS" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="ConfirmCodeCoMakerSMS" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="ConfirmCodeMakerEmail" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
+      <Column Name="ConfirmCodeCoMakerEmail" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
+      <Column Name="ConfirmedByCoMaker2" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ConfirmCodeCoMaker2SMS" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="ConfirmCodeCoMaker2Email" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UnconfirmedUsers" Member="UnconfirmedUsers">
+    <Type Name="UnconfirmedUser">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DateRegistered" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="ConfirmationCode" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserBeneficiaries" Member="UserBeneficiaries">
+    <Type Name="UserBeneficiary">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="BeneficiaryName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DOB" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

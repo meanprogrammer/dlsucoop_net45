@@ -57,9 +57,9 @@ namespace DataHelper.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("workstation id=Messages.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogi" +
-            "n_1;pwd=qe3f68sj67;data source=Messages.mssql.somee.com;persist security info=Fa" +
-            "lse;initial catalog=Messages")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=2c447530-bbbf-4501-bfd9-a466008d7240.sqlserver.sequelizer.com;Database=db2" +
+            "c447530bbbf4501bfd9a466008d7240;User ID=qrwacltsiqlzconc;Password=uyNSBfJyaJYZrf" +
+            "XAArd2XEDdtNTqYNfKRW6gxLeFgDaCH3zpYaBXCLqW4KxWttGt;")]
         public string PROD {
             get {
                 return ((string)(this["PROD"]));
