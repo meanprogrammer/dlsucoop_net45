@@ -43,7 +43,6 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataHelper\ConvertObject.cs" />
     <Compile Include="DataHelper\DataAccess.cs" />
     <Compile Include="DataHelper\MessageParse.cs" />
     <Compile Include="Entities.cs" />
