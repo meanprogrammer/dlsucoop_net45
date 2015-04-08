@@ -195,6 +195,7 @@
     <Content Include="images\login\loginbox_bg.png" />
     <Content Include="images\login\login_bg.jpg" />
     <Content Include="images\login\submit_login.gif" />
+    <Content Include="images\logo-new.png" />
     <Content Include="images\shared\blank.gif" />
     <Content Include="images\shared\border_bit.jpg" />
     <Content Include="images\shared\cal_th_repeat.jpg" />

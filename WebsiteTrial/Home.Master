@@ -4,13 +4,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/screen.css" rel="stylesheet" type="text/css" media="screen" />	
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 
-    <script src="js/jquery-latest/jquery-1.11.1.min.js"></script>
-    <script src="js/bootstrap-latest/bootstrap.js"></script>
-   <script src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/jquery-latest/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-latest/bootstrap.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
 
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -19,93 +19,108 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <!-- start header -->
-            <div id="header">
-                <h1 style="background-image: url('/images/img02b.jpg'); height: 110px; text-align: center; background-size: 100%; width: 966px;">
-                    <asp:Image ID="Image1" runat="server" ImageUrl="~/images/dlsudcooplogo.jpg"  />
-                </h1>
-                <p style="background-image: url('/images/img03b.jpg'); text-align: center; background-size: 100%; color: White; text-shadow: 0px 1px 5px #000; font-weight: bold;" 
-                    class="style5">
-                    De La Salle University-Dasmariñas Cooperative</p>
+        <div class="container no-padding">
+            <!-- start header -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 style="background-image: url('/images/img02b.jpg'); height: 110px; text-align: center; background-size: 100%;">
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/images/dlsudcooplogo.jpg" />
+                    </h1>
+                    <p style="background-image: url('/images/img03b.jpg'); text-align: center; background-size: 100%; color: White; text-shadow: 0px 1px 5px #000; font-weight: bold;"
+                        class="style5">
+                        De La Salle University-Dasmariñas Cooperative
+                    </p>
+                </div>
             </div>
-        <!-- end header -->
-        <!-- start page -->
+            <div class="row">
+                <div class="col-md-12"  style="padding-left: 0px !important; padding-right: 0px !important;">
+                    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">COOP</a>
+    </div>
 
-	        <div id="page">
-                <div id="page-bgtop">
-                    <div id="page-bgbtm">
-				<!-- start content -->
-				        <div id="content">
-                            <div class="post">
-                                <div class="entry">
-                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                                       
-                                    </asp:ContentPlaceHolder>
-                                     </div>
-                            </div>
-                        </div>
-				<!-- end content -->
-				<!-- start sidebar -->
-				        <div id="sidebar">
-<%--                            <ul>
-                                <li>
-                                    <h2 class="text_effect">
-                                        Navigation</h2>
-                                    <ul>
-                                        <li class="style4"><a href="Default.aspx">Home</a></li>
-                                        <li class="style4"><a href="Registration.aspx">Register</a></li>
-                                        <li class="style4"><a href="About.aspx">About</a></li>
-                                        <li class="style4"><a href="FAQ.aspx">FAQ</a></li>
-                                    </ul>
-                                </li>
-                            </ul>--%>
-                            <br />
-                            <a href="Default.aspx" class="btn btn-success btn-block">Home</a> 
-                            <a href="MissionVision.aspx" class="btn btn-success btn-block">Mission/Vision</a> 
-                            <a href="ContactUs.aspx" class="btn btn-success btn-block">Contact Us</a>
-                            <a href="Registration.aspx" class="btn btn-success btn-block">Register</a>
-                            <a href="About.aspx" class="btn btn-success btn-block">About</a>
-    <%--                        <a href="FAQ.aspx" class="btn btn-success btn-block">FAQ</a>--%>
-                            <a href="Downloads.aspx" class="btn btn-success btn-block">Downloads</a>
-                            <br />
-                            <br />
-                            <!---login-->
-                            <ul>
-                                <li class="style4">
-                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+       <li><a href="Default.aspx">Home</a></li>
+            <li><a href="MissionVision.aspx">Mission/Vision</a></li>
+          <li><a href="ContactUs.aspx">Contact Us</a></li>
+          <li><a href="Registration.aspx">Register</a></li>
+          <li><a href="About.aspx">About</a></li>
+          <li><a href="Downloads.aspx">Forms</a></li>
+      </ul>
+  
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Login</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+                </div>
+            </div>
+              </div>
+        <div class="container-fluid">
+            <div class="row" style="background-color:white;">
+                <div class="col-md-12">
+                    <div class="container">
+                        <div class="row">
+                <%--<div class="col-md-2">
+                    <ul>
+                        <li class="style4">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
 
-                                        <asp:Login ID="EmpLogin" runat="server" Height="151px" 
-                                      onauthenticate="Login1_Authenticate" Width="167px" ClientIDMode="Static">
-                                            <TextBoxStyle CssClass="form-control input-md" />
-                                        </asp:Login>
+                                <asp:Login ID="EmpLogin" runat="server" Height="151px"
+                                    OnAuthenticate="Login1_Authenticate" Width="167px" ClientIDMode="Static">
+                                    <TextBoxStyle CssClass="form-control input-md" />
+                                </asp:Login>
 
-                                    </asp:ContentPlaceHolder>
-                                </li>
-                            </ul>
-                            <br />
-                            <!---chat-->
-                             <ul>
-                                <li class="style4">
-                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </li>
+                    </ul>
+                    <br />
+                </div>--%>
+                <div class="col-md-12">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
 
-                                    </asp:ContentPlaceHolder>
-                                </li>
-                            </ul>
+                        <asp:Login ID="EmpLogin" runat="server" Height="151px"
+                            OnAuthenticate="Login1_Authenticate" Width="167px" ClientIDMode="Static">
+                            <TextBoxStyle CssClass="form-control input-md" />
+                        </asp:Login>
 
-
-                        </div>
-				<!-- end sidebar -->
-				        <div style="clear:both">
-                            &nbsp;</div>
+                    </asp:ContentPlaceHolder>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
                     </div>
                 </div>
             </div>
-            <div id="footer">
-                <p>
-                    © 2012 All Rights Reserved</p>
+            <!-- end header -->
+            <!-- start page -->
+            
+         </div>
+        <div class="container">
+
+        
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        © 2012 All Rights Reserved
+                    </p>
+                </div>
+
             </div>
-    </div>
+      </div>
     </form>
 </body>
 </html>
