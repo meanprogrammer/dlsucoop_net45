@@ -84,9 +84,6 @@
             <img src="images/COOP/DSC02802.JPG" class="img-responsive" alt="" />
         </div>
         <div class="item">
-            <img src="images/COOP/DSC02803.JPG" class="img-responsive" alt="" />
-        </div>
-        <div class="item">
             <img src="images/COOP/DSC02804.JPG" class="img-responsive" alt="" />
         </div>
         <div class="item">
