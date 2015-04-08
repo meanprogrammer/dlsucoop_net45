@@ -66,7 +66,7 @@
                             <a href="ContactUs.aspx" class="btn btn-success btn-block">Contact Us</a>
                             <a href="Registration.aspx" class="btn btn-success btn-block">Register</a>
                             <a href="About.aspx" class="btn btn-success btn-block">About</a>
-                            <a href="FAQ.aspx" class="btn btn-success btn-block">FAQ</a>
+    <%--                        <a href="FAQ.aspx" class="btn btn-success btn-block">FAQ</a>--%>
                             <a href="Downloads.aspx" class="btn btn-success btn-block">Downloads</a>
                             <br />
                             <br />
