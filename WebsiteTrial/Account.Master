@@ -69,15 +69,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
        <li><a href="Home_Logged.aspx">Home</a></li>
-            <li><a href="MissionVision.aspx">Mission/Vision</a></li>
-          <li><a href="Registration.aspx">Register</a></li>
-          <li><a href="Downloads.aspx">Forms</a></li>
-          <li><a href="About.aspx">About</a></li>
-           <li><a href="ContactUs.aspx">Contact Us</a></li>
+            <li><a href="Loan.aspx">Loan Application</a></li>
+          <li><a href="Account_Settings.aspx">Member's Profile</a></li>
+          <li><a href="UserShareCapital.aspx">Share Capital</a></li>
       </ul>
   
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="MemberLogin.aspx">Login</a></li>
+        <li><a href="Logout.aspx">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -99,67 +97,14 @@
             </div>
             <!-- start page -->
 
-            <div id="page">
-                <div id="page-bgtop">
-                    <div id="page-bgbtm">
-                        <!-- start content -->
-                        <div id="content">
-                            <div class="post">
-                                <div class="entry">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end content -->
-                        <!-- start sidebar -->
-                        <div id="sidebar">
-                            <br />
-                            <%--                            <ul>
-                                <li>
-                                    <h2 class="text_effect">
-                                        Navigation</h2>
-                                    <ul>
-                                        <li class="style4"><a href="Home_Logged.aspx">Home</a></li>
-                                        <li class="style4">
-                                            <asp:LinkButton ID="LinkButton2" runat="server" onclick="LinkButton2_Click">Loan Application</asp:LinkButton>
-                                        </li>
-                                        <li class="style4"><a href="Account_Settings.aspx">Settings</a></li>
-                                        <li class="style4">
-                                            <asp:LinkButton ID="LinkButton1" runat="server" onclick="LinkButton1_Click">Logout</asp:LinkButton>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>--%>
-      
-                            <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click" class="btn btn-success btn-block">Loan Application</asp:LinkButton>
-                            <!--<a href="Account_Settings.aspx" class="btn btn-success btn-block">Settings</a>-->
-                            <asp:LinkButton ID="SettingsLinkButton" class="btn btn-success btn-block" runat="server">Member's Profile</asp:LinkButton>
-                            <a href="UserShareCapital.aspx" class="btn btn-success btn-block">Share Capital</a>
-                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" CausesValidation="false" class="btn btn-success btn-block">Logout</asp:LinkButton>
-                            <br />
-                            <br />
-                            <!---chat-->
-                            <ul>
-                                <li class="style4">
-                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
-                                    </asp:ContentPlaceHolder>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- end sidebar -->
-                        <div style="clear: both">
-                            &nbsp;
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div id="footer">
                 <p style="font-size: 11px; font-weight: bold;">© 2012 All Rights Reserved</p>
             </div>
 
         </div>
-        </div>
-    <cc1:ChatControl ID="ChatControl1" runat="server">
-    </cc1:ChatControl>
+
+        <cc1:ChatControl ID="ChatControl1" runat="server">
+        </cc1:ChatControl>
     </form>
 </body>
 </html>

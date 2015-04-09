@@ -20,7 +20,7 @@ namespace WebsiteTrial
 
         protected void Page_Load(object sender, System.EventArgs e)
         {
-
+            /*
                 string empNo = Session["EmpNo"].ToString();
 
             bool isEmployee = false;
@@ -36,7 +36,7 @@ namespace WebsiteTrial
             else
             {
                 this.SettingsLinkButton.PostBackUrl = "~/Account_Settings_ne.aspx";
-            }
+            }*/
         }
         protected void LinkButton1_Click(object sender, System.EventArgs e)
         {
@@ -50,17 +50,6 @@ namespace WebsiteTrial
                 base.Session["EmpNo"] = "";
             }
             base.Response.Redirect("~/Default.aspx");
-        }
-        protected void LinkButton2_Click(object sender, System.EventArgs e)
-        {
-            using (DataAccess da = new DataAccess())
-            {
-                if (!da.CompleteDetail(base.Session["EmpNo"].ToString()))
-                {
-                    base.Response.Redirect("~/Message.aspx?msg=Please complete your details in the account setting first before making a loan.");
-                }
-                base.Response.Redirect("~/Loan.aspx");
-            }
         }
     }
 }

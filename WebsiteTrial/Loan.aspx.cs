@@ -24,6 +24,14 @@ namespace WebsiteTrial
                     base.Response.Redirect("~/Message.aspx?msg=ALERT: You still have a pending loan application.");
                     return;
                 }
+
+                using (DataAccess da = new DataAccess())
+                {
+                    if (!da.CompleteDetail(base.Session["EmpNo"].ToString()))
+                    {
+                        base.Response.Redirect("~/Message.aspx?msg=Please complete your details in the account setting first before making a loan.");
+                    }
+                }
             }
             else
             {
@@ -35,7 +43,7 @@ namespace WebsiteTrial
                 using(DataAccess da = new DataAccess())
 	            {
                     this.DDType.DataSource = da.GetLoanTypes();
-                    this.DDType.DataTextField = "Type";
+                    this.DDType.DataTextField = "LoanType1";
                     this.DDType.DataValueField = "RecordID";
                     this.DDType.DataBind();
 
