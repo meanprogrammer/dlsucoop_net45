@@ -1,20 +1,15 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PayShareCapitals.aspx.cs" Inherits="WebsiteTrial.PayShareCapitals" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Administration.Master" AutoEventWireup="true" CodeBehind="PayShareCapitals.aspx.cs" Inherits="WebsiteTrial.PayShareCapitals" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-</head>
-<body>
-    <form id="form1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <a href="AdminPage.aspx">Return to Admin</a>
+    <h2 class="no-padding">Member's Share Capital</h2>
     <div class="row">
         <div class="col-md-4">
             <label for="EmployeeDropDownList">Employee</label>
             <asp:DropDownList CssClass="form-control" ID="EmployeeDropDownList" runat="server"></asp:DropDownList>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator25" CssClass="validation-message"  runat="server" ErrorMessage="Employee is Required." ControlToValidate="EmployeeDropDownList"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator25" CssClass="validation-message" runat="server" ErrorMessage="Employee is Required." ControlToValidate="EmployeeDropDownList"></asp:RequiredFieldValidator>
         </div>
         <div class="col-md-4">
             <label for="ShareCapitalTextBox">Share Capital Amount</label>
@@ -28,13 +23,11 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <asp:Button ID="SaveShareCapitalButton" runat="server" CssClass="btn btn-primary" Text="Save" OnClick="SaveShareCapitalButton_Click" />
-            <a href="AdminPage.aspx" class="btn btn-default btn-md">Return to Admin</a>
+            <asp:Button ID="SaveShareCapitalButton" runat="server" CssClass="btn btn-success btn-size" Text="Save" OnClick="SaveShareCapitalButton_Click" />
+            
         </div>
         <div class="col-md-8">
             &nbsp;
         </div>
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>

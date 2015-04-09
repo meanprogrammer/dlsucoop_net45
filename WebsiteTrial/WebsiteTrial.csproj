@@ -322,6 +322,7 @@
     <Content Include="Account_Settings.aspx" />
     <Content Include="UserShareCapital.aspx" />
     <Content Include="AdminLogin.aspx" />
+    <Content Include="MemberLogin.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -567,6 +568,13 @@
     </Compile>
     <Compile Include="AdminLogin.aspx.designer.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MemberLogin.aspx.cs">
+      <DependentUpon>MemberLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MemberLogin.aspx.designer.cs">
+      <DependentUpon>MemberLogin.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

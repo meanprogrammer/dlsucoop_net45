@@ -19,15 +19,15 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="container no-padding">
+        <div class="container no-padding" style="height: 200px;">
             <!-- start header -->
             <div class="row">
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <img src="images/logo-new.png" class="img-responsive" />
                 </div>
-                <div class="col-md-11">
-                    <h1>De La Salle University-Dasmariñas Cooperative</h1>
-                   <%-- <h1 style="background-image: url('/images/img02b.jpg'); height: 110px; text-align: center; background-size: 100%;">
+                <div class="col-md-10" style="margin-left: -75px;">
+                    <h2>De La Salle University-Dasmariñas Cooperative</h2>
+                    <%-- <h1 style="background-image: url('/images/img02b.jpg'); height: 110px; text-align: center; background-size: 100%;">
                         <asp:Image ID="Image1" runat="server" ImageUrl="~/images/dlsudcooplogo.jpg" />
                     </h1>
                     <p style="background-image: url('/images/img03b.jpg'); text-align: center; background-size: 100%; color: White; text-shadow: 0px 1px 5px #000; font-weight: bold;"
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12"  style="padding-left: 0px !important; padding-right: 0px !important;">
+                <div class="col-md-12" style="padding-left: 0px !important; padding-right: 0px !important; margin-top: 20px;">
                     <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -48,7 +48,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand">COOP</a>
+      <a class="navbar-brand"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -56,27 +56,27 @@
       <ul class="nav navbar-nav">
        <li><a href="Default.aspx">Home</a></li>
             <li><a href="MissionVision.aspx">Mission/Vision</a></li>
-          <li><a href="ContactUs.aspx">Contact Us</a></li>
           <li><a href="Registration.aspx">Register</a></li>
-          <li><a href="About.aspx">About</a></li>
           <li><a href="Downloads.aspx">Forms</a></li>
+          <li><a href="About.aspx">About</a></li>
+           <li><a href="ContactUs.aspx">Contact Us</a></li>
       </ul>
   
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Login</a></li>
+        <li><a href="MemberLogin.aspx">Login</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
                 </div>
             </div>
-              </div>
+        </div>
         <div class="container-fluid">
-            <div class="row" style="background-color:white;">
+            <div class="row" style="background-color: white;">
                 <div class="col-md-12">
                     <div class="container">
                         <div class="row">
-                <%--<div class="col-md-2">
+                            <%--<div class="col-md-2">
                     <ul>
                         <li class="style4">
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
@@ -91,40 +91,38 @@
                     </ul>
                     <br />
                 </div>--%>
-                <div class="col-md-12">
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    </asp:ContentPlaceHolder>
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                            <div class="col-md-12">
+                                <br />
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
 
-                        <asp:Login ID="EmpLogin" runat="server" Height="151px"
-                            OnAuthenticate="Login1_Authenticate" Width="167px" ClientIDMode="Static">
-                            <TextBoxStyle CssClass="form-control input-md" />
-                        </asp:Login>
+                                    
 
-                    </asp:ContentPlaceHolder>
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
-                    </asp:ContentPlaceHolder>
-                </div>
-            </div>
+                                </asp:ContentPlaceHolder>
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+                                </asp:ContentPlaceHolder>
+                                <br />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- end header -->
             <!-- start page -->
-            
-         </div>
-        <div class="container">
+            <br />
+        </div>
 
-        
+        <div class="container generic-footer">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 center-block">
                     <p>
-                        © 2012 All Rights Reserved
+                        © 2012 All Rights Reserved. De La Salle University-Dasmariñas Cooperative
                     </p>
                 </div>
 
             </div>
-      </div>
+        </div>
     </form>
 </body>
 </html>

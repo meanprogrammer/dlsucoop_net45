@@ -501,3 +501,8 @@ img.right {
 .btn-size {
     width:100px;
 }
+
+.generic-footer {
+    height:30px;
+    margin-top:5px;
+}
