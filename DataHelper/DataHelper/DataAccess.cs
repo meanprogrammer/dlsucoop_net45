@@ -44,6 +44,16 @@ namespace DataHelper
             this.dt = new DataTable();
         }
 
+        public List<DownloadableForm> getAllDownloadables()
+        {
+            List<DownloadableForm> result = new List<DownloadableForm>();
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                result = context.DownloadableForms.OrderBy(c => c.RecordID).ToList();
+            }
+            return result;
+        }
+
         public List<LoanType> GetLoanTypes()
         {
             List<LoanType> result = new List<LoanType>();
