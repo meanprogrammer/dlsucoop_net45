@@ -5,16 +5,16 @@ body {
 	background: #F6F6F6;
 	font-size: 13px;
 	text-align: justify;
+    background: radial-gradient(ellipse at center center , #9dd53a 0%, #a1d54f 2%, #80c217 97%, #7cbc0a 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
 
 body, th, td, input, textarea, select, option {
 	font-family: Arial, Helvetica, sans-serif;
 	color: #000000;
-   
     text-align: left;
     font-weight: 700;
     margin-left: 0px;
-    background: radial-gradient(ellipse at center center , #9dd53a 0%, #a1d54f 2%, #80c217 97%, #7cbc0a 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    
 }
 
 h1, h2, h3 {
@@ -492,4 +492,12 @@ img.right {
 
 .navbar {
     border-radius: 0px !important;
+}
+
+.admin-login tr {
+    background-color:white;
+}
+
+.btn-size {
+    width:100px;
 }

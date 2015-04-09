@@ -1,14 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="True" CodeBehind="AdminPage.aspx.cs" Inherits="WebsiteTrial.AdminPage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Administration.Master" AutoEventWireup="true"  CodeBehind="AdminPage.aspx.cs" Inherits="WebsiteTrial.AdminPage" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <title></title>
-</head>
-<body>
-    <form id="form2" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <div class="container">
 
             <h2>Loan approval.</h2>
@@ -81,13 +75,11 @@
             <br />
             <br />
             <asp:Button ID="SendDeficitButton" runat="server"
-                OnClick="SendDeficitButton_Click" Text="Send Deficit Email"
+                OnClick="SendDeficitButton_Click" Text="Deficit Email"
                 CssClass="btn btn-success" />
             <asp:Button ID="PaymentButton" runat="server" OnClick="PaymentButton_Click"
-                Text="Payment" CssClass="btn btn-success" />
+                Text="Payment" CssClass="btn btn-success btn-size" />
             <asp:HyperLink ID="HyperLink1" CssClass="btn btn-default btn-md" NavigateUrl="~/PayShareCapitals.aspx" runat="server">Share Capitals</asp:HyperLink>
             &nbsp;<br />
         </div>
-    </form>
-</body>
-</html>
+</asp:Content>

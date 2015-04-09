@@ -83,7 +83,6 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Account_Settings_old.aspx" />
-    <Content Include="AdminLogin.aspx" />
     <Content Include="AdminPage.aspx" />
     <Content Include="ConfirmLoan.aspx" />
     <Content Include="ConfirmRegistration.aspx" />
@@ -322,6 +321,7 @@
     <Content Include="Registration.aspx" />
     <Content Include="Account_Settings.aspx" />
     <Content Include="UserShareCapital.aspx" />
+    <Content Include="AdminLogin.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -345,12 +345,12 @@
     <Compile Include="Account_Settings_old.aspx.designer.cs">
       <DependentUpon>Account_Settings_old.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminLogin.aspx.cs">
-      <DependentUpon>AdminLogin.aspx</DependentUpon>
+    <Compile Include="Administration.Master.cs">
+      <DependentUpon>Administration.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminLogin.aspx.designer.cs">
-      <DependentUpon>AdminLogin.aspx</DependentUpon>
+    <Compile Include="Administration.Master.designer.cs">
+      <DependentUpon>Administration.Master</DependentUpon>
     </Compile>
     <Compile Include="AdminPage.aspx.cs">
       <DependentUpon>AdminPage.aspx</DependentUpon>
@@ -561,6 +561,13 @@
     <Compile Include="UserShareCapital.aspx.designer.cs">
       <DependentUpon>UserShareCapital.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminLogin.aspx.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminLogin.aspx.designer.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account.Master" />
@@ -589,6 +596,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="old_pages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Files\OriginalFiles\Deduction.doc">
@@ -602,6 +610,7 @@
     <Content Include="fonts\genericons-regular-webfont.eot" />
     <Content Include="fonts\genericons-regular-webfont.ttf" />
     <Content Include="fonts\genericons-regular-webfont.woff" />
+    <Content Include="Administration.Master" />
     <None Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />
