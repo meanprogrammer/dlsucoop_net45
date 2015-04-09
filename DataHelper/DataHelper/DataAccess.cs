@@ -54,12 +54,72 @@ namespace DataHelper
             return result;
         }
 
+        public bool SaveDownloadableForm(string text, string url)
+        {
+            int result = 0;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                DownloadableForm df = new DownloadableForm();
+                df.FormText = text;
+                df.FormUrl = url;
+                context.DownloadableForms.InsertOnSubmit(df);
+                result = context.GetChangeSet().Inserts.Count;
+                context.SubmitChanges();
+            }
+            return result > 0;
+        }
+
+        public bool UpdateDownloadableForm(int recordid, string text, string url)
+        {
+            int result = 0;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                DownloadableForm df = context.DownloadableForms.FirstOrDefault(c => c.RecordID == recordid);
+                if (df != null)
+                {
+                    df.FormText = text;
+                    df.FormUrl = url;
+                    result = context.GetChangeSet().Updates.Count;
+                    context.SubmitChanges();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return result > 0;
+        }
+
+        public DownloadableForm getOneDownloadableForm(int recordId)
+        {
+            DownloadableForm result = new DownloadableForm();
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                result = context.DownloadableForms.FirstOrDefault(c => c.RecordID == recordId);
+            }
+            return result;
+        }
+
         public List<LoanType> GetLoanTypes()
         {
             List<LoanType> result = new List<LoanType>();
             using (MessagesDataContext context = new MessagesDataContext())
             {
                 result = context.LoanTypes.ToList();
+            }
+            return result;
+        }
+
+        public string GetLoanType(int recordId)
+        {
+            string result = string.Empty;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                LoanType lt = context.LoanTypes.FirstOrDefault(c=>c.RecordID == recordId);
+                if (lt != null)
+                {
+                    result = lt.LoanType1;
+                }
             }
             return result;
         }
@@ -83,7 +143,7 @@ namespace DataHelper
 
                 result = (from r in result
                           where r.RequiredShareCapital <= totalShare
-                           select r).ToList();
+                          select r).ToList();
             }
             return result;
         }
@@ -112,7 +172,7 @@ namespace DataHelper
             this.EndProcess();
             */
 
-            using (MessagesDataContext context = new MessagesDataContext()) 
+            using (MessagesDataContext context = new MessagesDataContext())
             {
                 MSG msg = new MSG();
                 msg.ID = pID;
@@ -262,7 +322,7 @@ namespace DataHelper
             return dt;
         }
 
-        
+
 
         public void SMSRegistrationInsert(List<string> regDetails, string number)
         {
@@ -395,7 +455,7 @@ namespace DataHelper
             this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = regDetails[0];
             this.sqlCmd.Parameters.Add("@Date", SqlDbType.Date).Value = DateTime.Now.ToShortDateString();
             */
-            using(MessagesDataContext context = new MessagesDataContext())
+            using (MessagesDataContext context = new MessagesDataContext())
             {
                 UnconfirmedUser uc = new UnconfirmedUser();
                 uc.EmpNo = regDetails[0];
@@ -403,7 +463,7 @@ namespace DataHelper
                 context.UnconfirmedUsers.InsertOnSubmit(uc);
                 context.SubmitChanges();
             }
-            
+
             OpenConnection();
 
             this.sqlCmd.ExecuteNonQuery();
@@ -598,7 +658,7 @@ namespace DataHelper
             }
             this.EndProcess();
         }
-        
+
         public bool NewRegistrationExist(string empNo, string eMail, string number)
         {
             bool result = false;
@@ -629,7 +689,7 @@ namespace DataHelper
             this.sqlCmd.CommandText = "Select * from Users where EmpNo = @EmpNo";
             this.sqlCmd.Parameters.Add("@EmpNo", SqlDbType.NVarChar).Value = empNo;
             OpenConnection();
-            
+
             this.dr = this.sqlCmd.ExecuteReader();
             while (this.dr.Read())
             {
@@ -1118,7 +1178,7 @@ namespace DataHelper
         public DataTable GetUserLoanDetails(string empNo)
         {
             this.cmd = "Select * from LoanApplication where EmpNo = '" + empNo + "' " +
-                        "and DateApproved is not null "+
+                        "and DateApproved is not null " +
                         "and Confirmed > 0 " +
                         "and (Done > 0 or Declined > 0)";
             return this.GetTable(this.cmd);
@@ -1375,7 +1435,7 @@ namespace DataHelper
             this.EndProcess();
         }
 
-        private void OpenConnection() 
+        private void OpenConnection()
         {
             if (this.MyConn.State == ConnectionState.Closed)
             {
@@ -1478,9 +1538,9 @@ namespace DataHelper
             this.MyConn.Close();
         }
 
-        public void UpdateLoanPayStatus(int transactionId) 
+        public void UpdateLoanPayStatus(int transactionId)
         {
-            using(MessagesDataContext context = new MessagesDataContext()) 
+            using (MessagesDataContext context = new MessagesDataContext())
             {
                 LoanApplication lap = context.LoanApplications.FirstOrDefault(c => c.TransactionID == transactionId);
                 if (lap != null)

@@ -133,7 +133,7 @@
     Text="Save Image" /></div>
 </div>
 <div class="panel panel-success">
-      <div class="panel-heading">Transaction History</div>
+      <div class="panel-heading">Loan Information</div>
   <div class="panel-body">
     <asp:Panel ID="Panel2" runat="server">
         <table class="style6">

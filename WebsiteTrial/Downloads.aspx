@@ -2,9 +2,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<h3>Links to Downloadable forms:</h3><br />
+<h2>Downloadable forms</h2>
 
-<table class="table table-bordered table-striped">
+    <asp:GridView ID="DownlodablesGridView" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered">
+        <Columns>
+            <asp:BoundField DataField="FormText" HeaderText="Form" />
+            <asp:HyperLinkField DataNavigateUrlFields="FormUrl" Text="pdf" />
+        </Columns>
+    </asp:GridView>
+<%--<table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Forms</th>
@@ -45,7 +51,7 @@
                 <td><a href="http://www.dlsud.edu.ph/Offices/DLSUDDC/assets/docs/DLSU-D_DC_Withdrawal_Slip_for.pdf" target="_new">pdf</a></td>
             </tr>
         </tbody>
-    </table>
+    </table>--%>
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">

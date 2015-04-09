@@ -10,7 +10,7 @@
 namespace WebsiteTrial {
     
     
-    public partial class Downloads {
+    public partial class DownloadFormsAdmin {
         
         /// <summary>
         /// DownlodablesGridView control.

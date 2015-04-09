@@ -101,7 +101,7 @@ namespace WebsiteTrial
                 this.Maker.Text = da.GetEmployeeName(detail[9]);
                 this.CoMaker1.Text = da.GetEmployeeName(detail[0]);
                 this.CoMaker2.Text = da.GetEmployeeName(detail[1]);
-                this.TypeOfLoan.Text = detail[2];
+                this.TypeOfLoan.Text = da.GetLoanType(int.Parse(detail[2]));
                 this.Reason.Text = detail[3];
                 this.Amount.Text = detail[4];
                 this.Months.Text = detail[5];

@@ -323,6 +323,8 @@
     <Content Include="UserShareCapital.aspx" />
     <Content Include="AdminLogin.aspx" />
     <Content Include="MemberLogin.aspx" />
+    <Content Include="DownloadFormsAdmin.aspx" />
+    <Content Include="DowloadFormsAdminForm.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -575,6 +577,20 @@
     </Compile>
     <Compile Include="MemberLogin.aspx.designer.cs">
       <DependentUpon>MemberLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DownloadFormsAdmin.aspx.cs">
+      <DependentUpon>DownloadFormsAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DownloadFormsAdmin.aspx.designer.cs">
+      <DependentUpon>DownloadFormsAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DowloadFormsAdminForm.aspx.cs">
+      <DependentUpon>DowloadFormsAdminForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DowloadFormsAdminForm.aspx.designer.cs">
+      <DependentUpon>DowloadFormsAdminForm.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
