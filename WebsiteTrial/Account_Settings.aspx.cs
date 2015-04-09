@@ -21,6 +21,20 @@ namespace WebsiteTrial
         {
             if (!Page.IsPostBack)
             {
+                string empNo = Session["EmpNo"].ToString();
+
+                bool isEmployee = false;
+                using (DataAccess da = new DataAccess())
+                {
+                    isEmployee = da.IsEmployee(empNo);
+                }
+
+                if (isEmployee == false)
+                {
+                    Response.Redirect("Account_Settings_ne.aspx");
+                }
+             
+
                 this.college();
                 this.department();
                 this.LoadDetails();
