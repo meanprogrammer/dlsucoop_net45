@@ -110,5 +110,17 @@
         <elementListCompartment Id="9f999536-917f-4616-8112-d82de6130515" absoluteBounds="12.765, 11.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="a95265b3-5ba5-4387-bc49-08d549a736c1" absoluteBounds="0.5, 3.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/MessagesDataContext/DownloadableForm" />
+      <nestedChildShapes>
+        <elementListCompartment Id="84c5e231-066b-4bc6-9493-fce51847b3f9" absoluteBounds="0.515, 3.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9249ab0e-96c9-4073-936b-9b84ff0d7462" absoluteBounds="0.5, 5.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/MessagesDataContext/NewsAndAnnouncement" />
+      <nestedChildShapes>
+        <elementListCompartment Id="73ff745f-2f98-48d2-9a5a-f79ac485aada" absoluteBounds="0.515, 5.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

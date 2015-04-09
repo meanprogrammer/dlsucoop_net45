@@ -22,7 +22,7 @@ namespace DataHelper
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="db2c447530bbbf4501bfd9a466008d7240")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Messages")]
 	public partial class MessagesDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -69,10 +69,16 @@ namespace DataHelper
     partial void InsertUserBeneficiary(UserBeneficiary instance);
     partial void UpdateUserBeneficiary(UserBeneficiary instance);
     partial void DeleteUserBeneficiary(UserBeneficiary instance);
+    partial void InsertDownloadableForm(DownloadableForm instance);
+    partial void UpdateDownloadableForm(DownloadableForm instance);
+    partial void DeleteDownloadableForm(DownloadableForm instance);
+    partial void InsertNewsAndAnnouncement(NewsAndAnnouncement instance);
+    partial void UpdateNewsAndAnnouncement(NewsAndAnnouncement instance);
+    partial void DeleteNewsAndAnnouncement(NewsAndAnnouncement instance);
     #endregion
 		
 		public MessagesDataContext() : 
-				base(global::DataHelper.Properties.Settings.Default.PROD, mappingSource)
+				base(global::DataHelper.Properties.Settings.Default.OFFICE, mappingSource)
 		{
 			OnCreated();
 		}
@@ -242,6 +248,22 @@ namespace DataHelper
 			get
 			{
 				return this.GetTable<UserBeneficiary>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DownloadableForm> DownloadableForms
+		{
+			get
+			{
+				return this.GetTable<DownloadableForm>();
+			}
+		}
+		
+		public System.Data.Linq.Table<NewsAndAnnouncement> NewsAndAnnouncements
+		{
+			get
+			{
+				return this.GetTable<NewsAndAnnouncement>();
 			}
 		}
 	}
@@ -3430,6 +3452,250 @@ namespace DataHelper
 					this._DOB = value;
 					this.SendPropertyChanged("DOB");
 					this.OnDOBChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DownloadableForms")]
+	public partial class DownloadableForm : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RecordID;
+		
+		private string _FormText;
+		
+		private string _FormUrl;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRecordIDChanging(int value);
+    partial void OnRecordIDChanged();
+    partial void OnFormTextChanging(string value);
+    partial void OnFormTextChanged();
+    partial void OnFormUrlChanging(string value);
+    partial void OnFormUrlChanged();
+    #endregion
+		
+		public DownloadableForm()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RecordID
+		{
+			get
+			{
+				return this._RecordID;
+			}
+			set
+			{
+				if ((this._RecordID != value))
+				{
+					this.OnRecordIDChanging(value);
+					this.SendPropertyChanging();
+					this._RecordID = value;
+					this.SendPropertyChanged("RecordID");
+					this.OnRecordIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FormText", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
+		public string FormText
+		{
+			get
+			{
+				return this._FormText;
+			}
+			set
+			{
+				if ((this._FormText != value))
+				{
+					this.OnFormTextChanging(value);
+					this.SendPropertyChanging();
+					this._FormText = value;
+					this.SendPropertyChanged("FormText");
+					this.OnFormTextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FormUrl", DbType="NVarChar(300) NOT NULL", CanBeNull=false)]
+		public string FormUrl
+		{
+			get
+			{
+				return this._FormUrl;
+			}
+			set
+			{
+				if ((this._FormUrl != value))
+				{
+					this.OnFormUrlChanging(value);
+					this.SendPropertyChanging();
+					this._FormUrl = value;
+					this.SendPropertyChanged("FormUrl");
+					this.OnFormUrlChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NewsAndAnnouncement")]
+	public partial class NewsAndAnnouncement : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RecordID;
+		
+		private string _Title;
+		
+		private string _Content;
+		
+		private System.DateTime _DateOfPost;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRecordIDChanging(int value);
+    partial void OnRecordIDChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnContentChanging(string value);
+    partial void OnContentChanged();
+    partial void OnDateOfPostChanging(System.DateTime value);
+    partial void OnDateOfPostChanged();
+    #endregion
+		
+		public NewsAndAnnouncement()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RecordID
+		{
+			get
+			{
+				return this._RecordID;
+			}
+			set
+			{
+				if ((this._RecordID != value))
+				{
+					this.OnRecordIDChanging(value);
+					this.SendPropertyChanging();
+					this._RecordID = value;
+					this.SendPropertyChanged("RecordID");
+					this.OnRecordIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Content
+		{
+			get
+			{
+				return this._Content;
+			}
+			set
+			{
+				if ((this._Content != value))
+				{
+					this.OnContentChanging(value);
+					this.SendPropertyChanging();
+					this._Content = value;
+					this.SendPropertyChanged("Content");
+					this.OnContentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateOfPost", DbType="DateTime NOT NULL")]
+		public System.DateTime DateOfPost
+		{
+			get
+			{
+				return this._DateOfPost;
+			}
+			set
+			{
+				if ((this._DateOfPost != value))
+				{
+					this.OnDateOfPostChanging(value);
+					this.SendPropertyChanging();
+					this._DateOfPost = value;
+					this.SendPropertyChanged("DateOfPost");
+					this.OnDateOfPostChanged();
 				}
 			}
 		}
