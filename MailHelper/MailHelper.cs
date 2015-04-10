@@ -293,7 +293,7 @@ namespace Mail
 				{
 					current.Request.Url.Scheme,
 					current.Request.Url.Host,
-					(current.Request.Url.Port == 80) ? string.Empty : (":" + current.Request.Url.Port),
+					string.Empty, //(current.Request.Url.Port == 80) ? string.Empty : (":" + current.Request.Url.Port),
 					current.Request.ApplicationPath
 				});
 			}
