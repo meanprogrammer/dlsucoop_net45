@@ -52,10 +52,13 @@ namespace WebsiteTrial
 
                 this.EmpBdateYearDropDownList.DataSource = GetYears();
                 DataBindDates(EmpBdateYearDropDownList);
+
+                this.RegistrationRadioButtonList.SelectedIndex = 0;
+                this.RegistrationMultiView.ActiveViewIndex = 0;
             }
             else
             {
-                if (this.RegistrationTypeDropDownList.SelectedIndex == 1)
+                if (this.RegistrationRadioButtonList.SelectedIndex == 0)
                 {
                     if (!(String.IsNullOrEmpty(this.tbPassword.Text.Trim())))
                     {
@@ -68,7 +71,7 @@ namespace WebsiteTrial
                     }
                 }
 
-                if (this.RegistrationTypeDropDownList.SelectedIndex == 2)
+                if (this.RegistrationRadioButtonList.SelectedIndex == 1)
                 {
                     if (!(String.IsNullOrEmpty(this.tbPassword2.Text.Trim())))
                     {
@@ -371,6 +374,22 @@ namespace WebsiteTrial
                 col.Add(new DateMonthDTO(i.ToString(), i.ToString()));
             }
             return col;
+        }
+
+        protected void RegistrationRadioButtonList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.RegistrationRadioButtonList.SelectedIndex == 0)
+            {
+                this.RegistrationMultiView.ActiveViewIndex = 0;
+            }
+            else if (this.RegistrationRadioButtonList.SelectedIndex == 1)
+            {
+                this.RegistrationMultiView.ActiveViewIndex = 1;
+            }
+            else
+            {
+                this.RegistrationMultiView.ActiveViewIndex = -1;
+            }
         }
     }
 }

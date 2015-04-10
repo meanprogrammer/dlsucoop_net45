@@ -115,10 +115,8 @@
 
         <div class="container generic-footer">
             <div class="row">
-                <div class="col-md-12 center-block">
-                    <p>
-                        © 2012 All Rights Reserved. De La Salle University-Dasmariñas Cooperative
-                    </p>
+                <div class="col-md-12" style="text-align: center;">
+                    <h5>&copy; 2015 All Rights Reserved. De La Salle University-Dasmariñas Cooperative</h5>
                 </div>
 
             </div>

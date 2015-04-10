@@ -24,11 +24,15 @@
             <div class="row">
                 <div class="col-md-12">
                     <label for="RegistrationTypeDropDownList">Registration Type</label>
-                    <asp:DropDownList ID="RegistrationTypeDropDownList" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="RegistrationTypeDropDownList_SelectedIndexChanged">
+                    <asp:DropDownList ID="RegistrationTypeDropDownList" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="RegistrationTypeDropDownList_SelectedIndexChanged" Visible="False">
                         <asp:ListItem>--SELECT--</asp:ListItem>
                         <asp:ListItem>Employee</asp:ListItem>
                         <asp:ListItem>Non-Employee</asp:ListItem>
                     </asp:DropDownList>
+                    <asp:RadioButtonList ID="RegistrationRadioButtonList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="RegistrationRadioButtonList_SelectedIndexChanged">
+                        <asp:ListItem Selected="True">Employee</asp:ListItem>
+                        <asp:ListItem Value="NonEmployee">Non-Employee</asp:ListItem>
+                    </asp:RadioButtonList>
                 </div>
             </div>
             <div class="row" style="margin-top:20px;">

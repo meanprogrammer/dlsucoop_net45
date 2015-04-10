@@ -56,7 +56,7 @@
     <br />
     <div class="row">
         <div class="col-md-12">
-            <asp:Button ID="PayButton" runat="server" class="btn btn-success btn-size" OnClick="PayButton_Click" Text="Save Payment"
+            <asp:Button ID="PayButton" runat="server" class="btn btn-success" OnClick="PayButton_Click" Text="Save Payment"
                 />
         </div>
     </div>

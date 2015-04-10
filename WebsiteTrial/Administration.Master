@@ -48,6 +48,14 @@
                 </div>
             </div>
         </div>
+        <div class="container generic-footer">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <h5>&copy; 2015 All Rights Reserved. De La Salle University-Dasmariñas Cooperative</h5>
+                </div>
+
+            </div>
+        </div>
     </form>
 </body>
 </html>

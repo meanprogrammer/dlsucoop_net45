@@ -130,6 +130,7 @@
     </div>
     <br />
     <a href="SMSHowto.aspx" class="btn btn-primary btn-md">How to register to SMS Application</a>
+    <br />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>
