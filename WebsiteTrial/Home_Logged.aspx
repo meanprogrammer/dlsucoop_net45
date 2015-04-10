@@ -288,6 +288,3 @@
     <asp:HiddenField ID="IDHiddenField" runat="server" ClientIDMode="Static" />
 </asp:Content>
 
-<asp:Content ID="Content3" runat="server" contentplaceholderid="ContentPlaceHolder3">
-      </asp:Content>
-

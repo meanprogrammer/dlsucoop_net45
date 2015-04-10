@@ -17,17 +17,6 @@
     <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <style type="text/css">
-        .style3 {
-            font-family: "Times New Roman", Times, serif;
-            font-size: 46pt;
-        }
-
-        .style5 {
-            font-size: 15px;
-            color: White;
-        }
-    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -40,46 +29,39 @@
                     </div>
                     <div class="col-md-10" style="margin-left: -75px;">
                         <h2>De La Salle University-Dasmariñas Cooperative</h2>
-                        <%-- <h1 style="background-image: url('/images/img02b.jpg'); height: 110px; text-align: center; background-size: 100%;">
-                        <asp:Image ID="Image1" runat="server" ImageUrl="~/images/dlsudcooplogo.jpg" />
-                    </h1>
-                    <p style="background-image: url('/images/img03b.jpg'); text-align: center; background-size: 100%; color: White; text-shadow: 0px 1px 5px #000; font-weight: bold;"
-                        class="style5">
-                        De La Salle University-Dasmariñas Cooperative
-                    </p>--%>
                         <h3 style="margin-top: -10px;">Administration</h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12" style="padding-left: 0px !important; padding-right: 0px !important; margin-top: 20px;">
                         <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand"></a>
-    </div>
+                          <div class="container-fluid">
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                              </button>
+                              <a class="navbar-brand"></a>
+                            </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-       <li><a href="Home_Logged.aspx">Home</a></li>
-            <li><a href="Loan.aspx">Loan Application</a></li>
-          <li><a href="Account_Settings.aspx">Member's Profile</a></li>
-          <li><a href="UserShareCapital.aspx">Share Capital</a></li>
-      </ul>
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                              <ul class="nav navbar-nav">
+                               <li><a href="Home_Logged.aspx">Home</a></li>
+                                    <li><a href="Loan.aspx">Loan Application</a></li>
+                                  <li><a href="Account_Settings.aspx">Member's Profile</a></li>
+                                  <li><a href="UserShareCapital.aspx">Share Capital</a></li>
+                              </ul>
   
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="Logout.aspx">Logout</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+                              <ul class="nav navbar-nav navbar-right">
+                                <li><a href="MemberLogout.aspx">Logout</a></li>
+                              </ul>
+                            </div><!-- /.navbar-collapse -->
+                          </div><!-- /.container-fluid -->
+                        </nav>
                     </div>
                 </div>
             </div>

@@ -38,18 +38,5 @@ namespace WebsiteTrial
                 this.SettingsLinkButton.PostBackUrl = "~/Account_Settings_ne.aspx";
             }*/
         }
-        protected void LinkButton1_Click(object sender, System.EventArgs e)
-        {
-            try
-            {
-                ChatControl.StopSession();
-            }
-            finally
-            {
-                base.Session["Logged"] = false;
-                base.Session["EmpNo"] = "";
-            }
-            base.Response.Redirect("~/Default.aspx");
-        }
     }
 }

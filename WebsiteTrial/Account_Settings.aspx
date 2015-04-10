@@ -185,7 +185,8 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+    </div>
+    <div class="row">
         <div class="col-md-12">
             <label for="txtbirthday">Birthdate  <span style="color: red; margin-top: 22px;">*</span></label>
             <div class="row">
@@ -214,8 +215,8 @@
                 </div>
             </div>
         </div>
-            </div>
     </div>
+
     <h4>If in business,</h4>
     <div class="row">
         <div class="col-md-6">
@@ -256,6 +257,4 @@
             <asp:Button ID="btnRegister" runat="server" CssClass="btn btn-success" Text="Update" OnClick="btnRegister_Click" />
         </div>
     </div>
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
 </asp:Content>
