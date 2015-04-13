@@ -326,6 +326,8 @@
     <Content Include="DownloadFormsAdmin.aspx" />
     <Content Include="DowloadFormsAdminForm.aspx" />
     <Content Include="MemberLogout.aspx" />
+    <Content Include="NAAdminForm.aspx" />
+    <Content Include="NAAdmin.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -599,6 +601,20 @@
     </Compile>
     <Compile Include="MemberLogout.aspx.designer.cs">
       <DependentUpon>MemberLogout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NAAdminForm.aspx.cs">
+      <DependentUpon>NAAdminForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NAAdminForm.aspx.designer.cs">
+      <DependentUpon>NAAdminForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NAAdmin.aspx.cs">
+      <DependentUpon>NAAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NAAdmin.aspx.designer.cs">
+      <DependentUpon>NAAdmin.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
