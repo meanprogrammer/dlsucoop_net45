@@ -29,10 +29,10 @@
     <Setting Name="PROD" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Server=2c447530-bbbf-4501-bfd9-a466008d7240.sqlserver.sequelizer.com;Database=db2c447530bbbf4501bfd9a466008d7240;User ID=qrwacltsiqlzconc;Password=uyNSBfJyaJYZrfXAArd2XEDdtNTqYNfKRW6gxLeFgDaCH3zpYaBXCLqW4KxWttGt;&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Server=79488b62-49e5-4899-ba70-a47800a28f69.sqlserver.sequelizer.com;Database=db79488b6249e54899ba70a47800a28f69;User ID=nkjhrjfczbcjiuop;Password=jyD5KEToEtAEcUFv7QMvsLv7kaTvQSrLmaVrXXpBLEwE5Px8bpmMxusFdFSJUxFU;&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Server=2c447530-bbbf-4501-bfd9-a466008d7240.sqlserver.sequelizer.com;Database=db2c447530bbbf4501bfd9a466008d7240;User ID=qrwacltsiqlzconc;Password=uyNSBfJyaJYZrfXAArd2XEDdtNTqYNfKRW6gxLeFgDaCH3zpYaBXCLqW4KxWttGt;</Value>
+      <Value Profile="(Default)">Server=79488b62-49e5-4899-ba70-a47800a28f69.sqlserver.sequelizer.com;Database=db79488b6249e54899ba70a47800a28f69;User ID=nkjhrjfczbcjiuop;Password=jyD5KEToEtAEcUFv7QMvsLv7kaTvQSrLmaVrXXpBLEwE5Px8bpmMxusFdFSJUxFU;</Value>
     </Setting>
   </Settings>
 </SettingsFile>
