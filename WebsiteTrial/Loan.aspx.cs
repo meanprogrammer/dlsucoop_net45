@@ -76,7 +76,7 @@ namespace WebsiteTrial
             return false;
         }
         
-        protected void Button1_Click(object sender, System.EventArgs e)
+        protected void ShowAgreement_Click(object sender, System.EventArgs e)
         {
 
             if (!Page.IsValid)
@@ -218,8 +218,8 @@ namespace WebsiteTrial
             Messages msgObj = new Messages();
 
             System.Collections.Generic.List<string> msgDetails = new System.Collections.Generic.List<string>();
-         
 
+            bool filename = this.FileUpload1.HasFile;
 
                 msgDetails.Add(this.EmpNo);
                 msgDetails.Add(this.DDType.Text);
@@ -313,6 +313,96 @@ namespace WebsiteTrial
             StringBuilder b = new StringBuilder();
             args.IsValid = true;
             
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            bool hasfile = this.FileUpload1.HasFile;
+        }
+
+        protected void Button2_Click1(object sender, EventArgs e)
+        {
+            if (this.AgreementCheckBox.Checked == false)
+            {
+                this.msgbox.InnerHtml = "You must agree to Loan Agreement";
+                this.msgbox.Attributes["class"] = "alert alert-danger";
+                return;
+            }
+
+            DataAccess da = new DataAccess();
+            Messages msgObj = new Messages();
+
+            System.Collections.Generic.List<string> msgDetails = new System.Collections.Generic.List<string>();
+
+            bool filename = this.FileUpload1.HasFile;
+
+            msgDetails.Add(this.EmpNo);
+            msgDetails.Add(this.DDType.Text);
+            msgDetails.Add(this.tbReason.Text);
+            var amount = this.DDType.SelectedValue == "1" ? this.tbAmount.Text : this.AllowedAmountDropDownList.SelectedItem.Text;
+            msgDetails.Add(amount);
+            msgDetails.Add(this.MonthsToPayLabel.Text);
+
+            msgDetails.Add(this.Comaker1DropDownList.SelectedValue);
+            msgDetails.Add(this.Comaker2DropDownList.SelectedValue);
+
+            string coMakerSMSConfirm = "";
+            string coMakerConfirm = "";
+            string coMaker2SMSConfirm = "";
+            string coMaker2Confirm = "";
+            System.Collections.Generic.List<string> names = new System.Collections.Generic.List<string>();
+            names.Add(da.GetEmployeeName(msgDetails[0]));
+            if (msgDetails.Count >= 6)
+            {
+                names.Add(da.GetEmployeeName(msgDetails[5]));
+                if (msgDetails.Count == 7)
+                {
+                    names.Add(da.GetEmployeeName(msgDetails[6]));
+                }
+            }
+            int LastTransactionID = da.GetLastTransactionID();
+            AttachmentHelper.CreatePrommisoryDocument(base.Server.MapPath("~/Files/OriginalFiles/Promissory.doc"), base.Server.MapPath("~/Files/Promissory") + LastTransactionID + ".pdf", msgDetails, names);
+            //Commented
+            AttachmentHelper.CreateDeductionDocument(base.Server.MapPath("~/Files/OriginalFiles/Deduction.doc"), base.Server.MapPath("~/Files/Deduction") + LastTransactionID + ".pdf", msgDetails, names[0]);
+            //Commented
+            MailHelper mail = new MailHelper();
+            //Commented
+            mail.AttachFile(base.Server.MapPath("~/Files/Promissory") + LastTransactionID + ".pdf");
+            string message;
+            if (msgDetails.Count >= 6)
+            {
+                if (msgDetails.Count == 7)
+                {
+                    message = mail.MakeEmailBodyLoanConfirmationCoMaker(msgDetails, names, LastTransactionID, names[2], true);
+                    mail.SendMailMessage("dlsudmailer@gmail.com", da.GetEmployeeEmail(msgDetails[6]), "DLSU-D Notification Email", message);
+                    mail.RefreshSMTP();
+                    coMaker2SMSConfirm = mail.PassSMS;
+                    coMaker2Confirm = mail.Pass;
+                    msgObj.SendSMS(da.GetPhoneNumber(msgDetails[6]), msgObj.NotifyCoMaker(names[2]));
+                }
+                message = mail.MakeEmailBodyLoanConfirmationCoMaker(msgDetails, names, LastTransactionID, names[1], false);
+                mail.SendMailMessage("dlsudmailer@gmail.com", da.GetEmployeeEmail(msgDetails[5]), "DLSU-D Notification Email", message);
+                mail.RefreshSMTP();
+                coMakerSMSConfirm = mail.PassSMS;
+                coMakerConfirm = mail.Pass;
+                msgObj.SendSMS(da.GetPhoneNumber(msgDetails[5]), msgObj.NotifyCoMaker(names[1]));
+            }
+            mail.AttachFile(base.Server.MapPath("~/Files/Deduction") + LastTransactionID + ".pdf");
+            message = mail.MakeEmailBodyLoanConfirmationMaker(msgDetails, names, LastTransactionID);
+            mail.SendMailMessage("dlsudmailer@gmail.com", da.GetEmployeeEmail(msgDetails[0]), "DLSU-D Notification Email", message);
+            //Commented
+            string makerSMSConfirm = mail.PassSMS;
+            string makerConfirm = mail.Pass;
+            da.InsertLoanApplication(msgDetails, makerSMSConfirm, makerConfirm, coMakerSMSConfirm, coMakerConfirm, coMaker2SMSConfirm, coMaker2Confirm);
+            //Commented
+            mail.Dispose();
+            //Commented
+            //base.Response.Redirect("~\\Message.aspx?msg=You have applied for a loan. Please check your email for the confirmation link.");
+            //return;
+
+            this.msgbox.InnerHtml = "You have applied for a loan. Please check your email for the confirmation link.";
+            CancelButton_Click(sender, e);
+            ClearControls();
         }
     }
 }

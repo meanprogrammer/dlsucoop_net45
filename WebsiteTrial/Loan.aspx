@@ -14,7 +14,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <asp:UpdatePanel runat="server" id="mainupdatepanel">
+    <asp:UpdatePanel ID="mainupdatepanel" runat="server">
         <ContentTemplate>
             <div class="row">
                 <div class="col-md-12">
@@ -87,14 +87,16 @@
                     <asp:TextBox ID="ProcessingFeeTextBox" ReadOnly="true" CssClass="form-control input-md" runat="server"></asp:TextBox>
                 </div>
                 <div class="col-md-6">
-                    &nbsp;
+                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="FileUpload1" CssClass="validation-message" Display="Dynamic" ErrorMessage="a copy of payslip is required."></asp:RequiredFieldValidator>
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-md-12">
-                    <asp:Button ID="Button1" runat="server" Text="Submit Loan" CssClass="btn btn-success btn-md" OnClick="Button1_Click" />
-                </div>
+                    <asp:CheckBox ID="AgreementCheckBox" runat="server" Text="I agree with the loan agreement" />
+                    <a onclick='window.open("agreement.html", "Loan Agreement", "height=250,width=700,toolbar=0,resizable=0");' class="btn btn-default btn-xs">View Loan agreement</a>
+                    &nbsp;</div>
             </div>
             <!--
             <div runat="server" visible="false" clientidmode="Static" id="agreementModal">
@@ -106,7 +108,7 @@
        
                 </div>
             </div>
-            -->
+            
 
         <asp:Panel ID="Panel1" Visible="false" CssClass="agreement" runat="server">
 
@@ -115,7 +117,7 @@
             <br />
             <div class="row">
                 <div class="col-md-10">
-                    <asp:Button ID="AcceptButton" ClientIDMode="Static" CssClass="btn btn-primary btn-block btn-md" runat="server" Text="Accept" OnClick="AcceptButton_Click" />
+                    
                 </div>
                 <div class="col-md-2">
                     <asp:Button ID="CancelButton" CssClass="btn btn-block btn-default btn-md" runat="server" Text="Cancel" OnClick="CancelButton_Click" />
@@ -124,7 +126,12 @@
             <br />
             <br />
         </asp:Panel>
-        <asp:Panel ID="Panel2" runat="server" Visible="false" CssClass="agreement-backround"></asp:Panel>
+        <asp:Panel ID="Panel2" runat="server" Visible="false" CssClass="agreement-backround"></asp:Panel>-->
+            <asp:Button ID="AcceptAndSubmitButton" CssClass="btn btn-primary btn-md" runat="server" Text="Accept Agreement and submit Loan" OnClick="Button2_Click1" />
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="AcceptAndSubmitButton" />
+           
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

@@ -84,6 +84,7 @@
     <Content Include="About.aspx" />
     <Content Include="Account_Settings_old.aspx" />
     <Content Include="AdminPage.aspx" />
+    <Content Include="agreement.html" />
     <Content Include="ConfirmLoan.aspx" />
     <Content Include="ConfirmRegistration.aspx" />
     <Content Include="Account_Settings_ne.aspx" />
@@ -397,6 +398,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\FileUploadHelper.cs" />
     <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="Home.master.cs">
       <DependentUpon>Home.Master</DependentUpon>
@@ -654,6 +656,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="old_pages\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Files\OriginalFiles\Deduction.doc">

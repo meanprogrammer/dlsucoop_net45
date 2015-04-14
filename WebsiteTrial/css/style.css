@@ -510,3 +510,7 @@ img.right {
 .na-title {
     width:100px;
 }
+
+.table-nonfluid {
+   width: auto !important;
+}
