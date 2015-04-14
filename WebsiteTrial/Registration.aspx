@@ -29,7 +29,7 @@
                         <asp:ListItem>Employee</asp:ListItem>
                         <asp:ListItem>Non-Employee</asp:ListItem>
                     </asp:DropDownList>
-                    <asp:RadioButtonList ID="RegistrationRadioButtonList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="RegistrationRadioButtonList_SelectedIndexChanged">
+                    <asp:RadioButtonList ID="RegistrationRadioButtonList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="RegistrationRadioButtonList_SelectedIndexChanged" RepeatDirection="Horizontal" CellPadding="8" CellSpacing="8">
                         <asp:ListItem Selected="True">Employee</asp:ListItem>
                         <asp:ListItem Value="NonEmployee">Non-Employee</asp:ListItem>
                     </asp:RadioButtonList>
@@ -39,6 +39,7 @@
                 <div class="col-md-12">
                     <asp:MultiView ID="RegistrationMultiView" runat="server">
                         <asp:View runat="server" ClientIDMode="Static" ID="EmployeeView">
+                            <h1 class="no-padding">Employee</h1>
                             <div class="row">
                                 <div class="col-md-12">
                                     <asp:CustomValidator ID="CustomValidator2" runat="server" ControlToValidate="tbEmpNum" Display="Dynamic" OnServerValidate="ValidateRegistration" ValidateEmptyText="True" CssClass="validation-message" ErrorMessage="Either Employee ID or Email address is already registered."></asp:CustomValidator>
@@ -309,7 +310,7 @@
                             </div>
                         </asp:View>
                         <asp:View runat="server" ClientIDMode="Static" ID="NonEmployeeView">
-                            <h1>Non-Employee</h1>
+                            <h1 class="no-padding">Non-Employee</h1>
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="RelativeEmpDropDownList">Relative Employee</label>

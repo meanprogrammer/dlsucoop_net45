@@ -9,6 +9,7 @@ using System.Net.Mail;
 using System.Net;
 using System.Globalization;
 using Mail;
+using WebsiteTrial.Helper;
 
 namespace WebsiteTrial
 {
@@ -16,6 +17,7 @@ namespace WebsiteTrial
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            SessionHelper.EnsureAdminLogged();
             if (!Page.IsPostBack)
             {
                 DataHelper.DataAccess da = new DataHelper.DataAccess();

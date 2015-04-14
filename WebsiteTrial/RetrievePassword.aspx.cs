@@ -17,7 +17,6 @@ namespace WebsiteTrial
         }
         protected void Button1_Click(object sender, System.EventArgs e)
         {
-                
                 using (DataAccess da = new DataAccess())
                 {
                     if (da.EmployeeNumberExist(this.TextBox1.Text))
@@ -39,31 +38,6 @@ namespace WebsiteTrial
                     return;
                 }
 
-        }
-
-        protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
-        {
-            using (DataAccess da = new DataAccess())
-            {
-                if (RetrievePassword.count == 3)
-                {
-                    this.EmpLogin.Enabled = false;
-                }
-                if (da.EmployeeNumberExistAndConfirmed(this.EmpLogin.UserName.ToString()))
-                {
-                    bool confirm = da.retrieveUserPass(this.EmpLogin.UserName.ToString(), this.EmpLogin.Password.ToString());
-                    if (confirm)
-                    {
-                        this.Session["Logged"] = true;
-                        this.Session["EmpNo"] = this.EmpLogin.UserName.ToString();
-                        base.Response.Redirect("~/Home_Logged.aspx");
-                    }
-                    else
-                    {
-                        this.EmpLogin.FailureText = "Invalid Employee Number or Bad Password";
-                    }
-                }
-            }
         }
     }
 }

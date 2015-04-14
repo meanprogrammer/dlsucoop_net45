@@ -6,6 +6,7 @@ using System.Web.UI;
 using DataHelper;
 using System.Web.UI.WebControls;
 using SMS;
+using WebsiteTrial.Helper;
 
 namespace WebsiteTrial
 {
@@ -15,12 +16,7 @@ namespace WebsiteTrial
         Messages msg = new Messages();
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            this.Session["AdminLogged"] = true;
-            if (!System.Convert.ToBoolean(this.Session["AdminLogged"]))
-            {
-                base.Response.Redirect("~/AdminLogin.aspx");
-                return;
-            }
+            SessionHelper.EnsureAdminLogged();
             if (!base.IsPostBack)
             {
                 this.GetDataApp();

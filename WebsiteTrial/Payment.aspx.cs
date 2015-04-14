@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using DataHelper;
+using WebsiteTrial.Helper;
 
 namespace WebsiteTrial
 {
@@ -13,6 +14,7 @@ namespace WebsiteTrial
         DataHelper.DataAccess da = new DataHelper.DataAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
+            SessionHelper.EnsureAdminLogged();
             if (!Page.IsPostBack)
             {
                 this.EmpDropDownList.DataSource = da.GetAllUsersWithEmpty();
