@@ -67,6 +67,16 @@ namespace DataHelper.DataHelper
             return result > 0;
         }
 
+        public NewsAndAnnouncement GetOneNewsAndAnnoucement(int recordId)
+        {
+            NewsAndAnnouncement result = null;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                result = context.NewsAndAnnouncements.FirstOrDefault(c => c.RecordID == recordId);
+            }
+            return result;
+        }
+
         public List<NewsAndAnnouncement> GetTopTen()
         {
             List<NewsAndAnnouncement> result = new List<NewsAndAnnouncement>();

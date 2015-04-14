@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using DataHelper;
+using DataHelper.DataHelper;
 
 namespace WebsiteTrial
 {
@@ -19,6 +20,9 @@ namespace WebsiteTrial
                     base.Response.Redirect("~/Home_Logged.aspx");
                     return;
                 }
+                NewsAnnoucementData na = new NewsAnnoucementData();
+                this.GridView1.DataSource = na.GetTopTen();
+                this.GridView1.DataBind();
             }
             else
             {

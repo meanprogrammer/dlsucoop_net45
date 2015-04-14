@@ -328,6 +328,7 @@
     <Content Include="MemberLogout.aspx" />
     <Content Include="NAAdminForm.aspx" />
     <Content Include="NAAdmin.aspx" />
+    <Content Include="NewsAnnoucementView.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -615,6 +616,13 @@
     </Compile>
     <Compile Include="NAAdmin.aspx.designer.cs">
       <DependentUpon>NAAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewsAnnoucementView.aspx.cs">
+      <DependentUpon>NewsAnnoucementView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewsAnnoucementView.aspx.designer.cs">
+      <DependentUpon>NewsAnnoucementView.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
