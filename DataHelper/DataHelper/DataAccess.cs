@@ -54,6 +54,16 @@ namespace DataHelper
             return result;
         }
 
+        public LoanApplication GetOneLoanApplication(int transId)
+        {
+            LoanApplication result = null;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                result = context.LoanApplications.FirstOrDefault(x => x.TransactionID == transId);
+            }
+            return result;
+        }
+
         public bool SaveDownloadableForm(string text, string url)
         {
             int result = 0;
@@ -740,6 +750,7 @@ namespace DataHelper
             this.sqlCmd.Parameters.Add("@cEmail", SqlDbType.NVarChar).Value = coMakerConfirm;
             this.sqlCmd.Parameters.Add("@c2SMS", SqlDbType.NVarChar).Value = coMaker2SMS;
             this.sqlCmd.Parameters.Add("@c2Email", SqlDbType.NVarChar).Value = coMaker2Confirm;
+            
             OpenConnection();
             this.sqlCmd.ExecuteNonQuery();
             if (loanDetails.Count == 5)
@@ -748,13 +759,13 @@ namespace DataHelper
             }
             else
             {
-                if (loanDetails.Count == 6)
+                if (loanDetails.Count == 7)
                 {
-                    this.cmd = "Insert into LoanApplication (TransactionID, EmpNo, TypeOfLoan, Reason, Amount, NoOfMonths, Confirmed, CoMakerEmpNo,Done,Declined,Balance) values (@ID, @EmpNo, @Type, @Reason, @Amount, @NoOfMonths, 0, @CoMaker,0,0, @Amount)";
+                    this.cmd = "Insert into LoanApplication (TransactionID, EmpNo, TypeOfLoan, Reason, Amount, NoOfMonths, Confirmed, CoMakerEmpNo,Done,Declined,Balance, PayslipPath) values (@ID, @EmpNo, @Type, @Reason, @Amount, @NoOfMonths, 0, @CoMaker,0,0, @Amount, @PayslipPath)";
                 }
                 else
                 {
-                    this.cmd = "Insert into LoanApplication (TransactionID, EmpNo, TypeOfLoan, Reason, Amount, NoOfMonths, Confirmed, CoMakerEmpNo, CoMaker2EmpNo, Done, Declined,Balance) values (@ID, @EmpNo, @Type, @Reason, @Amount, @NoOfMonths, 0, @CoMaker, @CoMaker2,0,0, @Amount)";
+                    this.cmd = "Insert into LoanApplication (TransactionID, EmpNo, TypeOfLoan, Reason, Amount, NoOfMonths, Confirmed, CoMakerEmpNo, CoMaker2EmpNo, Done, Declined,Balance, PayslipPath) values (@ID, @EmpNo, @Type, @Reason, @Amount, @NoOfMonths, 0, @CoMaker, @CoMaker2,0,0, @Amount, @PayslipPath)";
                 }
             }
             this.sqlCmd.CommandText = this.cmd;
@@ -764,11 +775,12 @@ namespace DataHelper
             this.sqlCmd.Parameters.Add("@Reason", SqlDbType.Text).Value = loanDetails[2];
             this.sqlCmd.Parameters.Add("@Amount", SqlDbType.Money).Value = Convert.ToDecimal(loanDetails[3]);
             this.sqlCmd.Parameters.Add("@NoOfMonths", SqlDbType.Int).Value = Convert.ToInt32(loanDetails[4]);
-            if (loanDetails.Count >= 6)
+            this.sqlCmd.Parameters.Add("@PayslipPath", SqlDbType.NVarChar).Value = loanDetails.Last();
+            if (loanDetails.Count >= 7)
             {
                 this.sqlCmd.Parameters.Add("@CoMaker", SqlDbType.NVarChar).Value = loanDetails[5];
             }
-            if (loanDetails.Count == 7)
+            if (loanDetails.Count == 8)
             {
                 this.sqlCmd.Parameters.Add("@CoMaker2", SqlDbType.NVarChar).Value = loanDetails[6];
             }
@@ -1569,7 +1581,7 @@ namespace DataHelper
 
         public DataTable GetAllUnapprovedLoan()
         {
-            this.cmd = "Select TransactionID,EmpNo,TypeOfLoan,Reason,Amount,NoOfMonths,CoMakerEmpNo,CoMaker2EmpNo from LoanApplication WHERE (Confirmed = 1) AND (DateApproved IS NULL) AND (Done = 0)";
+            this.cmd = "Select TransactionID,EmpNo,TypeOfLoan,Reason,Amount,NoOfMonths,CoMakerEmpNo,CoMaker2EmpNo,PayslipPath from LoanApplication WHERE (Confirmed = 1) AND (DateApproved IS NULL) AND (Done = 0)";
             DataTable dt = this.GetTable(this.cmd);
             //DataRow dr = dt.NewRow();
             //dr.ItemArray = new object[] { "0", "-- SELECT --" };

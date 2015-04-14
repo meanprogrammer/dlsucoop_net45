@@ -8,6 +8,8 @@ using SMS;
 using Mail;
 using System.Web.UI.WebControls;
 using System.Text;
+using WebsiteTrial.Helper;
+using System.IO;
 
 namespace WebsiteTrial
 {
@@ -334,8 +336,10 @@ namespace WebsiteTrial
 
             System.Collections.Generic.List<string> msgDetails = new System.Collections.Generic.List<string>();
 
-            bool filename = this.FileUpload1.HasFile;
-
+            DirectoryInfo di = FileUploadHelper.EnsureFolderForUpload(this.EmpNo);
+            string filename = this.FileUpload1.FileName;
+            string completeFilename = FileUploadHelper.CreateFullFilename(this.EmpNo, filename);
+            string completePath = FileUploadHelper.CreateFullPath(this.EmpNo, completeFilename, di.FullName);
             msgDetails.Add(this.EmpNo);
             msgDetails.Add(this.DDType.Text);
             msgDetails.Add(this.tbReason.Text);
@@ -345,17 +349,17 @@ namespace WebsiteTrial
 
             msgDetails.Add(this.Comaker1DropDownList.SelectedValue);
             msgDetails.Add(this.Comaker2DropDownList.SelectedValue);
-
+            msgDetails.Add(completePath);
             string coMakerSMSConfirm = "";
             string coMakerConfirm = "";
             string coMaker2SMSConfirm = "";
             string coMaker2Confirm = "";
             System.Collections.Generic.List<string> names = new System.Collections.Generic.List<string>();
             names.Add(da.GetEmployeeName(msgDetails[0]));
-            if (msgDetails.Count >= 6)
+            if (msgDetails.Count >= 7)
             {
                 names.Add(da.GetEmployeeName(msgDetails[5]));
-                if (msgDetails.Count == 7)
+                if (msgDetails.Count == 8)
                 {
                     names.Add(da.GetEmployeeName(msgDetails[6]));
                 }
@@ -369,9 +373,9 @@ namespace WebsiteTrial
             //Commented
             mail.AttachFile(base.Server.MapPath("~/Files/Promissory") + LastTransactionID + ".pdf");
             string message;
-            if (msgDetails.Count >= 6)
+            if (msgDetails.Count >= 7)
             {
-                if (msgDetails.Count == 7)
+                if (msgDetails.Count == 8)
                 {
                     message = mail.MakeEmailBodyLoanConfirmationCoMaker(msgDetails, names, LastTransactionID, names[2], true);
                     mail.SendMailMessage("dlsudmailer@gmail.com", da.GetEmployeeEmail(msgDetails[6]), "DLSU-D Notification Email", message);
@@ -399,6 +403,8 @@ namespace WebsiteTrial
             //Commented
             //base.Response.Redirect("~\\Message.aspx?msg=You have applied for a loan. Please check your email for the confirmation link.");
             //return;
+
+            this.FileUpload1.SaveAs(completePath);
 
             this.msgbox.InnerHtml = "You have applied for a loan. Please check your email for the confirmation link.";
             CancelButton_Click(sender, e);

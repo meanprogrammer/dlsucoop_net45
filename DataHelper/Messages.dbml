@@ -88,24 +88,6 @@
       <Column Name="ProcessingFee" Type="System.Double" DbType="Float" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.LoanApplication" Member="LoanApplications">
-    <Type Name="LoanApplication">
-      <Column Name="TransactionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="CoMakerEmpNo" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="TypeOfLoan" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Reason" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Amount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
-      <Column Name="NoOfMonths" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Confirmed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="DateApproved" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="DateDue" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="CoMaker2EmpNo" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="Done" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Declined" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Balance" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.LoanTypes" Member="LoanTypes">
     <Type Name="LoanType">
       <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -202,6 +184,25 @@
       <Column Name="Title" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
       <Column Name="Content" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="DateOfPost" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LoanApplication" Member="LoanApplications">
+    <Type Name="LoanApplication">
+      <Column Name="TransactionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EmpNo" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CoMakerEmpNo" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="TypeOfLoan" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Reason" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="NoOfMonths" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Confirmed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DateApproved" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="DateDue" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CoMaker2EmpNo" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Done" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Declined" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="PayslipPath" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

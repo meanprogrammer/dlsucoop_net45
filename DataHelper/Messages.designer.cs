@@ -42,9 +42,6 @@ namespace DataHelper
     partial void InsertLoanAmountMatrix(LoanAmountMatrix instance);
     partial void UpdateLoanAmountMatrix(LoanAmountMatrix instance);
     partial void DeleteLoanAmountMatrix(LoanAmountMatrix instance);
-    partial void InsertLoanApplication(LoanApplication instance);
-    partial void UpdateLoanApplication(LoanApplication instance);
-    partial void DeleteLoanApplication(LoanApplication instance);
     partial void InsertLoanType(LoanType instance);
     partial void UpdateLoanType(LoanType instance);
     partial void DeleteLoanType(LoanType instance);
@@ -75,6 +72,9 @@ namespace DataHelper
     partial void InsertNewsAndAnnouncement(NewsAndAnnouncement instance);
     partial void UpdateNewsAndAnnouncement(NewsAndAnnouncement instance);
     partial void DeleteNewsAndAnnouncement(NewsAndAnnouncement instance);
+    partial void InsertLoanApplication(LoanApplication instance);
+    partial void UpdateLoanApplication(LoanApplication instance);
+    partial void DeleteLoanApplication(LoanApplication instance);
     #endregion
 		
 		public MessagesDataContext() : 
@@ -160,14 +160,6 @@ namespace DataHelper
 			get
 			{
 				return this.GetTable<LoanAmountMatrix>();
-			}
-		}
-		
-		public System.Data.Linq.Table<LoanApplication> LoanApplications
-		{
-			get
-			{
-				return this.GetTable<LoanApplication>();
 			}
 		}
 		
@@ -264,6 +256,14 @@ namespace DataHelper
 			get
 			{
 				return this.GetTable<NewsAndAnnouncement>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LoanApplication> LoanApplications
+		{
+			get
+			{
+				return this.GetTable<LoanApplication>();
 			}
 		}
 	}
@@ -1845,380 +1845,6 @@ namespace DataHelper
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LoanApplication")]
-	public partial class LoanApplication : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _TransactionID;
-		
-		private string _EmpNo;
-		
-		private string _CoMakerEmpNo;
-		
-		private string _TypeOfLoan;
-		
-		private string _Reason;
-		
-		private decimal _Amount;
-		
-		private int _NoOfMonths;
-		
-		private System.Nullable<bool> _Confirmed;
-		
-		private System.Nullable<System.DateTime> _DateApproved;
-		
-		private System.Nullable<System.DateTime> _DateDue;
-		
-		private string _CoMaker2EmpNo;
-		
-		private System.Nullable<bool> _Done;
-		
-		private System.Nullable<bool> _Declined;
-		
-		private System.Nullable<decimal> _Balance;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTransactionIDChanging(int value);
-    partial void OnTransactionIDChanged();
-    partial void OnEmpNoChanging(string value);
-    partial void OnEmpNoChanged();
-    partial void OnCoMakerEmpNoChanging(string value);
-    partial void OnCoMakerEmpNoChanged();
-    partial void OnTypeOfLoanChanging(string value);
-    partial void OnTypeOfLoanChanged();
-    partial void OnReasonChanging(string value);
-    partial void OnReasonChanged();
-    partial void OnAmountChanging(decimal value);
-    partial void OnAmountChanged();
-    partial void OnNoOfMonthsChanging(int value);
-    partial void OnNoOfMonthsChanged();
-    partial void OnConfirmedChanging(System.Nullable<bool> value);
-    partial void OnConfirmedChanged();
-    partial void OnDateApprovedChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateApprovedChanged();
-    partial void OnDateDueChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateDueChanged();
-    partial void OnCoMaker2EmpNoChanging(string value);
-    partial void OnCoMaker2EmpNoChanged();
-    partial void OnDoneChanging(System.Nullable<bool> value);
-    partial void OnDoneChanged();
-    partial void OnDeclinedChanging(System.Nullable<bool> value);
-    partial void OnDeclinedChanged();
-    partial void OnBalanceChanging(System.Nullable<decimal> value);
-    partial void OnBalanceChanged();
-    #endregion
-		
-		public LoanApplication()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransactionID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int TransactionID
-		{
-			get
-			{
-				return this._TransactionID;
-			}
-			set
-			{
-				if ((this._TransactionID != value))
-				{
-					this.OnTransactionIDChanging(value);
-					this.SendPropertyChanging();
-					this._TransactionID = value;
-					this.SendPropertyChanged("TransactionID");
-					this.OnTransactionIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmpNo", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
-		public string EmpNo
-		{
-			get
-			{
-				return this._EmpNo;
-			}
-			set
-			{
-				if ((this._EmpNo != value))
-				{
-					this.OnEmpNoChanging(value);
-					this.SendPropertyChanging();
-					this._EmpNo = value;
-					this.SendPropertyChanged("EmpNo");
-					this.OnEmpNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CoMakerEmpNo", DbType="NVarChar(10)")]
-		public string CoMakerEmpNo
-		{
-			get
-			{
-				return this._CoMakerEmpNo;
-			}
-			set
-			{
-				if ((this._CoMakerEmpNo != value))
-				{
-					this.OnCoMakerEmpNoChanging(value);
-					this.SendPropertyChanging();
-					this._CoMakerEmpNo = value;
-					this.SendPropertyChanged("CoMakerEmpNo");
-					this.OnCoMakerEmpNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TypeOfLoan", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string TypeOfLoan
-		{
-			get
-			{
-				return this._TypeOfLoan;
-			}
-			set
-			{
-				if ((this._TypeOfLoan != value))
-				{
-					this.OnTypeOfLoanChanging(value);
-					this.SendPropertyChanging();
-					this._TypeOfLoan = value;
-					this.SendPropertyChanged("TypeOfLoan");
-					this.OnTypeOfLoanChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reason", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string Reason
-		{
-			get
-			{
-				return this._Reason;
-			}
-			set
-			{
-				if ((this._Reason != value))
-				{
-					this.OnReasonChanging(value);
-					this.SendPropertyChanging();
-					this._Reason = value;
-					this.SendPropertyChanged("Reason");
-					this.OnReasonChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Money NOT NULL")]
-		public decimal Amount
-		{
-			get
-			{
-				return this._Amount;
-			}
-			set
-			{
-				if ((this._Amount != value))
-				{
-					this.OnAmountChanging(value);
-					this.SendPropertyChanging();
-					this._Amount = value;
-					this.SendPropertyChanged("Amount");
-					this.OnAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoOfMonths", DbType="Int NOT NULL")]
-		public int NoOfMonths
-		{
-			get
-			{
-				return this._NoOfMonths;
-			}
-			set
-			{
-				if ((this._NoOfMonths != value))
-				{
-					this.OnNoOfMonthsChanging(value);
-					this.SendPropertyChanging();
-					this._NoOfMonths = value;
-					this.SendPropertyChanged("NoOfMonths");
-					this.OnNoOfMonthsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Confirmed", DbType="Bit")]
-		public System.Nullable<bool> Confirmed
-		{
-			get
-			{
-				return this._Confirmed;
-			}
-			set
-			{
-				if ((this._Confirmed != value))
-				{
-					this.OnConfirmedChanging(value);
-					this.SendPropertyChanging();
-					this._Confirmed = value;
-					this.SendPropertyChanged("Confirmed");
-					this.OnConfirmedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateApproved", DbType="Date")]
-		public System.Nullable<System.DateTime> DateApproved
-		{
-			get
-			{
-				return this._DateApproved;
-			}
-			set
-			{
-				if ((this._DateApproved != value))
-				{
-					this.OnDateApprovedChanging(value);
-					this.SendPropertyChanging();
-					this._DateApproved = value;
-					this.SendPropertyChanged("DateApproved");
-					this.OnDateApprovedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateDue", DbType="Date")]
-		public System.Nullable<System.DateTime> DateDue
-		{
-			get
-			{
-				return this._DateDue;
-			}
-			set
-			{
-				if ((this._DateDue != value))
-				{
-					this.OnDateDueChanging(value);
-					this.SendPropertyChanging();
-					this._DateDue = value;
-					this.SendPropertyChanged("DateDue");
-					this.OnDateDueChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CoMaker2EmpNo", DbType="NVarChar(10)")]
-		public string CoMaker2EmpNo
-		{
-			get
-			{
-				return this._CoMaker2EmpNo;
-			}
-			set
-			{
-				if ((this._CoMaker2EmpNo != value))
-				{
-					this.OnCoMaker2EmpNoChanging(value);
-					this.SendPropertyChanging();
-					this._CoMaker2EmpNo = value;
-					this.SendPropertyChanged("CoMaker2EmpNo");
-					this.OnCoMaker2EmpNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Done", DbType="Bit")]
-		public System.Nullable<bool> Done
-		{
-			get
-			{
-				return this._Done;
-			}
-			set
-			{
-				if ((this._Done != value))
-				{
-					this.OnDoneChanging(value);
-					this.SendPropertyChanging();
-					this._Done = value;
-					this.SendPropertyChanged("Done");
-					this.OnDoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Declined", DbType="Bit")]
-		public System.Nullable<bool> Declined
-		{
-			get
-			{
-				return this._Declined;
-			}
-			set
-			{
-				if ((this._Declined != value))
-				{
-					this.OnDeclinedChanging(value);
-					this.SendPropertyChanging();
-					this._Declined = value;
-					this.SendPropertyChanged("Declined");
-					this.OnDeclinedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Balance", DbType="Money")]
-		public System.Nullable<decimal> Balance
-		{
-			get
-			{
-				return this._Balance;
-			}
-			set
-			{
-				if ((this._Balance != value))
-				{
-					this.OnBalanceChanging(value);
-					this.SendPropertyChanging();
-					this._Balance = value;
-					this.SendPropertyChanged("Balance");
-					this.OnBalanceChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LoanTypes")]
 	public partial class LoanType : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3696,6 +3322,404 @@ namespace DataHelper
 					this._DateOfPost = value;
 					this.SendPropertyChanged("DateOfPost");
 					this.OnDateOfPostChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LoanApplication")]
+	public partial class LoanApplication : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TransactionID;
+		
+		private string _EmpNo;
+		
+		private string _CoMakerEmpNo;
+		
+		private string _TypeOfLoan;
+		
+		private string _Reason;
+		
+		private decimal _Amount;
+		
+		private int _NoOfMonths;
+		
+		private System.Nullable<bool> _Confirmed;
+		
+		private System.Nullable<System.DateTime> _DateApproved;
+		
+		private System.Nullable<System.DateTime> _DateDue;
+		
+		private string _CoMaker2EmpNo;
+		
+		private System.Nullable<bool> _Done;
+		
+		private System.Nullable<bool> _Declined;
+		
+		private System.Nullable<decimal> _Balance;
+		
+		private string _PayslipPath;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTransactionIDChanging(int value);
+    partial void OnTransactionIDChanged();
+    partial void OnEmpNoChanging(string value);
+    partial void OnEmpNoChanged();
+    partial void OnCoMakerEmpNoChanging(string value);
+    partial void OnCoMakerEmpNoChanged();
+    partial void OnTypeOfLoanChanging(string value);
+    partial void OnTypeOfLoanChanged();
+    partial void OnReasonChanging(string value);
+    partial void OnReasonChanged();
+    partial void OnAmountChanging(decimal value);
+    partial void OnAmountChanged();
+    partial void OnNoOfMonthsChanging(int value);
+    partial void OnNoOfMonthsChanged();
+    partial void OnConfirmedChanging(System.Nullable<bool> value);
+    partial void OnConfirmedChanged();
+    partial void OnDateApprovedChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateApprovedChanged();
+    partial void OnDateDueChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateDueChanged();
+    partial void OnCoMaker2EmpNoChanging(string value);
+    partial void OnCoMaker2EmpNoChanged();
+    partial void OnDoneChanging(System.Nullable<bool> value);
+    partial void OnDoneChanged();
+    partial void OnDeclinedChanging(System.Nullable<bool> value);
+    partial void OnDeclinedChanged();
+    partial void OnBalanceChanging(System.Nullable<decimal> value);
+    partial void OnBalanceChanged();
+    partial void OnPayslipPathChanging(string value);
+    partial void OnPayslipPathChanged();
+    #endregion
+		
+		public LoanApplication()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransactionID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int TransactionID
+		{
+			get
+			{
+				return this._TransactionID;
+			}
+			set
+			{
+				if ((this._TransactionID != value))
+				{
+					this.OnTransactionIDChanging(value);
+					this.SendPropertyChanging();
+					this._TransactionID = value;
+					this.SendPropertyChanged("TransactionID");
+					this.OnTransactionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmpNo", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string EmpNo
+		{
+			get
+			{
+				return this._EmpNo;
+			}
+			set
+			{
+				if ((this._EmpNo != value))
+				{
+					this.OnEmpNoChanging(value);
+					this.SendPropertyChanging();
+					this._EmpNo = value;
+					this.SendPropertyChanged("EmpNo");
+					this.OnEmpNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CoMakerEmpNo", DbType="NVarChar(10)")]
+		public string CoMakerEmpNo
+		{
+			get
+			{
+				return this._CoMakerEmpNo;
+			}
+			set
+			{
+				if ((this._CoMakerEmpNo != value))
+				{
+					this.OnCoMakerEmpNoChanging(value);
+					this.SendPropertyChanging();
+					this._CoMakerEmpNo = value;
+					this.SendPropertyChanged("CoMakerEmpNo");
+					this.OnCoMakerEmpNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TypeOfLoan", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string TypeOfLoan
+		{
+			get
+			{
+				return this._TypeOfLoan;
+			}
+			set
+			{
+				if ((this._TypeOfLoan != value))
+				{
+					this.OnTypeOfLoanChanging(value);
+					this.SendPropertyChanging();
+					this._TypeOfLoan = value;
+					this.SendPropertyChanged("TypeOfLoan");
+					this.OnTypeOfLoanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Reason", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Reason
+		{
+			get
+			{
+				return this._Reason;
+			}
+			set
+			{
+				if ((this._Reason != value))
+				{
+					this.OnReasonChanging(value);
+					this.SendPropertyChanging();
+					this._Reason = value;
+					this.SendPropertyChanged("Reason");
+					this.OnReasonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Money NOT NULL")]
+		public decimal Amount
+		{
+			get
+			{
+				return this._Amount;
+			}
+			set
+			{
+				if ((this._Amount != value))
+				{
+					this.OnAmountChanging(value);
+					this.SendPropertyChanging();
+					this._Amount = value;
+					this.SendPropertyChanged("Amount");
+					this.OnAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoOfMonths", DbType="Int NOT NULL")]
+		public int NoOfMonths
+		{
+			get
+			{
+				return this._NoOfMonths;
+			}
+			set
+			{
+				if ((this._NoOfMonths != value))
+				{
+					this.OnNoOfMonthsChanging(value);
+					this.SendPropertyChanging();
+					this._NoOfMonths = value;
+					this.SendPropertyChanged("NoOfMonths");
+					this.OnNoOfMonthsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Confirmed", DbType="Bit")]
+		public System.Nullable<bool> Confirmed
+		{
+			get
+			{
+				return this._Confirmed;
+			}
+			set
+			{
+				if ((this._Confirmed != value))
+				{
+					this.OnConfirmedChanging(value);
+					this.SendPropertyChanging();
+					this._Confirmed = value;
+					this.SendPropertyChanged("Confirmed");
+					this.OnConfirmedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateApproved", DbType="Date")]
+		public System.Nullable<System.DateTime> DateApproved
+		{
+			get
+			{
+				return this._DateApproved;
+			}
+			set
+			{
+				if ((this._DateApproved != value))
+				{
+					this.OnDateApprovedChanging(value);
+					this.SendPropertyChanging();
+					this._DateApproved = value;
+					this.SendPropertyChanged("DateApproved");
+					this.OnDateApprovedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateDue", DbType="Date")]
+		public System.Nullable<System.DateTime> DateDue
+		{
+			get
+			{
+				return this._DateDue;
+			}
+			set
+			{
+				if ((this._DateDue != value))
+				{
+					this.OnDateDueChanging(value);
+					this.SendPropertyChanging();
+					this._DateDue = value;
+					this.SendPropertyChanged("DateDue");
+					this.OnDateDueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CoMaker2EmpNo", DbType="NVarChar(10)")]
+		public string CoMaker2EmpNo
+		{
+			get
+			{
+				return this._CoMaker2EmpNo;
+			}
+			set
+			{
+				if ((this._CoMaker2EmpNo != value))
+				{
+					this.OnCoMaker2EmpNoChanging(value);
+					this.SendPropertyChanging();
+					this._CoMaker2EmpNo = value;
+					this.SendPropertyChanged("CoMaker2EmpNo");
+					this.OnCoMaker2EmpNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Done", DbType="Bit")]
+		public System.Nullable<bool> Done
+		{
+			get
+			{
+				return this._Done;
+			}
+			set
+			{
+				if ((this._Done != value))
+				{
+					this.OnDoneChanging(value);
+					this.SendPropertyChanging();
+					this._Done = value;
+					this.SendPropertyChanged("Done");
+					this.OnDoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Declined", DbType="Bit")]
+		public System.Nullable<bool> Declined
+		{
+			get
+			{
+				return this._Declined;
+			}
+			set
+			{
+				if ((this._Declined != value))
+				{
+					this.OnDeclinedChanging(value);
+					this.SendPropertyChanging();
+					this._Declined = value;
+					this.SendPropertyChanged("Declined");
+					this.OnDeclinedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Balance", DbType="Money")]
+		public System.Nullable<decimal> Balance
+		{
+			get
+			{
+				return this._Balance;
+			}
+			set
+			{
+				if ((this._Balance != value))
+				{
+					this.OnBalanceChanging(value);
+					this.SendPropertyChanging();
+					this._Balance = value;
+					this.SendPropertyChanged("Balance");
+					this.OnBalanceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PayslipPath", DbType="NVarChar(MAX)")]
+		public string PayslipPath
+		{
+			get
+			{
+				return this._PayslipPath;
+			}
+			set
+			{
+				if ((this._PayslipPath != value))
+				{
+					this.OnPayslipPathChanging(value);
+					this.SendPropertyChanging();
+					this._PayslipPath = value;
+					this.SendPropertyChanged("PayslipPath");
+					this.OnPayslipPathChanged();
 				}
 			}
 		}

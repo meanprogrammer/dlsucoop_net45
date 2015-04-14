@@ -67,6 +67,7 @@
                         <asp:ButtonField ButtonType="Button" CommandName="Decline" Text="Decline">
                             <ControlStyle CssClass="btn btn-md btn-danger" />
                         </asp:ButtonField>
+                        <asp:HyperLinkField DataNavigateUrlFields="TransactionID" DataNavigateUrlFormatString="ViewAttachment.aspx?transId={0}" HeaderText="Attachment" Text="Attachment" Target="_blank" />
                     </Columns>
                 </asp:GridView>
             </div>
