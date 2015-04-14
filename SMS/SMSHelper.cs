@@ -13,10 +13,14 @@ namespace SMS
         const string APP_SECRET = "9e6fc50f715cedbe655c285fbd6efe53033112251ab3b3776424dfc18cdf88a6";
         const string SHORTCODE = "21580262";
         */
-
+        /*
         const string APP_ID = "pMMGCL5RKpu4Rik9R7cRaxuGzMXMCM7z";
         const string APP_SECRET = "db0260bd73db0f582d9be6d8fd14dcf00371b92de411faa5c04838cafc93a38d";
         const string SHORTCODE = "21583300";
+        */
+        const string APP_ID = "9eLzFG6XAzhMoc4pGyTXMKhB5eErFGMe";
+        const string APP_SECRET = "3bce8284ee144ed303580047c41561fdd72be55515f5388b9e5ec1ca265d423a";
+        const string SHORTCODE = "21587949";
 
         private GlobeLabs api = null;
         private SMSDataHelper data = null;
