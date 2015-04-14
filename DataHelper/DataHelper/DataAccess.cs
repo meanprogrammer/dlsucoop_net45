@@ -17,12 +17,12 @@ namespace DataHelper
         //string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
 
         //HOUSE
-        //protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
+        protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
 
         //PROD
         //protected string conn = @"workstation id=Messages.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=Messages.mssql.somee.com;persist security info=False;initial catalog=Messages;";
         //APPHARBOR-PROD
-        protected string conn = @"Server=79488b62-49e5-4899-ba70-a47800a28f69.sqlserver.sequelizer.com;Database=db79488b6249e54899ba70a47800a28f69;User ID=nkjhrjfczbcjiuop;Password=jyD5KEToEtAEcUFv7QMvsLv7kaTvQSrLmaVrXXpBLEwE5Px8bpmMxusFdFSJUxFU;";
+        //protected string conn = @"Server=79488b62-49e5-4899-ba70-a47800a28f69.sqlserver.sequelizer.com;Database=db79488b6249e54899ba70a47800a28f69;User ID=nkjhrjfczbcjiuop;Password=jyD5KEToEtAEcUFv7QMvsLv7kaTvQSrLmaVrXXpBLEwE5Px8bpmMxusFdFSJUxFU;";
 
         //LAGUNA
         //protected string conn = @"Data Source=PROGRAMMERPC\SQL2012;Initial Catalog=Messages;Integrated Security=true;";
@@ -1198,7 +1198,7 @@ namespace DataHelper
 
         public List<SelectLoanDTO> GetUserActiveLoans(string empNo)
         {
-            this.cmd = "Select * from LoanApplication where EmpNo = '" + empNo + "' AND Balance > 0";
+            this.cmd = "Select la.*,lt.LoanType from LoanApplication la inner join LoanTypes lt on la.TypeOfLoan = lt.RecordID where EmpNo = '" + empNo + "' AND Balance > 0";
             DataTable dt = this.GetTable(this.cmd);
             List<SelectLoanDTO> ds = new List<SelectLoanDTO>();
 
@@ -1208,7 +1208,7 @@ namespace DataHelper
                 sl.TransactionID = dr["TransactionID"].ToString();
                 sl.Text = string.Format(
                     "<b>Type Of Loan:</b> {0} - <b>Reason:</b> {1} - <b>Amount:</b> {2} - <b>Payment:</b> {3} Months - <b>Date Due:</b> {4} - <b>Balance:</b> {5}",
-                    dr["TypeOfLoan"].ToString(),
+                    dr["LoanType"].ToString(),
                     dr["Reason"].ToString(),
                     Convert.ToDecimal(dr["Amount"]).ToString("F"),
                     dr["NoOfMonths"].ToString(),
