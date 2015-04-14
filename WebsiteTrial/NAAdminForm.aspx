@@ -16,9 +16,11 @@
             <asp:TextBox ID="ContentTextBox" CssClass="form-control input-md" runat="server" Columns="60" Rows="10" TextMode="MultiLine"></asp:TextBox>
         </div>
     </div>
+    <br />
     <div class="row">
         <div class="col-md-12">
-            <asp:Button ID="SaveButton" CssClass="btn btn-success btn-size" runat="server" Text="Save" OnClick="SaveButton_Click" />&nbsp;<asp:Button ID="CancelButton" runat="server" CssClass="btn btn-default btn-size" Text="Cancel" />
+            <asp:Button ID="SaveButton" CssClass="btn btn-success btn-size" runat="server" Text="Save" OnClick="SaveButton_Click" />&nbsp;
+            <a href="NAAdmin.aspx" class="btn btn-default btn-size">Cancel</a>
         </div>
     </div>
 </asp:Content>
