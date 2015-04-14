@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <a href="AdminPage.aspx">Return to Main</a>
     <asp:GridView ID="GridView1" CssClass="table table-bordered table-striped" runat="server" EmptyDataText="No news and announcement." AutoGenerateColumns="False">
         <Columns>
             <asp:BoundField DataField="Title" HeaderText="Title" ItemStyle-Width="20%" >

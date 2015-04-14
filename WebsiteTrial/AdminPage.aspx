@@ -39,7 +39,6 @@
         </asp:DropDownList>
         <asp:Label ID="lblStatus" runat="server"></asp:Label>
         <br />
-        <h4>Unapproved Loans</h4>
         <div class="row">
             <div class="col-md-12">
 
@@ -83,10 +82,10 @@
             CssClass="btn btn-success" />
         <asp:Button ID="PaymentButton" runat="server" OnClick="PaymentButton_Click"
             Text="Payment" CssClass="btn btn-success btn-size" />
-        <asp:HyperLink ID="HyperLink1" CssClass="btn btn-default btn-md" NavigateUrl="~/PayShareCapitals.aspx" runat="server">Share Capitals</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" CssClass="btn btn-success btn-md" NavigateUrl="~/PayShareCapitals.aspx" runat="server">Share Capitals</asp:HyperLink>
         &nbsp;
-        <asp:HyperLink ID="HyperLink2" CssClass="btn btn-default btn-md btn-size" NavigateUrl="~/DownloadFormsAdmin.aspx" runat="server">Forms</asp:HyperLink>
-        <asp:HyperLink ID="HyperLink3" CssClass="btn btn-default btn-md" NavigateUrl="~/NAAdmin.aspx" runat="server">News and Announcement</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink2" CssClass="btn btn-success btn-md btn-size" NavigateUrl="~/DownloadFormsAdmin.aspx" runat="server">Forms</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink3" CssClass="btn btn-success btn-md" NavigateUrl="~/NAAdmin.aspx" runat="server">News and Announcement</asp:HyperLink>
         <br />
     </div>
 </asp:Content>
