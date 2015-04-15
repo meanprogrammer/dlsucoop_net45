@@ -13,24 +13,6 @@ namespace WebsiteTrial {
     public partial class LoanReport {
         
         /// <summary>
-        /// StartDateCalendar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar StartDateCalendar;
-        
-        /// <summary>
-        /// EndDateCalendar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar EndDateCalendar;
-        
-        /// <summary>
         /// EmployeeCheckBox control.
         /// </summary>
         /// <remarks>
@@ -47,6 +29,24 @@ namespace WebsiteTrial {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox NonEmployeeCheckBox;
+        
+        /// <summary>
+        /// StartDateCalendar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar StartDateCalendar;
+        
+        /// <summary>
+        /// EndDateCalendar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar EndDateCalendar;
         
         /// <summary>
         /// SearchButton control.

@@ -1,9 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Administration.Master" AutoEventWireup="true" CodeBehind="LoanReport.aspx.cs" Inherits="WebsiteTrial.LoanReport" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
+            <label>User Type</label><br />
+                <asp:CheckBox ID="EmployeeCheckBox" runat="server" Text="Employee" /><br />
+                <asp:CheckBox ID="NonEmployeeCheckBox" runat="server" Text="Non-Employee" />
+            </div>
+        <div class="col-md-3">
+            
             <label>Start Date</label>
             <asp:Calendar ID="StartDateCalendar" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
                 <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
@@ -16,8 +23,8 @@
                 <WeekendDayStyle BackColor="#FFFFCC" />
             </asp:Calendar>
         </div>
-        <div class="col-md-4">
-            <label>Start Date</label>
+        <div class="col-md-3">
+            <label>End Date</label>
             <asp:Calendar ID="EndDateCalendar" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
                 <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
                 <NextPrevStyle VerticalAlign="Bottom" />
@@ -29,10 +36,11 @@
                 <WeekendDayStyle BackColor="#FFFFCC" />
             </asp:Calendar>
         </div>
-        <div class="col-md-4">
-            <asp:CheckBox ID="EmployeeCheckBox" runat="server" Text="Employee" /><br /><asp:CheckBox ID="NonEmployeeCheckBox" runat="server" Text="Non-Employee" />
+        <div class="col-md-3">
+            &nbsp;
         </div>
     </div>
+    <br />
     <div class="row">
         <div class="col-md-12">
             <asp:Button ID="SearchButton" runat="server" Text="Search" CssClass="btn btn-lg btn-primary" OnClick="SearchButton_Click" />
