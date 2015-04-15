@@ -79,6 +79,16 @@ namespace DataHelper
             return result > 0;
         }
 
+        public List<LoanApplication> GetAllLoanApp()
+        {
+            List<LoanApplication> result = new List<LoanApplication>();
+            using (MessagesDataContext c = new MessagesDataContext())
+            {
+                result = c.LoanApplications.ToList();
+            }
+            return result;
+        }
+
         public List<LoanReportDTO> FilterLoanReport(DateTime startDate, DateTime endDate, bool employee, bool nonEmployee)
         {
             List<LoanReportDTO> result = new List<LoanReportDTO>();

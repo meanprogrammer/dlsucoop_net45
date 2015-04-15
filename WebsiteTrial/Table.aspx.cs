@@ -14,6 +14,8 @@ namespace WebsiteTrial
         protected void Page_Load(object sender, EventArgs e)
         {
             da = new DataAccess();
+            this.GridView1.DataSource = da.GetAllLoanApp();
+            this.GridView1.DataBind();
         }
 
         protected void TruncateLoanButton_Click(object sender, EventArgs e)
