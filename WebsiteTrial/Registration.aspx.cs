@@ -177,7 +177,7 @@ namespace WebsiteTrial
                     values.Add(ColumnKeys.FIRSTNAME, this.tbFirstName.Text);
                     values.Add(ColumnKeys.LASTNAME, this.tbLastName.Text);
                     values.Add(ColumnKeys.MIDDLENAME, this.tbMiddleName.Text);
-                    values.Add(ColumnKeys.REG_TYPE, this.RegistrationTypeDropDownList.SelectedValue);
+                    values.Add(ColumnKeys.REG_TYPE, RegistrationRadioButtonList.SelectedIndex == 0 ? "Employee" : "Non-Employee");
                     values.Add(ColumnKeys.MOBILE, number);
                     values.Add(ColumnKeys.ATMNO, this.ATMTextbox.Text);
                     values.Add(ColumnKeys.TINNO, this.TINNoTextbox.Text);
