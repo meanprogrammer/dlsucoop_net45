@@ -131,7 +131,15 @@ namespace SMS
                 //string result = wc.DownloadString(url);
 
                 SMSHelper sms = new SMSHelper();
-                sms.SendSMS(pNumber, pMessage);
+                try
+                {
+                    sms.SendSMS(pNumber, pMessage);
+                }
+                catch (Exception)
+                {
+                    //swallow exception
+                }
+                
             }
 		}
 		public void Dispose()
