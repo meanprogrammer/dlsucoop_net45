@@ -17,7 +17,7 @@ namespace DataHelper
         public string LoanType { get; set; }
         public Decimal LoanAmount { get; set; }
         public Decimal LoanBalance { get; set; }
-        public DateTime LoanDueDate { get; set; }
+        public DateTime? LoanDueDate { get; set; }
         public string UserType { get; set; }
     }
 }

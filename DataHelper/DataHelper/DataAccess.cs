@@ -140,7 +140,10 @@ namespace DataHelper
                     dto.LoanType = reader.GetString(7);
                     dto.LoanAmount = reader.GetDecimal(8);
                     dto.LoanBalance = reader.GetDecimal(9);
-                    dto.LoanDueDate = reader.GetDateTime(10);
+                    if (!reader.IsDBNull(10))
+                    {
+                        dto.LoanDueDate = (Nullable<DateTime>)reader.GetDateTime(10);
+                    }
                     result.Add(dto);
                 }
 
