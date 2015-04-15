@@ -48,11 +48,6 @@
     <Compile Include="DataHelper\NewsAnnoucementData.cs" />
     <Compile Include="Entities.cs" />
     <Compile Include="LoanReportDTO.cs" />
-    <Compile Include="Messages.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Messages.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Messages1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
