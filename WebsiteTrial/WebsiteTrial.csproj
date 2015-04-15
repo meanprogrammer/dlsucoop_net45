@@ -331,6 +331,7 @@
     <Content Include="NAAdmin.aspx" />
     <Content Include="NewsAnnoucementView.aspx" />
     <Content Include="ViewAttachment.aspx" />
+    <Content Include="LoanReport.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -634,6 +635,13 @@
     </Compile>
     <Compile Include="ViewAttachment.aspx.designer.cs">
       <DependentUpon>ViewAttachment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoanReport.aspx.cs">
+      <DependentUpon>LoanReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoanReport.aspx.designer.cs">
+      <DependentUpon>LoanReport.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

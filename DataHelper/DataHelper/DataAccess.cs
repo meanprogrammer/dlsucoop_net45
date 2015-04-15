@@ -79,6 +79,73 @@ namespace DataHelper
             return result > 0;
         }
 
+        public List<LoanReportDTO> FilterLoanReport(DateTime startDate, DateTime endDate, bool employee, bool nonEmployee)
+        {
+            List<LoanReportDTO> result = new List<LoanReportDTO>();
+            using(MessagesDataContext context = new MessagesDataContext())
+            {
+                string sDate = startDate.ToString("yyyy-MM-dd");
+                string eDate = endDate.ToString("yyyy-MM-dd");
+                
+                StringBuilder builder = new StringBuilder();
+                if(employee == true && nonEmployee == true) 
+                {
+                    builder.Append("\'Employee\',\'Non-Employee'");
+                }
+                else if(employee == true && nonEmployee == false)
+                {
+                    builder.Append("\'Employee\'");
+                }
+                else if(employee == false && nonEmployee == true)
+                {
+                    builder.Append("\'Non-Employee'");
+                }
+                else
+                {
+                    builder.Append("\'Employee\',\'Non-Employee'");
+                }
+
+                string query = string.Format("select la.TransactionID, la.EmpNo, u.UserType, u.LastName, u.FirstName, u.MiddleName, "+
+                        " ul.DateFiled, lt.LoanType, la.Amount, la.Balance,la.DateDue from LoanApplication la "+
+                        " inner join UnconfirmedLoan ul on la.TransactionID = ul.TransactionID "+
+                        " left join LoanTypes lt on la.TypeOfLoan = lt.RecordID " +
+                        " left join Users u on la.EmpNo = u.EmpNo "+
+                        " where (ul.DateFiled >= '{0}' AND ul.DateFiled <= '{1}') AND u.UserType in ({2})", sDate, eDate, builder.ToString());
+          
+
+                this.sqlCmd.CommandText = query;
+                OpenConnection();
+                IDataReader reader = this.sqlCmd.ExecuteReader();
+               
+                while (reader.Read())
+                {
+                    LoanReportDTO dto = new LoanReportDTO();
+                    dto.TransactionID = reader.GetInt32(0);
+                    dto.EmpNo = reader.GetString(1);
+                    dto.UserType = reader.GetString(2);
+                    dto.Lastname = reader.GetString(3);
+                    dto.Firstname = reader.GetString(4);
+                    dto.MI = reader.GetString(5);
+                    dto.DateFiled = reader.GetDateTime(6);
+                    dto.LoanType = reader.GetString(7);
+                    dto.LoanAmount = reader.GetDecimal(8);
+                    dto.LoanBalance = reader.GetDecimal(9);
+                    dto.LoanDueDate = reader.GetDateTime(10);
+                    result.Add(dto);
+                }
+
+                reader.Close();
+                reader.Dispose();
+
+                this.MyConn.Close();
+                this.EndProcess();
+
+
+                //result = context.ExecuteQuery<LoanReportDTO>(query).ToList();
+            }
+            return result;
+        }
+
         public bool UpdateDownloadableForm(int recordid, string text, string url)
         {
             int result = 0;
