@@ -64,7 +64,6 @@
     <None Include="app.config" />
     <None Include="Messages.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Messages.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
