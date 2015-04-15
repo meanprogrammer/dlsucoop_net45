@@ -14,7 +14,7 @@ namespace DataHelper
     public class DataAccess : IDisposable
     {
         //OFFICE
-        //string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
+        string conn = @"Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True;";
 
         //HOUSE
         //protected string conn = @"Data Source=GT683\SQL2012EXP;Initial Catalog=Messages;Integrated Security=true;";
@@ -22,7 +22,7 @@ namespace DataHelper
         //PROD
         //protected string conn = @"workstation id=Messages.mssql.somee.com;packet size=4096;user id=jeduardo_SQLLogin_1;pwd=qe3f68sj67;data source=Messages.mssql.somee.com;persist security info=False;initial catalog=Messages;";
         //APPHARBOR-PROD
-        protected string conn = @"Server=79488b62-49e5-4899-ba70-a47800a28f69.sqlserver.sequelizer.com;Database=db79488b6249e54899ba70a47800a28f69;User ID=nkjhrjfczbcjiuop;Password=jyD5KEToEtAEcUFv7QMvsLv7kaTvQSrLmaVrXXpBLEwE5Px8bpmMxusFdFSJUxFU;";
+        //protected string conn = @"Server=79488b62-49e5-4899-ba70-a47800a28f69.sqlserver.sequelizer.com;Database=db79488b6249e54899ba70a47800a28f69;User ID=nkjhrjfczbcjiuop;Password=jyD5KEToEtAEcUFv7QMvsLv7kaTvQSrLmaVrXXpBLEwE5Px8bpmMxusFdFSJUxFU;";
 
         //LAGUNA
         //protected string conn = @"Data Source=PROGRAMMERPC\SQL2012;Initial Catalog=Messages;Integrated Security=true;";
