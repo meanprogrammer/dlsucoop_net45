@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Messages" Class="MessagesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DHDC597\SQL2012;Initial Catalog=Messages;Integrated Security=True" SettingsObjectName="DataHelper.Properties.Settings" SettingsPropertyName="OFFICE" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=79488b62-49e5-4899-ba70-a47800a28f69.sqlserver.sequelizer.com;Initial Catalog=db79488b6249e54899ba70a47800a28f69;User ID=nkjhrjfczbcjiuop" SettingsObjectName="DataHelper.Properties.Settings" SettingsPropertyName="PROD" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AccessTokens" Member="AccessTokens">
     <Type Name="AccessToken">
       <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
