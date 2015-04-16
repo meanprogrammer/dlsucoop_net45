@@ -47,7 +47,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="tbEmpNum">Employee ID <span style="color: red; margin-top: 22px;">*</span></label>
+                                    <label for="tbEmpNum">User ID <span style="color: red; margin-top: 22px;">*</span></label>
                                     <asp:TextBox ID="tbEmpNum" runat="server" CssClass="form-control input-md"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" CssClass="validation-message" runat="server" ErrorMessage="Employee ID is required." ControlToValidate="tbEmpNum"></asp:RequiredFieldValidator>
                                 </div>

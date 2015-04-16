@@ -20,6 +20,7 @@ namespace WebsiteTrial
 
         protected void Page_Load(object sender, System.EventArgs e)
         {
+
             /*
                 string empNo = Session["EmpNo"].ToString();
 

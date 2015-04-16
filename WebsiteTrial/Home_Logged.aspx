@@ -41,7 +41,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <p class="style12"><strong style="color: #333333">Welcome, </strong> 
+    <p class="style12"><strong style="color: #333333">Welcome, <asp:Label ID="WelcomeNameLabel" runat="server"></asp:Label></strong> 
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
 </p>

@@ -40,6 +40,7 @@ namespace WebsiteTrial
                     this.lblEmpNo.Text = details.EmpNo;
                     this.LastNameLabel.Text = details.LastName;
                     this.FirstNameLabel.Text = details.FirstName;
+                    this.WelcomeNameLabel.Text = details.FirstName;
                     this.MILabel.Text = details.MiddleName;
                     this.lblEmail.Text = details.Email;
                     if (details.UserType.ToUpper() == "EMPLOYEE")
