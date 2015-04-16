@@ -64,6 +64,26 @@ namespace DataHelper
             return result;
         }
 
+        public bool UpdateInterestRate(double interestRate, int recordId)
+        {
+            int result = 0;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                LoanAmountMatrix lam = context.LoanAmountMatrixes.FirstOrDefault(c => c.RecordID == recordId);
+                if (lam != null)
+                {
+                    lam.Interest = interestRate;
+                    result = context.GetChangeSet().Updates.Count;
+                    context.SubmitChanges();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return result > 0;
+        }
+
         public bool SaveDownloadableForm(string text, string url)
         {
             int result = 0;
@@ -234,6 +254,60 @@ namespace DataHelper
                 result = (from r in result
                           where r.RequiredShareCapital <= totalShare
                           select r).ToList();
+            }
+            return result;
+        }
+
+        public IQueryable GetLoanAmountMatrix()
+        {
+            /*
+             * private int _RecordID;
+		
+		private int _LoanType;
+		
+		private double _LoanAmount;
+		
+		private double _RequiredShareCapital;
+		
+		private double _Interest;
+		
+		private int _MonthsPayable;
+		
+		private System.Nullable<double> _ProcessingFee;
+             */
+            IQueryable result = null;
+            MessagesDataContext context = new MessagesDataContext();
+            
+                
+
+
+                var innerJoinQuery =
+    from lam in context.LoanAmountMatrixes
+    join lt in context.LoanTypes on lam.LoanType equals lt.RecordID
+    select new { RecordId = lam.RecordID, LoanType = lam.LoanType, 
+        LoanAmount = lam.LoanAmount, 
+        RequiredShareCapital = lam.RequiredShareCapital,
+        Interest = lam.Interest,
+        MonthsPayable = lam.MonthsPayable,
+        ProcessingFee = lam.ProcessingFee,
+        LoanTypeText = lt.LoanType1}; //produces flat sequence
+
+                result = innerJoinQuery;
+           
+            
+            return result;
+        }
+
+        public string GetLoanTypeText(int recordId)
+        {
+            string  result = string.Empty;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                LoanType lt = context.LoanTypes.FirstOrDefault(x => x.RecordID == recordId);
+                if (lt != null)
+                {
+                    result = lt.LoanType1;
+                }
             }
             return result;
         }
@@ -1661,7 +1735,7 @@ namespace DataHelper
 
         public DataTable GetAllUnapprovedLoan()
         {
-            this.cmd = "Select TransactionID,EmpNo,TypeOfLoan,Reason,Amount,NoOfMonths,CoMakerEmpNo,CoMaker2EmpNo,PayslipPath from LoanApplication WHERE (Confirmed = 1) AND (DateApproved IS NULL) AND (Done = 0)";
+            this.cmd = "Select TransactionID,EmpNo,TypeOfLoan,Reason,Amount,NoOfMonths,CoMakerEmpNo,CoMaker2EmpNo,PayslipPath from LoanApplication WHERE (Confirmed = 1) AND (DateApproved IS NULL) AND (Done = 0) AND (Declined = 0)";
             DataTable dt = this.GetTable(this.cmd);
             //DataRow dr = dt.NewRow();
             //dr.ItemArray = new object[] { "0", "-- SELECT --" };

@@ -87,6 +87,7 @@
         <asp:HyperLink ID="HyperLink2" CssClass="btn btn-success btn-md btn-size" NavigateUrl="~/DownloadFormsAdmin.aspx" runat="server">Forms</asp:HyperLink>
         <asp:HyperLink ID="HyperLink3" CssClass="btn btn-success btn-md" NavigateUrl="~/NAAdmin.aspx" runat="server">News and Announcement</asp:HyperLink>
         <asp:HyperLink ID="HyperLink4" CssClass="btn btn-success btn-md" NavigateUrl="~/LoanReport.aspx" runat="server">Loan Report</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink5" CssClass="btn btn-success btn-md" NavigateUrl="~/InterestRate.aspx" runat="server">Interest Rate</asp:HyperLink>
         <br />
     </div>
 </asp:Content>
