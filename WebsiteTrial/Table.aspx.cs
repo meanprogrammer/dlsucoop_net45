@@ -14,7 +14,7 @@ namespace WebsiteTrial
         protected void Page_Load(object sender, EventArgs e)
         {
             da = new DataAccess();
-            this.GridView1.DataSource = da.GetAllLoanApp();
+            this.GridView1.DataSource = da.GetAllUsers();
             this.GridView1.DataBind();
         }
 
@@ -36,6 +36,11 @@ namespace WebsiteTrial
         protected void TruncatePaymentsButton_Click(object sender, EventArgs e)
         {
             da.TruncatePaymentsTable();
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            da.DeleteExceptMe();
         }
     }
 }

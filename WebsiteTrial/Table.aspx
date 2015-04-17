@@ -23,6 +23,8 @@
                             <asp:Button ID="TruncatePaymentsButton" runat="server" 
                 CssClass="btn btn-lg btn-primary btn-block" 
                 Text="Truncate Payments table" onclick="TruncatePaymentsButton_Click" />
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Delete except me" />
         </div>
         <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333">
             <AlternatingRowStyle BackColor="White" />

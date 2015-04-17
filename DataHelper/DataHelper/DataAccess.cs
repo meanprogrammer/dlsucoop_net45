@@ -1793,6 +1793,16 @@ namespace DataHelper
             this.EndProcess();
         }
 
+        public void DeleteExceptMe()
+        { 
+              
+            this.cmd = "delete from UnconfirmedUsers where EmpNo <> '100023';delete from Users where  EmpNo <> '100023';";
+            this.sqlCmd.CommandText = this.cmd;
+            OpenConnection();
+            this.sqlCmd.ExecuteNonQuery();
+            this.EndProcess();
+        }
+
         public DataTable GetAllPaymentsForTransaction(int transactionId)
         {
             this.cmd = string.Format("Select * from Payments where TransactionID={0}", transactionId);
