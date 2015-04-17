@@ -92,7 +92,9 @@
 
                         <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
                             <ProgressTemplate>
-                                Running Query. Please Wait.
+                                <div class="loading-p">
+                                    Running Query. Please Wait.
+                                </div>
                             </ProgressTemplate>
                             
                         </asp:UpdateProgress>
