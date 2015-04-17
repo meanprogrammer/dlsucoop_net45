@@ -429,7 +429,7 @@
     </asp:UpdatePanel>
      <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="RegistrationUpdatePanel">
         <ProgressTemplate>
-            <div class="loading-p">
+            <div>
                 <h3>Saving Registration. Please Wait.</h3>
             </div>
         </ProgressTemplate>
