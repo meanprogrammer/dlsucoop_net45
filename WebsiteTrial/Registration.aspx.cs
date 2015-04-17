@@ -299,7 +299,7 @@ namespace WebsiteTrial
                     values.Add(ColumnKeys.FIRSTNAME, this.tbFirstName2.Text);
                     values.Add(ColumnKeys.LASTNAME, this.tbLastName2.Text);
                     values.Add(ColumnKeys.MIDDLENAME, this.tbMiddleName2.Text);
-                    values.Add(ColumnKeys.REG_TYPE, this.RegistrationTypeDropDownList.SelectedValue);
+                    values.Add(ColumnKeys.REG_TYPE, this.RegistrationRadioButtonList.SelectedIndex == 0 ? "Employee" : "Non-Employee");
                     values.Add(ColumnKeys.MOBILE, number);
                     values.Add(ColumnKeys.RELATIVE_ID, this.RelativeEmpDropDownList.SelectedValue);
 
