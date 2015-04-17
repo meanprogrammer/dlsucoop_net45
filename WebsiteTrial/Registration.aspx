@@ -422,7 +422,19 @@
                 </div>
             </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="btnRegister" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="btnRegister2" EventName="Click" />
+        </Triggers>
     </asp:UpdatePanel>
+     <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="RegistrationUpdatePanel">
+        <ProgressTemplate>
+            <div class="loading-p">
+                <h3>Saving Registration. Please Wait.</h3>
+            </div>
+        </ProgressTemplate>
+
+    </asp:UpdateProgress>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>
