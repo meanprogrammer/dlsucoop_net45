@@ -38,6 +38,12 @@
         </div>
         <div class="container-fluid" style="background-color: white;min-height:450px;">
             <div class="row">
+                
+                <div class="col-md-12">
+                    <asp:LinkButton ID="LinkButton1" Visible="false" CssClass="btn btn-md btn-danger pull-right" PostBackUrl="AdminLogout.aspx" runat="server">Logout</asp:LinkButton>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     <br />
                     <div class="container">

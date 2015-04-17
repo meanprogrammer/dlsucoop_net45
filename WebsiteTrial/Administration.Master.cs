@@ -11,7 +11,10 @@ namespace WebsiteTrial
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["AdminLogged"] != null)
+            {
+                this.LinkButton1.Visible = true;
+            }
         }
     }
 }

@@ -83,6 +83,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Account_Settings_old.aspx" />
+    <Content Include="AdminLogout.aspx" />
     <Content Include="AdminPage.aspx" />
     <Content Include="agreement.html" />
     <Content Include="ConfirmLoan.aspx" />
@@ -362,6 +363,13 @@
     </Compile>
     <Compile Include="Administration.Master.designer.cs">
       <DependentUpon>Administration.Master</DependentUpon>
+    </Compile>
+    <Compile Include="AdminLogout.aspx.cs">
+      <DependentUpon>AdminLogout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminLogout.aspx.designer.cs">
+      <DependentUpon>AdminLogout.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPage.aspx.cs">
       <DependentUpon>AdminPage.aspx</DependentUpon>
