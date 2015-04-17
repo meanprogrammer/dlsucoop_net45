@@ -520,8 +520,8 @@ img.right {
     background-color:lightgray;
     z-index:9999;
     position:absolute;
-    top:20%;
+    top:15%;
     left:45%;
-    width:200px;
-    height:50px;
+    width:250px;
+    height:75px;
 }
