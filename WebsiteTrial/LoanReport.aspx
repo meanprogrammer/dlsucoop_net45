@@ -63,7 +63,7 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="8" ForeColor="#333333" CellSpacing="1" EmptyDataText="No results found.">
+                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="8" ForeColor="#333333" CellSpacing="8" EmptyDataText="No results found.">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
                                 <asp:BoundField DataField="TransactionID" HeaderText="ID" />
