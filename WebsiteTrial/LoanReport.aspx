@@ -11,7 +11,7 @@
                 args.set_errorHandled(true);
             }
         }
-</script>
+    </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -90,14 +90,7 @@
                             <SortedDescendingHeaderStyle BackColor="#15524A" />
                         </asp:GridView>
 
-                        <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
-                            <ProgressTemplate>
-                                <div class="loading-p">
-                                    Running Query. Please Wait.
-                                </div>
-                            </ProgressTemplate>
-                            
-                        </asp:UpdateProgress>
+
 
                     </div>
                 </div>
@@ -106,5 +99,14 @@
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="SearchButton" EventName="Click" />
         </Triggers>
+
     </asp:UpdatePanel>
+    <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+        <ProgressTemplate>
+            <div class="loading-p">
+                Running Query. Please Wait.
+            </div>
+        </ProgressTemplate>
+
+    </asp:UpdateProgress>
 </asp:Content>
