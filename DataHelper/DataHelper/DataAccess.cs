@@ -64,22 +64,19 @@ namespace DataHelper
             return result;
         }
 
-        public bool UpdateInterestRate(double interestRate, int recordId)
+        public bool UpdateInterestRate(double interestRate, int loanType)
         {
             int result = 0;
             using (MessagesDataContext context = new MessagesDataContext())
             {
-                LoanAmountMatrix lam = context.LoanAmountMatrixes.FirstOrDefault(c => c.RecordID == recordId);
-                if (lam != null)
+                var records = context.LoanAmountMatrixes.Where(c => c.LoanType == loanType);
+                foreach (var r in records)
                 {
-                    lam.Interest = interestRate;
-                    result = context.GetChangeSet().Updates.Count;
-                    context.SubmitChanges();
+                    r.Interest = interestRate;
                 }
-                else
-                {
-                    return false;
-                }
+
+                result = context.GetChangeSet().Updates.Count;
+                context.SubmitChanges();
             }
             return result > 0;
         }
@@ -318,6 +315,16 @@ namespace DataHelper
             using (MessagesDataContext context = new MessagesDataContext())
             {
                 lm = context.LoanAmountMatrixes.FirstOrDefault(c => c.RecordID == recordId);
+            }
+            return lm;
+        }
+
+        public LoanAmountMatrix GetOneLoanMatrixByType(int loanType)
+        {
+            LoanAmountMatrix lm = null;
+            using (MessagesDataContext context = new MessagesDataContext())
+            {
+                lm = context.LoanAmountMatrixes.FirstOrDefault(c => c.LoanType == loanType);
             }
             return lm;
         }
