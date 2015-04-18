@@ -1406,7 +1406,7 @@ namespace DataHelper
                     pr.LoanAmount = dr.GetDecimal(6);
                     pr.PayAmount = dr.GetDouble(7);
                     pr.PayDate = dr.GetDateTime(8);
-                    pr.Balance = dr.GetDouble(9);
+                    pr.Balance = dr.IsDBNull(9) ? 0 : dr.GetDouble(9);
                     result.Add(pr);
                 }
             }
