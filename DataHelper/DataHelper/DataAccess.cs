@@ -1380,15 +1380,73 @@ namespace DataHelper
             return ds;
         }
 
-        public bool Pay(string transactionID, double amount, string note)
+        public List<LoanPaymentReport> GetLoanPaymentReport(int transactionID)
         {
-            this.cmd = "INSERT INTO Payments(TransactionID,PayAmount,Note,PayDate) VALUES(@TransactionID, @PayAmount, @Note,@PayDate)";
+            List<LoanPaymentReport> result = new List<LoanPaymentReport>();
+            this.sqlCmd.CommandText = "select p.TransactionID, lt.LoanType, u.LastName, u.FirstName, u.MiddleName, ul.DateFiled, "+
+                                        "la.Amount, p.PayAmount, p.PayDate, p.Balance from Payments p "+
+                                        "inner join LoanApplication la on p.TransactionID = la.TransactionID  "+
+                                        "inner join LoanTypes lt on la.TypeOfLoan = lt.RecordID "+
+                                        "inner join UnconfirmedLoan ul on la.TransactionID = ul.TransactionID "+
+                                        "left join Users u on la.EmpNo = u.EmpNo "+
+                                        "where p.TransactionID = @tid order by p.PayDate asc ";
+            this.sqlCmd.Parameters.Add("@tid", SqlDbType.Int).Value = transactionID;
+            OpenConnection();
+            using (this.dr = this.sqlCmd.ExecuteReader())
+            {
+                while (this.dr.Read())
+                {
+                    LoanPaymentReport pr = new LoanPaymentReport();
+                    pr.TransactionID = dr.GetInt32(0);
+                    pr.LoanType = dr.GetString(1);
+                    pr.Lastname = dr.GetString(2);
+                    pr.Firstname = dr.GetString(3);
+                    pr.MI = dr.GetString(4);
+                    pr.LoanDate = dr.GetDateTime(5);
+                    pr.LoanAmount = dr.GetDecimal(6);
+                    pr.PayAmount = dr.GetDouble(7);
+                    pr.PayDate = dr.GetDateTime(8);
+                    pr.Balance = dr.GetDouble(9);
+                    result.Add(pr);
+                }
+            }
+            this.EndProcess();
+            return result;
+        }
+
+        public List<SelectLoanDTO> GetUserLoans(string empNo)
+        {
+            this.cmd = "Select la.*,lt.LoanType from LoanApplication la inner join LoanTypes lt on la.TypeOfLoan = lt.RecordID where EmpNo = '" + empNo + "' AND Balance >= 0";
+            DataTable dt = this.GetTable(this.cmd);
+            List<SelectLoanDTO> ds = new List<SelectLoanDTO>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                SelectLoanDTO sl = new SelectLoanDTO();
+                sl.TransactionID = dr["TransactionID"].ToString();
+                sl.Text = string.Format(
+                    "<b>Type Of Loan:</b> {0} - <b>Reason:</b> {1} - <b>Amount:</b> {2} - <b>Payment:</b> {3} Months - <b>Date Due:</b> {4} - <b>Balance:</b> {5}",
+                    dr["LoanType"].ToString(),
+                    dr["Reason"].ToString(),
+                    Convert.ToDecimal(dr["Amount"]).ToString("F"),
+                    dr["NoOfMonths"].ToString(),
+                    dr["DateDue"].ToString(),
+                    Convert.ToDecimal(dr["Balance"]).ToString("F"));
+                ds.Add(sl);
+            }
+            return ds;
+        }
+
+        public bool Pay(string transactionID, double amount, string note, double currentBalance)
+        {
+            this.cmd = "INSERT INTO Payments(TransactionID,PayAmount,Note,PayDate,Balance) VALUES(@TransactionID, @PayAmount, @Note,@PayDate,@Balance)";
             this.sqlCmd.CommandText = this.cmd;
             //this.sqlCmd.Parameters.Add("@Pic", SqlDbType.NVarChar).Value = imagePath;
             this.sqlCmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = transactionID;
             this.sqlCmd.Parameters.Add("@PayAmount", SqlDbType.Money).Value = amount;
             this.sqlCmd.Parameters.Add("@Note", SqlDbType.NVarChar).Value = note;
             this.sqlCmd.Parameters.Add("@PayDate", SqlDbType.DateTime).Value = DateTime.Now;
+            this.sqlCmd.Parameters.Add("@Balance", SqlDbType.Money).Value = (currentBalance - amount);
             OpenConnection();
             int result = this.sqlCmd.ExecuteNonQuery();
             this.EndProcess();

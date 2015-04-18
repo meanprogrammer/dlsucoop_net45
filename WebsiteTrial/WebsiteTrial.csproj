@@ -89,6 +89,7 @@
     <Content Include="ConfirmLoan.aspx" />
     <Content Include="ConfirmRegistration.aspx" />
     <Content Include="Account_Settings_ne.aspx" />
+    <Content Include="PaymentReport.aspx" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
@@ -398,6 +399,13 @@
     </Compile>
     <Compile Include="Account_Settings_ne.aspx.designer.cs">
       <DependentUpon>Account_Settings_ne.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentReport.aspx.cs">
+      <DependentUpon>PaymentReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentReport.aspx.designer.cs">
+      <DependentUpon>PaymentReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

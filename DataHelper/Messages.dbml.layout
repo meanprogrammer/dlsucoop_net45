@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 16.375, 14" name="Messages">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 16.375, 17.625" name="Messages">
   <DataContextMoniker Name="/MessagesDataContext" />
   <nestedChildShapes>
     <classShape Id="f9c4181c-5d78-44a5-8c85-6cfe3832a513" absoluteBounds="0.75, 0.75, 2, 1.3862939453125">
@@ -120,6 +120,12 @@
       <DataClassMoniker Name="/MessagesDataContext/LoanApplication" />
       <nestedChildShapes>
         <elementListCompartment Id="d484e582-6691-4052-b37f-c4d5d1b0d1c6" absoluteBounds="0.765, 10.46, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f487bbc2-8370-4439-9282-ea0353079caa" absoluteBounds="7.625, 15.375, 2, 1.9631982421875">
+      <DataClassMoniker Name="/MessagesDataContext/Payment1" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ea51562d-119f-4cc4-b239-d238ed2930a8" absoluteBounds="7.64, 15.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

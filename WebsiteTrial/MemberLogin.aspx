@@ -21,7 +21,7 @@
                             </tr>--%>
                                     <tr>
                                         <td align="right">
-                                            <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">Employee Number:</asp:Label>
+                                            <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">Employee Number/User ID:</asp:Label>
                                         </td>
                                     </tr>
                                     <tr>

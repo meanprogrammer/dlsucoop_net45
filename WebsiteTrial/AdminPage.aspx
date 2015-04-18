@@ -82,12 +82,14 @@
             CssClass="btn btn-success" />
         <asp:Button ID="PaymentButton" runat="server" OnClick="PaymentButton_Click"
             Text="Payment" CssClass="btn btn-success btn-size" />
+        <asp:HyperLink ID="HyperLink6" CssClass="btn btn-success btn-md" NavigateUrl="~/PaymentReport.aspx" runat="server">Payment Report</asp:HyperLink>
         <asp:HyperLink ID="HyperLink1" CssClass="btn btn-success btn-md" NavigateUrl="~/PayShareCapitals.aspx" runat="server">Share Capitals</asp:HyperLink>
         &nbsp;
         <asp:HyperLink ID="HyperLink2" CssClass="btn btn-success btn-md btn-size" NavigateUrl="~/DownloadFormsAdmin.aspx" runat="server">Forms</asp:HyperLink>
         <asp:HyperLink ID="HyperLink3" CssClass="btn btn-success btn-md" NavigateUrl="~/NAAdmin.aspx" runat="server">News and Announcement</asp:HyperLink>
         <asp:HyperLink ID="HyperLink4" CssClass="btn btn-success btn-md" NavigateUrl="~/LoanReport.aspx" runat="server">Loan Report</asp:HyperLink>
         <asp:HyperLink ID="HyperLink5" CssClass="btn btn-success btn-md" NavigateUrl="~/InterestRate.aspx" runat="server">Interest Rate</asp:HyperLink>
+        
         <br />
     </div>
 </asp:Content>

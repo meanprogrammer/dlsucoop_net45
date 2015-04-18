@@ -61,14 +61,16 @@ namespace WebsiteTrial
                 return;
             }
 
-            if (payamount > da.GetOutStandingBalance(selectedLoan))
+            double currentBalance = da.GetOutStandingBalance(selectedLoan);
+
+            if (payamount > currentBalance)
             {
                 this.ResultLiteral.Text = "<div class=\"alert alert-danger\" role=\"alert\"><strong>Payment must not be greater than balance.</strong></div>";
                 return;
             }
 
 
-            bool result = da.Pay(selectedLoan, payamount, this.NoteTextBox.Text);
+            bool result = da.Pay(selectedLoan, payamount, this.NoteTextBox.Text, currentBalance);
             if (result)
             {
                 result = result && da.UpdateBalance(selectedLoan, payamount);

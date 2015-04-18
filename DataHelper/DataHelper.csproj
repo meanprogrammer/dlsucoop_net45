@@ -47,6 +47,7 @@
     <Compile Include="DataHelper\MessageParse.cs" />
     <Compile Include="DataHelper\NewsAnnoucementData.cs" />
     <Compile Include="Entities.cs" />
+    <Compile Include="LoanPaymentReport.cs" />
     <Compile Include="LoanReportDTO.cs" />
     <Compile Include="Messages1.designer.cs">
       <AutoGen>True</AutoGen>

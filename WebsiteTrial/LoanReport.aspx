@@ -15,7 +15,7 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
-
+            <a href="AdminPage.aspx">Return to Main</a>
             <div class="row">
                 <div class="col-md-2">
                     <label>User Type</label><br />
@@ -63,8 +63,7 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="8" ForeColor="#333333" CellSpacing="8" EmptyDataText="No results found.">
-                            <AlternatingRowStyle BackColor="White" />
+                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"  CssClass="table table-bordered table-striped"  EmptyDataText="No results found.">
                             <Columns>
                                 <asp:BoundField DataField="TransactionID" HeaderText="ID" />
                                 <asp:BoundField DataField="EmpNo" HeaderText="EmpNo" />
@@ -78,16 +77,6 @@
                                 <asp:BoundField DataField="LoanBalance" HeaderText="Balance" />
                                 <asp:BoundField DataField="LoanDueDate" HeaderText="Due Date" />
                             </Columns>
-                            <EditRowStyle BackColor="#7C6F57" />
-                            <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                            <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                            <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-                            <RowStyle BackColor="#E3EAEB" />
-                            <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
-                            <SortedAscendingCellStyle BackColor="#F8FAFA" />
-                            <SortedAscendingHeaderStyle BackColor="#246B61" />
-                            <SortedDescendingCellStyle BackColor="#D4DFE1" />
-                            <SortedDescendingHeaderStyle BackColor="#15524A" />
                         </asp:GridView>
 
 
