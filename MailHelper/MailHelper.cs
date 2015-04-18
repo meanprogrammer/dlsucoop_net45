@@ -190,11 +190,6 @@ namespace Mail
 				"&confirmationCode=",
 				HttpUtility.UrlEncode(this._pass)
 			}));
-			stringBuilder.AppendLine("");
-			stringBuilder.AppendLine("Alternatively you could just type in: ");
-			stringBuilder.AppendLine("Confirm<space>EmpNo/TransactionNumber/ConfirmationCode then send to 21582171");
-			stringBuilder.AppendLine("(e.g. Confirm F-1234/12345678/abc123)");
-			stringBuilder.AppendLine("");
 			return stringBuilder.ToString();
 		}
 		public string MakeEmailBodyLoanConfirmationCoMaker(List<string> details, List<string> names, int transactionID, string sendTo, bool coMaker2)
@@ -249,10 +244,7 @@ namespace Mail
 				}));
 			}
 			stringBuilder.AppendLine("");
-			stringBuilder.AppendLine("Alternatively you could just send the confirmation as SMS. Just type in: ");
-            stringBuilder.AppendLine("Confirm<space>EmpNo/TransactionNumber/ConfirmationCode then send to 21582171");
-			stringBuilder.AppendLine("(e.g. Confirm F-1234/12345678/abc123)");
-			stringBuilder.AppendLine("");
+		
 			return stringBuilder.ToString();
 		}
 		public void AttachFile(string filePath)
